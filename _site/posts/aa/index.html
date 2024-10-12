@@ -34,8 +34,8 @@
 <meta property="og:locale" content="en" />
 <meta name="description" content="本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
 <meta property="og:description" content="本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
-<link rel="canonical" href="http://localhost:4000/posts/aa/" />
-<meta property="og:url" content="http://localhost:4000/posts/aa/" />
+<link rel="canonical" href="https://fan-wb.github.io/posts/aa/" />
+<meta property="og:url" content="https://fan-wb.github.io/posts/aa/" />
 <meta property="og:site_name" content="Fanwb’s Blog" />
 <meta property="og:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png" />
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="twitter:title" content="账户抽象架构设计详解" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-16T11:54:20+08:00","datePublished":"2023-04-08T12:00:00+08:00","description":"本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。","headline":"账户抽象架构设计详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/aa/"},"url":"http://localhost:4000/posts/aa/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-16T11:54:20+08:00","datePublished":"2023-04-08T12:00:00+08:00","description":"本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。","headline":"账户抽象架构设计详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/aa/"},"url":"https://fan-wb.github.io/posts/aa/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2594,21 +2594,21 @@
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=%E8%B4%A6%E6%88%B7%E6%8A%BD%E8%B1%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Faa%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=%E8%B4%A6%E6%88%B7%E6%8A%BD%E8%B1%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Faa%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
 
       
 
-      <a href="https://www.facebook.com/sharer/sharer.php?title=%E8%B4%A6%E6%88%B7%E6%8A%BD%E8%B1%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Faa%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?title=%E8%B4%A6%E6%88%B7%E6%8A%BD%E8%B1%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&u=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Faa%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
         <i class="fa-fw fab fa-facebook-square"></i>
       </a>
     
 
       
 
-      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Faa%2F&text=%E8%B4%A6%E6%88%B7%E6%8A%BD%E8%B1%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+      <a href="https://t.me/share/url?url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Faa%2F&text=%E8%B4%A6%E6%88%B7%E6%8A%BD%E8%B1%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
         <i class="fa-fw fab fa-telegram"></i>
       </a>
     

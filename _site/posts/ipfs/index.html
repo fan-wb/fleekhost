@@ -34,8 +34,8 @@
 <meta property="og:locale" content="en" />
 <meta name="description" content="规模经济和云计算正导致网络系统日益中心化。域名解析、内容托管、路由、协议开发和证书颁发等服务的提供和运营都在向中心化的方向发展，一些领域的特定服务商甚至已接近垄断地位。我们的网络系统不可避免地面临着中心化系统所固有的单点故障风险，极端情况下的服务宕机可能会导致严重的后果和巨大的经济损失。据报道称，亚马逊的电商平台在 2013 年的宕机期间每分钟的损失超过 66000 美元。" />
 <meta property="og:description" content="规模经济和云计算正导致网络系统日益中心化。域名解析、内容托管、路由、协议开发和证书颁发等服务的提供和运营都在向中心化的方向发展，一些领域的特定服务商甚至已接近垄断地位。我们的网络系统不可避免地面临着中心化系统所固有的单点故障风险，极端情况下的服务宕机可能会导致严重的后果和巨大的经济损失。据报道称，亚马逊的电商平台在 2013 年的宕机期间每分钟的损失超过 66000 美元。" />
-<link rel="canonical" href="http://localhost:4000/posts/ipfs/" />
-<meta property="og:url" content="http://localhost:4000/posts/ipfs/" />
+<link rel="canonical" href="https://fan-wb.github.io/posts/ipfs/" />
+<meta property="og:url" content="https://fan-wb.github.io/posts/ipfs/" />
 <meta property="og:site_name" content="Fanwb’s Blog" />
 <meta property="og:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/Group.png" />
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="twitter:title" content="IPFS 技术原理详解" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-16T10:33:14+08:00","datePublished":"2023-12-17T13:00:00+08:00","description":"规模经济和云计算正导致网络系统日益中心化。域名解析、内容托管、路由、协议开发和证书颁发等服务的提供和运营都在向中心化的方向发展，一些领域的特定服务商甚至已接近垄断地位。我们的网络系统不可避免地面临着中心化系统所固有的单点故障风险，极端情况下的服务宕机可能会导致严重的后果和巨大的经济损失。据报道称，亚马逊的电商平台在 2013 年的宕机期间每分钟的损失超过 66000 美元。","headline":"IPFS 技术原理详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Group.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/ipfs/"},"url":"http://localhost:4000/posts/ipfs/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-16T10:33:14+08:00","datePublished":"2023-12-17T13:00:00+08:00","description":"规模经济和云计算正导致网络系统日益中心化。域名解析、内容托管、路由、协议开发和证书颁发等服务的提供和运营都在向中心化的方向发展，一些领域的特定服务商甚至已接近垄断地位。我们的网络系统不可避免地面临着中心化系统所固有的单点故障风险，极端情况下的服务宕机可能会导致严重的后果和巨大的经济损失。据报道称，亚马逊的电商平台在 2013 年的宕机期间每分钟的损失超过 66000 美元。","headline":"IPFS 技术原理详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Group.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/ipfs/"},"url":"https://fan-wb.github.io/posts/ipfs/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1591,7 +1591,7 @@
 
 <p>基于哈希的结构决定了 CID 是不可变和自认证的。利用这一特性可以消除对中心化协调者的需求，使其十分适合去中心化的命名空间管理，同时还令通用缓存（即从任何对等点缓存）成为可能。然而，这一特点在处理动态内容（如频繁变更的文档）时会成为问题。</p>
 
-<p>为了处理可变内容，在文件修改时保持内容名称一致，IPFS提供了一种名为星际命名系统 (IPNS) 的命名系统，支持基于发布者的公钥哈希 (PeerID) 而不是内容的哈希 (CID) 来发布内容。IPNS 的标识符是从节点的公钥派生的，因此每个节点只能创建一个 IPNS 标识符。IPNS 记录会将发布者公钥的 CID 映射到由相应私钥签名的另一个 CID，虽然标识符本身是静态的，但其所指的 CID 可以由发布节点任意修改，这使得 IPNS 标识符背后的 IPFS 对象具有了可变性。IPNS 标识符可以表示其他任意的 CID，例如块、文件或数据结构。IPNS 标识符在其路径名中使用<code class="language-plaintext highlighter-rouge">/ipns/</code>前缀而非<code class="language-plaintext highlighter-rouge">/ipfs/</code>前缀以作区分。</p>
+<p>为了处理可变内容，在文件修改时保持内容名称一致，IPFS提供了一种名为星际命名系统 (IPNS) 的命名系统，支持基于发布者的公钥哈希 (PeerID) 而不是内容的哈希 (CID) 来发布内容。IPNS 的标识符是从节点的公钥派生的，因此每个节点只能创建一个 IPNS 标识符。IPNS 记录会将发布者公钥的 CID 映射到由相应私钥签名的另一个 CID，虽然标识符本身是静态的，但其所指的 CID 可以由发布节点任意修改，这使得 IPNS 标识符背后的 IPFS 对象具有了可变性。IPNS 标识符可以表示其他任意的 CID，例如块、文件或数据结构。IPNS 标识符在其路径名中使用 <code class="language-plaintext highlighter-rouge">/ipns/</code> 前缀而非 <code class="language-plaintext highlighter-rouge">/ipfs/</code> 前缀以作区分。</p>
 
 <h3 id="24-ipfs-网关"><span class="me-2">2.4 IPFS 网关</span><a href="#24-ipfs-网关" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
@@ -1843,21 +1843,21 @@
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=IPFS%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fipfs%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=IPFS%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Fipfs%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
 
       
 
-      <a href="https://www.facebook.com/sharer/sharer.php?title=IPFS%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fipfs%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?title=IPFS%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&u=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Fipfs%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
         <i class="fa-fw fab fa-facebook-square"></i>
       </a>
     
 
       
 
-      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fipfs%2F&text=IPFS%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+      <a href="https://t.me/share/url?url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Fipfs%2F&text=IPFS%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
         <i class="fa-fw fab fa-telegram"></i>
       </a>
     

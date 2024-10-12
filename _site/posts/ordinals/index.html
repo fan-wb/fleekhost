@@ -34,8 +34,8 @@
 <meta property="og:locale" content="en" />
 <meta name="description" content="本文从技术的角度出发，深入底层，详细介绍了比特币 Ordinals 协议以及 BRC-20 代币标准的原理。主要内容包括 Colored Coins 项目介绍、SegWit 与 Taproot 升级详解、序数铭文及 BRC-20 代币标准说明。" />
 <meta property="og:description" content="本文从技术的角度出发，深入底层，详细介绍了比特币 Ordinals 协议以及 BRC-20 代币标准的原理。主要内容包括 Colored Coins 项目介绍、SegWit 与 Taproot 升级详解、序数铭文及 BRC-20 代币标准说明。" />
-<link rel="canonical" href="http://localhost:4000/posts/ordinals/" />
-<meta property="og:url" content="http://localhost:4000/posts/ordinals/" />
+<link rel="canonical" href="https://fan-wb.github.io/posts/ordinals/" />
+<meta property="og:url" content="https://fan-wb.github.io/posts/ordinals/" />
 <meta property="og:site_name" content="Fanwb’s Blog" />
 <meta property="og:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/ordi-1.jpg" />
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="twitter:title" content="Ordinals &amp; BRC-20 技术原理详解" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-18T18:59:29+08:00","datePublished":"2024-01-11T13:00:00+08:00","description":"本文从技术的角度出发，深入底层，详细介绍了比特币 Ordinals 协议以及 BRC-20 代币标准的原理。主要内容包括 Colored Coins 项目介绍、SegWit 与 Taproot 升级详解、序数铭文及 BRC-20 代币标准说明。","headline":"Ordinals &amp; BRC-20 技术原理详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/ordi-1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/ordinals/"},"url":"http://localhost:4000/posts/ordinals/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-18T18:59:29+08:00","datePublished":"2024-01-11T13:00:00+08:00","description":"本文从技术的角度出发，深入底层，详细介绍了比特币 Ordinals 协议以及 BRC-20 代币标准的原理。主要内容包括 Colored Coins 项目介绍、SegWit 与 Taproot 升级详解、序数铭文及 BRC-20 代币标准说明。","headline":"Ordinals &amp; BRC-20 技术原理详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/ordi-1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/ordinals/"},"url":"https://fan-wb.github.io/posts/ordinals/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1544,7 +1544,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="14028 words"
+  title="14026 words"
 >
   <em>77 min</em> read</span>
 
@@ -1561,7 +1561,7 @@
 
 <h3 id="11-比特币交易模型"><span class="me-2">1.1 比特币交易模型</span><a href="#11-比特币交易模型" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>在比特币网络中，比特币的形式是“未花费交易输出”（Unspent Transaction Output, UTXO），即比特币交易执行后形成的面额不定的单元，其原理可简单类比现实中的现金支付，与传统的基于账户余额的模型有所不同。举例而言：在银行的账户记账模型流程中，当 A 向 B 转账 100 元时，银行会记录三个步骤，这三个步骤构成了一个交易过程。第一步是从 A 的账户中扣除 100 元，这个步骤的记录 ID 为 tid1。第二步是将 100 元存入 B 的账户中，这个步骤的记录 ID 为 tid2。第三步是记录一笔转账记录，该记录将 tid1 和 tid2 关联起来，表示 A 账户减少 100 元，B 账户增加 100 元。这样，A 和 B 之间的转账关系就被记录下来，并且可以在未来查询与追踪。</p>
+<p>在比特币网络中，比特币的形式是“未花费交易输出” (Unspent Transaction Output, UTXO)，即比特币交易执行后形成的面额不定的单元，其原理可简单类比现实中的现金支付，与传统的基于账户余额的模型有所不同。举例而言：在银行的账户记账模型流程中，当 A 向 B 转账 100 元时，银行会记录三个步骤，这三个步骤构成了一个交易过程。第一步是从 A 的账户中扣除 100 元，这个步骤的记录 ID 为 tid1。第二步是将 100 元存入 B 的账户中，这个步骤的记录 ID 为 tid2。第三步是记录一笔转账记录，该记录将 tid1 和 tid2 关联起来，表示 A 账户减少 100 元，B 账户增加 100 元。这样，A 和 B 之间的转账关系就被记录了下来，并且可以在未来查询与追踪。</p>
 
 <p>而在比特币区块链中，所有的余额都是存储在一个名为 UTXO 的列表中。每个 UTXO 都包含一定数量的比特币，以及这些比特币的所有者信息，并标明是否可用。可以将其想象成一张署有持有人姓名的现金支票，只要持有人在上面签名，就可以将使用权转让给他人。对于特定的地址，其所有的 UTXO 金额加起来即为该地址钱包的余额。通过遍历所有的 UTXO，我们可以获取每个地址的当前余额。将所有的 UTXO 金额加总，则为当前全部流通的比特币。</p>
 
@@ -1569,14 +1569,14 @@
 
 <p>值得强调的是，每个 UTXO 只能在一笔交易中被使用一次。一旦它作为输入被消费，它就会永久地从 UTXO 列表中移除。同时，新生成的输出作为新的 UTXO 加入到列表中。UTXO 列表是不断变化的，随着每个新区块的创建，它会相应地进行更新。并且，通过分析区块链中的交易历史，我们能够重建在任何给定时间点的 UTXO 列表状态。</p>
 
-<p>此外，一笔交易的总输入金额通常会略微超过其总输出金额。这个差额，称为交易费用（Transaction fee），是作为激励给予负责将交易打包到区块的矿工的。网络费的大小与交易的复杂性成正比，因此，一笔包含更多输入和输出的交易通常需要支付更高的网络费。</p>
+<p>此外，一笔交易的总输入金额通常会略微超过其总输出金额。这个差额，称为交易费用 (Transaction fee)，是作为激励给予负责将交易打包到区块的矿工的。网络费的大小与交易的复杂性成正比，因此，一笔包含更多输入和输出的交易通常需要支付更高的网络费。</p>
 
 <p>图1 是通过区块链浏览器展示交易信息的例子（假设场景为 Alice 使用了 0.1 BTC，其中的 0.015 BTC 转账给了 Bob 用于购买咖啡，而 0.0845 BTC 退给了自己，0.0005 BTC 是转账手续费，由打包者获得）。这个交易在主网上真实存在，参考： <a href="https://www.blockchain.com/btc/tx/0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2">0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2</a> 。</p>
 
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/1706166670236.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/1706166670236.png" style="zoom:80%;" loading="lazy"></a>
 <em>图1 交易信息</em></p>
 
-<p>上图中是比较高层次的交易信息。使用 bitcoin-cli 子命令 <code class="language-plaintext highlighter-rouge">getrawtransaction</code> 和 <code class="language-plaintext highlighter-rouge">decoderawtransaction</code> ，可以得到上面 Tx 的底层结构看起来像下面这样：</p>
+<p>上图中是比较高层次的交易信息。使用 bitcoin-cli 子命令 <code class="language-plaintext highlighter-rouge">getrawtransaction</code> 和 <code class="language-plaintext highlighter-rouge">decoderawtransaction</code> ，可以得到上面 Tx 的底层结构如下：</p>
 
 <div class="language-json highlighter-rouge"><div class="code-header">
         <span data-label-text="JSON"><i class="fas fa-code fa-fw small"></i></span>
@@ -1626,7 +1626,7 @@
 </span><span class="p">}</span><span class="w">
 </span></pre></td></tr></tbody></table></code></div></div>
 
-<p>可以看到 Transaction 中有 Input 和 Output（分别是上面的 vin 和 vout）。Input 标识哪个 UTXO 将被消费，并通过解锁脚本提供所有权证明。Output 则创建新的 UTXO 比特币块并用锁定脚本锁定，供所有者在未来交易中使用。</p>
+<p>可以看到交易中有 Input 和 Output（分别是上面的 vin 和 vout）。Input 标识哪个 UTXO 将被消费，并通过解锁脚本提供所有权证明。Output 则创建新的 UTXO 比特币块并用锁定脚本锁定，供所有者在未来交易中使用。</p>
 
 <p><strong>比特币网络中交易输出有两个重要信息：地址（公钥哈希）和 value（比特币）。如果交易的输出没有出现在其它交易的输入中，则这个 Tx 的输出就称为 UTXO（未花费交易输出）。</strong>谁拥有 UTXO 中公钥对应的私钥，谁就可以使用（即花费）这个 UTXO。</p>
 
@@ -1699,7 +1699,7 @@
 
 <p>Pay-to-Script-Hash (P2SH) 可以帮助发送方免去额外成本，并将这⼀成本转移到真正需要使用锁定脚本中规定条件的接收方身上。P2SH 的比特币地址以数字 3 开头。</p>
 
-<p>发送交易时，发送方不再需要将 scriptPubKey 放在交易中，而是将赎回脚本（Redeem Script）哈希值放在交易中。赎回脚本哈希值由赎回脚本计算得到，赎回脚本与 scriptPubKey 类似，包含接收方在花费 UTXO 之前必须满足的条件。</p>
+<p>发送交易时，发送方不再需要将 scriptPubKey 放在交易中，而是将赎回脚本 (Redeem Script) 哈希值放在交易中。赎回脚本哈希值由赎回脚本计算得到，赎回脚本与 scriptPubKey 类似，包含接收方在花费 UTXO 之前必须满足的条件。</p>
 
 <p>如下表所示，发送方只需在交易中注明赎回脚本的哈希值即可。而接收方想要解锁 UTXO 时，需要⽣成具有相同哈希值的赎回脚本并将其包含到交易内。因此，接收方用来解锁 UTXO 的交易大小会增加，执行交易的成本也会增加。</p>
 
@@ -1865,7 +1865,7 @@ OP_DUP OP_HASH160    Bytes to push
 
 <p>“隔离见证”（<a href="https://en.wikipedia.org/wiki/SegWit">Segregated Witness</a>，SegWit）是比特币的一个重要协议升级，由比特币核心开发者 Pieter Wuille 在 2015 年提出，最终在 2017 年的 0.16.0 版本中被正式采纳。</p>
 
-<p>在密码学中，术语“见证”（Witness）用于描述解决密码难题的方案。在比特币语境中，见证是指能够满足对 UTXO 施加的条件并解锁该 UTXO 以供花费的解决方案。“见证”是 “Unlocking Script” 或 “scriptSig” 更一般化的术语。</p>
+<p>在密码学中，术语“见证” (Witness) 用于描述解决密码难题的方案。在比特币语境中，见证是指能够满足对 UTXO 施加的条件并解锁该 UTXO 以供花费的解决方案。“见证”是 “Unlocking Script” 或 “scriptSig” 更一般化的术语。</p>
 
 <p>隔离见证，指的是把见证数据（即 scriptSig 中的内容）从交易信息里抽离出来，单独存放。 如图 3 所示。</p>
 
@@ -2867,21 +2867,21 @@ e3 08 be 91 9a 4c 71 05 cf f0 09 22 aa 95 a6 58 d2 3d 55 ea
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=Ordinals%20&%20BRC-20%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fordinals%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=Ordinals%20&%20BRC-20%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Fordinals%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
 
       
 
-      <a href="https://www.facebook.com/sharer/sharer.php?title=Ordinals%20&%20BRC-20%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fordinals%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?title=Ordinals%20&%20BRC-20%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&u=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Fordinals%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
         <i class="fa-fw fab fa-facebook-square"></i>
       </a>
     
 
       
 
-      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fordinals%2F&text=Ordinals%20&%20BRC-20%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+      <a href="https://t.me/share/url?url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Fordinals%2F&text=Ordinals%20&%20BRC-20%20%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
         <i class="fa-fw fab fa-telegram"></i>
       </a>
     

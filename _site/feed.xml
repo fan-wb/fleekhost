@@ -1,17 +1,17 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://localhost:4000/</id>
+  <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-10-11T19:52:46+08:00</updated>
+  <updated>2024-10-12T16:59:35+08:00</updated>
   <author>
     <name>Fan-WB</name>
-    <uri>http://localhost:4000/</uri>
+    <uri>https://fan-wb.github.io/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="https://fan-wb.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="http://localhost:4000/"/>
+    href="https://fan-wb.github.io/"/>
   <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
   <rights> © 2024 Fan-WB </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
@@ -21,13 +21,13 @@
   
   <entry>
     <title>L2：ETH 的价值抽取与重塑</title>
-    <link href="http://localhost:4000/posts/ethl2/" rel="alternate" type="text/html" title="L2：ETH 的价值抽取与重塑" />
+    <link href="https://fan-wb.github.io/posts/ethl2/" rel="alternate" type="text/html" title="L2：ETH 的价值抽取与重塑" />
     <published>2024-08-23T12:00:00+08:00</published>
   
     <updated>2024-10-09T14:23:03+08:00</updated>
   
-    <id>http://localhost:4000/posts/ethl2/</id>
-    <content src="http://localhost:4000/posts/ethl2/" />
+    <id>https://fan-wb.github.io/posts/ethl2/</id>
+    <content src="https://fan-wb.github.io/posts/ethl2/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -68,13 +68,13 @@
   
   <entry>
     <title>AI × 加密：去中心化愿景的现实考验</title>
-    <link href="http://localhost:4000/posts/aicrypto/" rel="alternate" type="text/html" title="AI × 加密：去中心化愿景的现实考验" />
+    <link href="https://fan-wb.github.io/posts/aicrypto/" rel="alternate" type="text/html" title="AI × 加密：去中心化愿景的现实考验" />
     <published>2024-05-22T12:00:00+08:00</published>
   
     <updated>2024-05-22T12:00:00+08:00</updated>
   
-    <id>http://localhost:4000/posts/aicrypto/</id>
-    <content src="http://localhost:4000/posts/aicrypto/" />
+    <id>https://fan-wb.github.io/posts/aicrypto/</id>
+    <content src="https://fan-wb.github.io/posts/aicrypto/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -115,13 +115,13 @@
   
   <entry>
     <title>拆分与重构：模块化架构下的区块链新生态</title>
-    <link href="http://localhost:4000/posts/modular/" rel="alternate" type="text/html" title="拆分与重构：模块化架构下的区块链新生态" />
+    <link href="https://fan-wb.github.io/posts/modular/" rel="alternate" type="text/html" title="拆分与重构：模块化架构下的区块链新生态" />
     <published>2024-03-08T12:00:00+08:00</published>
   
     <updated>2024-05-16T17:46:18+08:00</updated>
   
-    <id>http://localhost:4000/posts/modular/</id>
-    <content src="http://localhost:4000/posts/modular/" />
+    <id>https://fan-wb.github.io/posts/modular/</id>
+    <content src="https://fan-wb.github.io/posts/modular/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -153,13 +153,13 @@
   
   <entry>
     <title>Ordinals &amp; BRC-20 技术原理详解</title>
-    <link href="http://localhost:4000/posts/ordinals/" rel="alternate" type="text/html" title="Ordinals &amp;amp; BRC-20 技术原理详解" />
+    <link href="https://fan-wb.github.io/posts/ordinals/" rel="alternate" type="text/html" title="Ordinals &amp;amp; BRC-20 技术原理详解" />
     <published>2024-01-11T13:00:00+08:00</published>
   
     <updated>2024-09-18T18:59:29+08:00</updated>
   
-    <id>http://localhost:4000/posts/ordinals/</id>
-    <content src="http://localhost:4000/posts/ordinals/" />
+    <id>https://fan-wb.github.io/posts/ordinals/</id>
+    <content src="https://fan-wb.github.io/posts/ordinals/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -184,7 +184,7 @@
 
 1.1 比特币交易模型
 
-在比特币网络中，比特币的形式是“未花费交易输出”（Unspent Transaction Output, UTXO），即比特币交易执行后形成的面额不定的单元，其原理可简单类比现实中的现金支付，与传统的基于账户余额的模型有所不同。举例而言：在银行的账户记账模型流程中，当 A 向 B 转账 100 元时，银行会记录三个步骤，这三个步骤构成了一个交易过程。第一步是从 A 的账户中扣除 100 元，这个步骤的记录 ID 为 tid1。第二步是将 100 元存入 B 的账户中，这个步骤的记录 ID 为 tid...
+在比特币网络中，比特币的形式是“未花费交易输出” (Unspent Transaction Output, UTXO)，即比特币交易执行后形成的面额不定的单元，其原理可简单类比现实中的现金支付，与传统的基于账户余额的模型有所不同。举例而言：在银行的账户记账模型流程中，当 A 向 B 转账 100 元时，银行会记录三个步骤，这三个步骤构成了一个交易过程。第一步是从 A 的账户中扣除 100 元，这个步骤的记录 ID 为 tid1。第二步是将 100 元存入 B 的账户中，这个步骤的记录 ID 为 ti...
     </summary>
   
 
@@ -193,13 +193,13 @@
   
   <entry>
     <title>IPFS 技术原理详解</title>
-    <link href="http://localhost:4000/posts/ipfs/" rel="alternate" type="text/html" title="IPFS 技术原理详解" />
+    <link href="https://fan-wb.github.io/posts/ipfs/" rel="alternate" type="text/html" title="IPFS 技术原理详解" />
     <published>2023-12-17T13:00:00+08:00</published>
   
     <updated>2024-07-16T10:33:14+08:00</updated>
   
-    <id>http://localhost:4000/posts/ipfs/</id>
-    <content src="http://localhost:4000/posts/ipfs/" />
+    <id>https://fan-wb.github.io/posts/ipfs/</id>
+    <content src="https://fan-wb.github.io/posts/ipfs/" />
     <author>
       <name>Fan-WB</name>
     </author>
