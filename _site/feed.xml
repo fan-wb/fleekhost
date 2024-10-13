@@ -4,7 +4,7 @@
   <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-10-12T19:37:38+08:00</updated>
+  <updated>2024-10-13T16:18:13+08:00</updated>
   <author>
     <name>Fan-WB</name>
     <uri>https://fan-wb.github.io/</uri>
@@ -196,7 +196,7 @@
     <link href="https://fan-wb.github.io/posts/ipfs/" rel="alternate" type="text/html" title="IPFS 技术原理详解" />
     <published>2023-12-17T13:00:00+08:00</published>
   
-    <updated>2024-10-12T17:00:22+08:00</updated>
+    <updated>2024-10-13T16:17:51+08:00</updated>
   
     <id>https://fan-wb.github.io/posts/ipfs/</id>
     <content src="https://fan-wb.github.io/posts/ipfs/" />
@@ -218,9 +218,28 @@
 
 
 
-      规模经济和云计算正导致网络系统日益中心化。域名解析、内容托管、路由、协议开发和证书颁发等服务的提供和运营都在向中心化的方向发展，一些领域的特定服务商甚至已接近垄断地位。我们的网络系统不可避免地面临着中心化系统所固有的单点故障风险，极端情况下的服务宕机可能会导致严重的后果和巨大的经济损失。据报道称，亚马逊的电商平台在 2013 年的宕机期间每分钟的损失超过 66000 美元。
+      
+  本站已在 IPFS 上同步部署
 
-为应对这一问题，近年来兴起了一场“网络去中心化”技术运动。其中包括一系列旨在赋予用户更多控制权的技术。这些技术通常依赖开源、社区驱动的软件实现，将传统网络功能(如域名查找、托管、认证)去中心化，以避免单一实体阻碍整体运营或设计决策。目前，已经有许多项目在通过去中心化的系统提供常见的应用服务，例如用于视频共享的 PeerTube 和用于博客的 Mastodon 等。这些项目为网络去中心化做出的努力值得肯定，但在实...
+  
+    可运行节点使用本地网关访问：
+      
+        IPNS KEY: k51qzi5uqu5dmfcprlafbp7idt7jujlsgp48hx8ful5k7iqm0el582yva4fgq3
+      
+    
+    
+      或通过公共网关访问：
+
+      
+        
+          dweb.link/ipns/portkey.fanwb.xyz
+        
+        
+          dweb.link/ipns/k51qzi5uqu5dmfcprlafbp7idt7jujlsgp48hx8ful5k7iqm0el582yva4fgq3
+        
+        
+          flk-ipfs.xyz/ipns/portkey.fanwb.xyz
+   ...
     </summary>
   
 
