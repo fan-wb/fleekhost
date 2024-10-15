@@ -4,7 +4,7 @@
   <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-10-15T10:57:45+08:00</updated>
+  <updated>2024-10-15T11:21:17+08:00</updated>
   <author>
     <name>Fan-WB</name>
     <uri>https://fan-wb.github.io/</uri>
@@ -222,7 +222,7 @@
   本站已在 IPFS 上同步部署
 
   
-    可运行节点使用本地网关访问：
+    您可运行节点使用本地网关访问：
       
         IPNS KEY: k51qzi5uqu5dmfcprlafbp7idt7jujlsgp48hx8ful5k7iqm0el582yva4fgq3
       
@@ -239,7 +239,7 @@
         
         
           flk-ipfs.xyz/ipns/portkey.fanwb.xyz
-   ...
+  ...
     </summary>
   
 
