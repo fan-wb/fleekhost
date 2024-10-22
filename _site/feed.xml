@@ -4,7 +4,7 @@
   <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-10-18T23:49:48+08:00</updated>
+  <updated>2024-10-22T21:48:02+08:00</updated>
   <author>
     <name>Fan-WB</name>
     <uri>https://fan-wb.github.io/</uri>
@@ -17,6 +17,48 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>隐私与透明：密码朋克运动的多维度探讨</title>
+    <link href="https://fan-wb.github.io/posts/cypherpunk/" rel="alternate" type="text/html" title="隐私与透明：密码朋克运动的多维度探讨" />
+    <published>2024-10-16T12:00:00+08:00</published>
+  
+    <updated>2024-10-16T12:00:00+08:00</updated>
+  
+    <id>https://fan-wb.github.io/posts/cypherpunk/</id>
+    <content src="https://fan-wb.github.io/posts/cypherpunk/" />
+    <author>
+      <name>Fan-WB</name>
+    </author>
+
+  
+    
+    <category term="Blockchain" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+  本文系统性地探讨了密码朋克运动的核心伦理观、认识论及实践策略，旨在深入剖析其在数字时代对个体隐私保护与权力机构透明度提升的重要贡献。密码朋克运动始于 20 世纪 90 年代，强调通过加密技术的广泛应用来维护个人隐私，对抗政府和企业日益增长的监控能力。其核心伦理观可概括为“保护弱者隐私，要求强者透明”，主张个人隐私权的同时，呼吁政府及大型机构提高透明度并接受公众监督。密码朋克认识论强调将加密技术作为数据行动主义的关键工具，通过主动与被动相结合的策略，在保护个人信息安全的同时促进社会公正。在实践层面，密码朋克运动通过创建维基解密等平台，实现了对大型权力机构的逆向监控，展现了加密技术在重塑权力关系和推动社会变革中的关键作用。本文通过对密码朋克理论与实践的分析，揭示了其在数字监控时代的重要意义，为理解与应对当前的全球数据监控环境提供了新的视角。
+
+
+
+
+引言
+
+密码朋克 (Cypher...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -48,18 +90,19 @@
 
 
 
-      以太坊 L2 扩容路线图因面临诸多挑战而屡遭诟病，但即便采用 L1 扩容方案，相同的挑战也仍将存在。
-
-
+      
   
+    以太坊 L2 扩容路线图因面临诸多挑战而屡遭诟病，但即便采用 L1 扩容方案，相同的挑战也仍将存在。
     L2 扩容路线图对 ETH 需求的影响有限。常被提及的总交易费用下降和 ETH 通胀上升等现象，实则源于区块空间供过于求。
     长远来看，ETH 在各类协议中的应用或将超越交易费用，成为其需求的主要驱动力，交易费用本身则将趋近于零。
   
 
 
+
+
 以太坊的 Layer-2 (L2) 扩容策略引发了关于其对 ETH “价值抽取”的争议。Dencun 升级和 L2 兴起导致总手续费降至三年新低，似乎终结了ETH “Ultrasound Money” 的论调。但这类批评多属误解，相关问题实为区块链成功扩容的必然结果，无论是在 L1 还是 L2 层面扩容，都会产生类似的现象。
 
-1/9) Ethereum is dying while L2&amp;#39;s dance on i...
+1/9) Ethereum is dying while L2&amp;#39;s dance...
     </summary>
   
 
@@ -185,61 +228,6 @@
 1.1 比特币交易模型
 
 在比特币网络中，比特币的形式是“未花费交易输出” (Unspent Transaction Output, UTXO)，即比特币交易执行后形成的面额不定的单元，其原理可简单类比现实中的现金支付，与传统的基于账户余额的模型有所不同。举例而言：在银行的账户记账模型流程中，当 A 向 B 转账 100 元时，银行会记录三个步骤，这三个步骤构成了一个交易过程。第一步是从 A 的账户中扣除 100 元，这个步骤的记录 ID 为 tid1。第二步是将 100 元存入 B 的账户中，这个步骤的记录 ID 为 ti...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>IPFS 技术原理详解</title>
-    <link href="https://fan-wb.github.io/posts/ipfs/" rel="alternate" type="text/html" title="IPFS 技术原理详解" />
-    <published>2023-12-17T13:00:00+08:00</published>
-  
-    <updated>2024-10-15T11:22:14+08:00</updated>
-  
-    <id>https://fan-wb.github.io/posts/ipfs/</id>
-    <content src="https://fan-wb.github.io/posts/ipfs/" />
-    <author>
-      <name>Fan-WB</name>
-    </author>
-
-  
-    
-    <category term="IPFS" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-  本站已在 IPFS 上同步部署
-
-  
-    您可运行节点使用本地网关访问：
-      
-        IPNS KEY: k51qzi5uqu5dmfcprlafbp7idt7jujlsgp48hx8ful5k7iqm0el582yva4fgq3
-      
-    
-    
-      或通过公共网关访问：
-
-      
-        
-          dweb.link/ipns/portkey.fanwb.xyz
-        
-        
-          dweb.link/ipns/k51qzi5uqu5dmfcprlafbp7idt7jujlsgp48hx8ful5k7iqm0el582yva4fgq3
-        
-        
-          flk-ipfs.xyz/ipns/portkey.fanwb.xyz
-  ...
     </summary>
   
 
