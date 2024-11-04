@@ -1,17 +1,17 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://localhost:4000/</id>
+  <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-11-04T20:19:01+08:00</updated>
+  <updated>2024-11-04T20:34:57+08:00</updated>
   <author>
     <name>Fan-WB</name>
-    <uri>http://localhost:4000/</uri>
+    <uri>https://fan-wb.github.io/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="https://fan-wb.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="http://localhost:4000/"/>
+    href="https://fan-wb.github.io/"/>
   <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
   <rights> © 2024 Fan-WB </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
@@ -21,13 +21,13 @@
   
   <entry>
     <title>隐私与透明：密码朋克运动的多维度探讨</title>
-    <link href="http://localhost:4000/posts/cypherpunk/" rel="alternate" type="text/html" title="隐私与透明：密码朋克运动的多维度探讨" />
+    <link href="https://fan-wb.github.io/posts/cypherpunk/" rel="alternate" type="text/html" title="隐私与透明：密码朋克运动的多维度探讨" />
     <published>2024-10-16T12:00:00+08:00</published>
   
     <updated>2024-11-04T20:10:14+08:00</updated>
   
-    <id>http://localhost:4000/posts/cypherpunk/</id>
-    <content src="http://localhost:4000/posts/cypherpunk/" />
+    <id>https://fan-wb.github.io/posts/cypherpunk/</id>
+    <content src="https://fan-wb.github.io/posts/cypherpunk/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -63,13 +63,13 @@
   
   <entry>
     <title>L2：ETH 的价值抽取与重塑</title>
-    <link href="http://localhost:4000/posts/ethl2/" rel="alternate" type="text/html" title="L2：ETH 的价值抽取与重塑" />
+    <link href="https://fan-wb.github.io/posts/ethl2/" rel="alternate" type="text/html" title="L2：ETH 的价值抽取与重塑" />
     <published>2024-08-23T12:00:00+08:00</published>
   
     <updated>2024-10-22T21:48:32+08:00</updated>
   
-    <id>http://localhost:4000/posts/ethl2/</id>
-    <content src="http://localhost:4000/posts/ethl2/" />
+    <id>https://fan-wb.github.io/posts/ethl2/</id>
+    <content src="https://fan-wb.github.io/posts/ethl2/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -111,13 +111,13 @@
   
   <entry>
     <title>隐私保护工具推荐</title>
-    <link href="http://localhost:4000/posts/privacyprotection/" rel="alternate" type="text/html" title="隐私保护工具推荐" />
+    <link href="https://fan-wb.github.io/posts/privacyprotection/" rel="alternate" type="text/html" title="隐私保护工具推荐" />
     <published>2024-07-31T12:00:00+08:00</published>
   
     <updated>2024-07-31T12:00:00+08:00</updated>
   
-    <id>http://localhost:4000/posts/privacyprotection/</id>
-    <content src="http://localhost:4000/posts/privacyprotection/" />
+    <id>https://fan-wb.github.io/posts/privacyprotection/</id>
+    <content src="https://fan-wb.github.io/posts/privacyprotection/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -160,56 +160,14 @@ LibreWolf 是 Firefox 的一个独立分支，提供更严格的默认设置，�
 
   
   <entry>
-    <title>ZK 协处理器</title>
-    <link href="http://localhost:4000/posts/zkcoprocessor/" rel="alternate" type="text/html" title="ZK 协处理器" />
-    <published>2024-07-22T12:00:00+08:00</published>
-  
-    <updated>2024-07-22T12:00:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/zkcoprocessor/</id>
-    <content src="http://localhost:4000/posts/zkcoprocessor/" />
-    <author>
-      <name>Fan-WB</name>
-    </author>
-
-  
-    
-    <category term="Blockchain" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      协处理器背景及概念
-
-在传统计算机架构中，协处理器是一种专用的计算机处理单元，旨在协助中央处理器 (CPU) 执行特定类型的计算任务。与通用的 CPU 相比，协处理器通常针对某些特定场景进行了优化，如深度学习、图形渲染、加密解密、信号处理等，能够显著提高这些任务的处理速度和效率。NVIDIA 提出的图形处理器 (GPU) 是协处理器的经典例子，它专为图形渲染和并行计算而设计，极大地提升了计算机处理图像、视频和复杂计算任务的能力。CPU 虽能执行多数任务，但在模型训练或运行大型游戏等特定高算力需求场景中，GPU 作为协处理器的辅助不可或缺。协处理器架构的核心在于通过功能解耦和异步协同来提升复杂系统的计算效率和资源利用率。将此模式类比至区块链领域，以太坊链本身就相当于 CPU，而 ZK 协处理器则类似 GPU。
-
-当前阻碍以太坊链上应用发展的主要瓶颈可归纳为：
-
-
-  
-    链上计算...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
     <title>AI × 加密：去中心化愿景的现实考验</title>
-    <link href="http://localhost:4000/posts/aicrypto/" rel="alternate" type="text/html" title="AI × 加密：去中心化愿景的现实考验" />
+    <link href="https://fan-wb.github.io/posts/aicrypto/" rel="alternate" type="text/html" title="AI × 加密：去中心化愿景的现实考验" />
     <published>2024-05-22T12:00:00+08:00</published>
   
     <updated>2024-10-22T21:48:32+08:00</updated>
   
-    <id>http://localhost:4000/posts/aicrypto/</id>
-    <content src="http://localhost:4000/posts/aicrypto/" />
+    <id>https://fan-wb.github.io/posts/aicrypto/</id>
+    <content src="https://fan-wb.github.io/posts/aicrypto/" />
     <author>
       <name>Fan-WB</name>
     </author>
@@ -242,6 +200,44 @@ LibreWolf 是 Firefox 的一个独立分支，提供更严格的默认设置，�
       理性看待市场热度：AI 代币的强劲表现可能更多地反映了市场对 AI 行业整体的乐观预期，而非这些项目本身的内在价值。许多 AI 代币可能缺乏真正的需求驱动力，投资者应当谨慎评估其长期可持续性。
     
   ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>拆分与重构：模块化架构下的区块链新生态</title>
+    <link href="https://fan-wb.github.io/posts/modular/" rel="alternate" type="text/html" title="拆分与重构：模块化架构下的区块链新生态" />
+    <published>2024-03-08T12:00:00+08:00</published>
+  
+    <updated>2024-05-16T17:46:18+08:00</updated>
+  
+    <id>https://fan-wb.github.io/posts/modular/</id>
+    <content src="https://fan-wb.github.io/posts/modular/" />
+    <author>
+      <name>Fan-WB</name>
+    </author>
+
+  
+    
+    <category term="Blockchain" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1 背景
+
+区块链可扩展性问题一直是业界难以逾越的一道鸿沟，众多项目努力创新却始终无法突破“不可能三角”的桎梏。随着去中心化应用生态的蓬勃兴起，对区块空间的需求激增，原有架构难以负荷，吞吐量瓶颈日益显现。如果可扩展性问题无解，那么应用层的繁荣也将无以为继。
+
+“模块化区块链 (Modular Blockchain) ”范式正是在此背景下提出的。模块化概念起源于两篇文章。第一篇是由 Mustafa Albasan 和 Vitalik Buterin 在 2018 年共同撰写的，题为《欺诈与数据可用性证明》。这篇文章阐述了如何在保持安全性和去中心化的前提下解决区块链的可扩展性问题。具体方法是让轻节点接收并验证来自全节点的欺诈证明，同时设计数据可用性证明系统，以减小链上容量与安全性之间的取舍。随后在 2019 年，Mustafa Albasan 撰写了关于 Lazy Ledger 的白皮书...
     </summary>
   
 
