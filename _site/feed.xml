@@ -4,7 +4,7 @@
   <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-10-23T16:58:33+08:00</updated>
+  <updated>2024-11-04T20:09:07+08:00</updated>
   <author>
     <name>Fan-WB</name>
     <uri>https://fan-wb.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://fan-wb.github.io/posts/cypherpunk/" rel="alternate" type="text/html" title="隐私与透明：密码朋克运动的多维度探讨" />
     <published>2024-10-16T12:00:00+08:00</published>
   
-    <updated>2024-10-16T12:00:00+08:00</updated>
+    <updated>2024-10-23T16:58:55+08:00</updated>
   
     <id>https://fan-wb.github.io/posts/cypherpunk/</id>
     <content src="https://fan-wb.github.io/posts/cypherpunk/" />
@@ -34,7 +34,7 @@
 
   
     
-    <category term="Blockchain" />
+    <category term="Privacy" />
     
   
 
@@ -103,6 +103,56 @@
 以太坊的 Layer-2 (L2) 扩容策略引发了关于其对 ETH “价值抽取”的争议。Dencun 升级和 L2 兴起导致总手续费降至三年新低，似乎终结了ETH “Ultrasound Money” 的论调。但这类批评多属误解，相关问题实为区块链成功扩容的必然结果，无论是在 L1 还是 L2 层面扩容，都会产生类似的现象。
 
 1/9) Ethereum is dying while L2&amp;#39;s dance...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>隐私保护工具推荐</title>
+    <link href="https://fan-wb.github.io/posts/privacyprotection/" rel="alternate" type="text/html" title="隐私保护工具推荐" />
+    <published>2024-07-31T12:00:00+08:00</published>
+  
+    <updated>2024-07-31T12:00:00+08:00</updated>
+  
+    <id>https://fan-wb.github.io/posts/privacyprotection/</id>
+    <content src="https://fan-wb.github.io/posts/privacyprotection/" />
+    <author>
+      <name>Fan-WB</name>
+    </author>
+
+  
+    
+    <category term="Privacy" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      个人使用体验较好的各类隐私保护工具推荐，以开源软件为主，不定期更新。
+
+网页浏览
+
+ Firefox
+
+完全开源的浏览器，支持大量隐私插件，内置反追踪功能，可以阻止第三方 Cookie，可以设置 DNS over HTTPS 加密 DNS 查询。安装后需要进行一定的安全配置，参考 @arkenfox user.js 、restore privacy 或 12bytes。
+
+
+  官网：mozilla.org/firefox
+  隐私：tosdr.org/en/service/188
+  开源：✅
+
+
+ LibreWolf
+
+LibreWolf 是 Firefox 的一个独立分支，提供更严格的默认设置，以保障用户隐私、安全性和自由。禁用 Mozilla Telemetry，切断了与 Google（Safe Browsing）的关联，内置了内容拦截器 uBlock Origin，隐私默认...
     </summary>
   
 
@@ -188,46 +238,6 @@
 区块链可扩展性问题一直是业界难以逾越的一道鸿沟，众多项目努力创新却始终无法突破“不可能三角”的桎梏。随着去中心化应用生态的蓬勃兴起，对区块空间的需求激增，原有架构难以负荷，吞吐量瓶颈日益显现。如果可扩展性问题无解，那么应用层的繁荣也将无以为继。
 
 “模块化区块链 (Modular Blockchain) ”范式正是在此背景下提出的。模块化概念起源于两篇文章。第一篇是由 Mustafa Albasan 和 Vitalik Buterin 在 2018 年共同撰写的，题为《欺诈与数据可用性证明》。这篇文章阐述了如何在保持安全性和去中心化的前提下解决区块链的可扩展性问题。具体方法是让轻节点接收并验证来自全节点的欺诈证明，同时设计数据可用性证明系统，以减小链上容量与安全性之间的取舍。随后在 2019 年，Mustafa Albasan 撰写了关于 Lazy Ledger 的白皮书...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Ordinals &amp; BRC-20 技术原理详解</title>
-    <link href="https://fan-wb.github.io/posts/ordinals/" rel="alternate" type="text/html" title="Ordinals &amp;amp; BRC-20 技术原理详解" />
-    <published>2024-01-11T13:00:00+08:00</published>
-  
-    <updated>2024-10-12T17:00:22+08:00</updated>
-  
-    <id>https://fan-wb.github.io/posts/ordinals/</id>
-    <content src="https://fan-wb.github.io/posts/ordinals/" />
-    <author>
-      <name>Fan-WB</name>
-    </author>
-
-  
-    
-    <category term="Blockchain" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      本文从技术的角度出发，深入底层，详细介绍了比特币 Ordinals 协议以及 BRC-20 代币标准的原理。主要内容包括 Colored Coins 项目介绍、SegWit 与 Taproot 升级详解、序数铭文及 BRC-20 代币标准说明。
-
-1 背景知识
-
-1.1 比特币交易模型
-
-在比特币网络中，比特币的形式是“未花费交易输出” (Unspent Transaction Output, UTXO)，即比特币交易执行后形成的面额不定的单元，其原理可简单类比现实中的现金支付，与传统的基于账户余额的模型有所不同。举例而言：在银行的账户记账模型流程中，当 A 向 B 转账 100 元时，银行会记录三个步骤，这三个步骤构成了一个交易过程。第一步是从 A 的账户中扣除 100 元，这个步骤的记录 ID 为 tid1。第二步是将 100 元存入 B 的账户中，这个步骤的记录 ID 为 ti...
     </summary>
   
 
