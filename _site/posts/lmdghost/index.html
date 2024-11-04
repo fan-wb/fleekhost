@@ -34,8 +34,8 @@
 <meta property="og:locale" content="en" />
 <meta name="description" content="本文是介绍以太坊 PoS 共识协议的第一部分。主要包括对术语和核心概念的讲解，以及对 LMD GHOST 分叉选择规则的详细介绍。" />
 <meta property="og:description" content="本文是介绍以太坊 PoS 共识协议的第一部分。主要包括对术语和核心概念的讲解，以及对 LMD GHOST 分叉选择规则的详细介绍。" />
-<link rel="canonical" href="https://fan-wb.github.io/posts/lmdghost/" />
-<meta property="og:url" content="https://fan-wb.github.io/posts/lmdghost/" />
+<link rel="canonical" href="http://localhost:4000/posts/lmdghost/" />
+<meta property="og:url" content="http://localhost:4000/posts/lmdghost/" />
 <meta property="og:site_name" content="Fanwb’s Blog" />
 <meta property="og:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/MV5BYWQ2NDIxYTQtYWMyNC00MmRlLWExMDMtOWYwODVjM2Y4MTRhXkEyXkFqcGdeQXVyNjc3OTE4Nzk.jpg" />
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="twitter:title" content="以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-16T10:33:14+08:00","datePublished":"2023-04-15T12:00:00+08:00","description":"本文是介绍以太坊 PoS 共识协议的第一部分。主要包括对术语和核心概念的讲解，以及对 LMD GHOST 分叉选择规则的详细介绍。","headline":"以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/MV5BYWQ2NDIxYTQtYWMyNC00MmRlLWExMDMtOWYwODVjM2Y4MTRhXkEyXkFqcGdeQXVyNjc3OTE4Nzk.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/lmdghost/"},"url":"https://fan-wb.github.io/posts/lmdghost/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-16T10:33:14+08:00","datePublished":"2023-04-15T12:00:00+08:00","description":"本文是介绍以太坊 PoS 共识协议的第一部分。主要包括对术语和核心概念的讲解，以及对 LMD GHOST 分叉选择规则的详细介绍。","headline":"以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/MV5BYWQ2NDIxYTQtYWMyNC00MmRlLWExMDMtOWYwODVjM2Y4MTRhXkEyXkFqcGdeQXVyNjc3OTE4Nzk.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/lmdghost/"},"url":"http://localhost:4000/posts/lmdghost/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1984,21 +1984,21 @@
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=%E4%BB%A5%E5%A4%AA%E5%9D%8A%20PoS%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%20LMD%20GHOST%20-%20Fanwb's%20Blog&url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Flmdghost%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=%E4%BB%A5%E5%A4%AA%E5%9D%8A%20PoS%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%20LMD%20GHOST%20-%20Fanwb's%20Blog&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Flmdghost%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
 
       
 
-      <a href="https://www.facebook.com/sharer/sharer.php?title=%E4%BB%A5%E5%A4%AA%E5%9D%8A%20PoS%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%20LMD%20GHOST%20-%20Fanwb's%20Blog&u=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Flmdghost%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?title=%E4%BB%A5%E5%A4%AA%E5%9D%8A%20PoS%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%20LMD%20GHOST%20-%20Fanwb's%20Blog&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Flmdghost%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
         <i class="fa-fw fab fa-facebook-square"></i>
       </a>
     
 
       
 
-      <a href="https://t.me/share/url?url=https%3A%2F%2Ffan-wb.github.io%2Fposts%2Flmdghost%2F&text=%E4%BB%A5%E5%A4%AA%E5%9D%8A%20PoS%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%20LMD%20GHOST%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Flmdghost%2F&text=%E4%BB%A5%E5%A4%AA%E5%9D%8A%20PoS%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%20LMD%20GHOST%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
         <i class="fa-fw fab fa-telegram"></i>
       </a>
     
@@ -2814,6 +2814,18 @@
 
 
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 

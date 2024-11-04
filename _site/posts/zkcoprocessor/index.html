@@ -30,24 +30,24 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="Avalanche 共识协议详解" />
+<meta property="og:title" content="ZK 协处理器" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="本文对雪崩共识协议簇进行介绍。该协议簇是一系列无主拜占庭容错协议，使用基于网络重复随机采样的亚稳态机制构建。雪崩协议能够在存在拜占庭节点的情况下提供强概率安全保证，且并发和无主性质使其能够实现高吞吐量和高可扩展。" />
-<meta property="og:description" content="本文对雪崩共识协议簇进行介绍。该协议簇是一系列无主拜占庭容错协议，使用基于网络重复随机采样的亚稳态机制构建。雪崩协议能够在存在拜占庭节点的情况下提供强概率安全保证，且并发和无主性质使其能够实现高吞吐量和高可扩展。" />
-<link rel="canonical" href="http://localhost:4000/posts/avalanche/" />
-<meta property="og:url" content="http://localhost:4000/posts/avalanche/" />
+<meta name="description" content="协处理器背景及概念" />
+<meta property="og:description" content="协处理器背景及概念" />
+<link rel="canonical" href="http://localhost:4000/posts/zkcoprocessor/" />
+<meta property="og:url" content="http://localhost:4000/posts/zkcoprocessor/" />
 <meta property="og:site_name" content="Fanwb’s Blog" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-12-24T12:00:00+08:00" />
+<meta property="article:published_time" content="2024-07-22T12:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Avalanche 共识协议详解" />
+<meta property="twitter:title" content="ZK 协处理器" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-11T11:15:19+08:00","datePublished":"2022-12-24T12:00:00+08:00","description":"本文对雪崩共识协议簇进行介绍。该协议簇是一系列无主拜占庭容错协议，使用基于网络重复随机采样的亚稳态机制构建。雪崩协议能够在存在拜占庭节点的情况下提供强概率安全保证，且并发和无主性质使其能够实现高吞吐量和高可扩展。","headline":"Avalanche 共识协议详解","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/avalanche/"},"url":"http://localhost:4000/posts/avalanche/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-22T12:00:00+08:00","datePublished":"2024-07-22T12:00:00+08:00","description":"协处理器背景及概念","headline":"ZK 协处理器","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/zkcoprocessor/"},"url":"http://localhost:4000/posts/zkcoprocessor/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Avalanche 共识协议详解 | Fanwb's Blog
+  <title>ZK 协处理器 | Fanwb's Blog
   </title>
 
   <!--
@@ -463,7 +463,7 @@
         
           
             
-              <span>Avalanche 共识协议详解</span>
+              <span>ZK 协处理器</span>
             
 
           
@@ -1042,6 +1042,132 @@
     <!-- combine -->
     
   
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
 
   
 
@@ -1060,6 +1186,38 @@
   
 
   
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
 
   
   
@@ -1127,6 +1285,54 @@
 
       
     
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
       
 
       
@@ -1140,11 +1346,6 @@
     
 
     
-  
-
-  
-  
-
   
 
   
@@ -1162,7 +1363,7 @@
 
 <article class="px-1">
   <header>
-    <h1 data-toc-skip>Avalanche 共识协议详解</h1>
+    <h1 data-toc-skip>ZK 协处理器</h1>
 
     <div class="post-meta text-muted">
       <!-- published date -->
@@ -1178,41 +1379,18 @@
 
 <time
   
-  data-ts="1671854400"
+  data-ts="1721620800"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Dec 24, 2022
+  Jul 22, 2024
 </time>
 
       </span>
 
       <!-- lastmod date -->
-      
-        <span>
-          Updated
-          <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1715397319"
-  data-df="ll"
-  
-    data-bs-toggle="tooltip" data-bs-placement="bottom"
-  
->
-  May 11, 2024
-</time>
-
-        </span>
       
 
       
@@ -1252,9 +1430,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="3605 words"
+  title="4455 words"
 >
-  <em>20 min</em> read</span>
+  <em>24 min</em> read</span>
 
       </div>
       <!-- .d-flex -->
@@ -1263,262 +1441,209 @@
   </header>
 
   <div class="content">
-    <p>本文对雪崩共识协议簇进行介绍。该协议簇是一系列无主拜占庭容错协议，使用基于网络重复随机采样的亚稳态机制构建。雪崩协议能够在存在拜占庭节点的情况下提供强概率安全保证，且并发和无主性质使其能够实现高吞吐量和高可扩展。</p>
+    <h2 id="协处理器背景及概念"><span class="me-2">协处理器背景及概念</span><a href="#协处理器背景及概念" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/ed07d9b9987645c26644f32739bd10f5.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/ed07d9b9987645c26644f32739bd10f5.png" alt="" loading="lazy"></a></p>
+<p>在传统计算机架构中，协处理器是一种专用的计算机处理单元，旨在协助中央处理器 (CPU) 执行特定类型的计算任务。与通用的 CPU 相比，协处理器通常针对某些特定场景进行了优化，如深度学习、图形渲染、加密解密、信号处理等，能够显著提高这些任务的处理速度和效率。NVIDIA 提出的图形处理器 (GPU) 是协处理器的经典例子，它专为图形渲染和并行计算而设计，极大地提升了计算机处理图像、视频和复杂计算任务的能力。CPU 虽能执行多数任务，但在模型训练或运行大型游戏等特定高算力需求场景中，GPU 作为协处理器的辅助不可或缺。协处理器架构的核心在于<strong>通过功能解耦和异步协同来提升复杂系统的计算效率和资源利用率</strong>。将此模式类比至区块链领域，以太坊链本身就相当于 CPU，而 ZK 协处理器则类似 GPU。</p>
 
-<p>协议主要目标：</p>
-
-<ul>
-  <li>
-    <p><strong>绿色</strong> (green)：能源消耗很少。</p>
-  </li>
-  <li>
-    <p><strong>静止</strong> (quiescent)：没有交易时不需要工作（出块）。</p>
-  </li>
-  <li>
-    <p><strong>高效</strong> (efficient)：节点交互复杂度 O(knlogn) ~ O(kn)。</p>
-  </li>
-</ul>
-
-<p>如何实现以上目标？主要依赖以下几种措施：</p>
+<p>当前阻碍以太坊链上应用发展的主要瓶颈可归纳为：</p>
 
 <ul>
   <li>
-    <p><strong>并行共识模型</strong>：不使用单一复制状态机 (RSM) 模型，每个节点维护自己的RSM（可以互相转移所有权），系统对有关联的交易只维护偏序。</p>
+    <p>链上计算成本高昂。由于每项操作均需计量 Gas，复杂应用逻辑的执行成本会迅速攀升至令人难以接受的程度。</p>
   </li>
   <li>
-    <p><strong>重复随机采样</strong>：引导诚实节点产生相同输出。</p>
-  </li>
-  <li>
-    <p><strong>亚稳态决策</strong>：亚稳态决策可以使得一个大网络快速推进到一个不可逆的状态。</p>
+    <p>数据流通不畅。在 EVM 中，智能合约只能访问最近 256 个区块头的数据。除了虚拟机状态中存储的数据、最新区块数据和其他公开智能合约的数据外，合约若要无信任地利用 DA 层存档节点访问特定区块中的历史数据可能需要耗费大量资源。另外，2025 年的 Pectra 升级还可能引入 EIP-4444，届时全节点将不再存储一年以前的历史数据，这将进一步导致数据的缺失。</p>
   </li>
 </ul>
 
-<p>该算法可以提供<strong>强概率安全性保证</strong>，并且保证诚实节点的活性。所谓“强概率安全保证”，是指共识被逆转的可能性小到可以被忽略（甚至小于哈希碰撞的概率），实际上 PoW 提供的也是强概率安全性保证。</p>
+<p>问题的根本在于 EVM 的设计重点是在保证安全性和去中心化的前提下执行智能合约代码，其本身并不适合处理复杂计算和数据密集型任务。因此，当涉及需要大量计算资源的任务时，就需要寻求其他解决方案。在此背景下，ZK 协处理器应运而生，通过 ZK 技术保证链下计算和数据使用的无信任性，为解决这一问题提供了新的可能性。但当前业界对于 ZK 协处理器的定义仍未达成一致，对应以上两点，项目方和社区中也逐渐衍生出了两种对 ZK 协处理器的功能偏好：</p>
 
-<h3 id="1-基础"><span class="me-2">1 基础</span><a href="#1-基础" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<ul>
+  <li>计算卸载 ZK 协处理器：主要功能是将复杂计算转移到链下 zkVM，并将结果反馈至链上，将 $O(n)$ 的计算压缩为 $O(1)$ 的验证。</li>
+  <li>数据访问 ZK 协处理器：类似状态预言机，主要功能是访问历史数据并将其无信任地馈送到特定位置（如智能合约）。</li>
+</ul>
 
-<p>首先介绍下文中的一些基本概念。</p>
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/sevenxventures.eth__JMWKYVob9x3COlO7V2k71pN_pZORc4DVcByhfU0ZaQ.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/sevenxventures.eth__JMWKYVob9x3COlO7V2k71pN_pZORc4DVcByhfU0ZaQ.png" style="zoom: 67%;" loading="lazy"></a>
+<em>图1 ZK 协处理器分类 | 图源：SevenX Ventures</em></p>
 
-<p>在任何基于复制状态机 (Replicated State Machine, RSM) 的分布式系统，都需要满足两个特性，即安全性和活性，文中定义如下：</p>
+<p>不同项目使用的术语有所不同，但其核心理念是一致的：ZK 协处理器利用零知识证明技术令链上数据访问和链下计算的无信任委托成为可能。由此，开发者得以将高成本操作转移至 ZK 协处理器上执行，仅需在链上直接使用结果即可。应用可在有效控制 Gas 成本的同时扩大规模、访问更多数据，实现降本增效。这类方案本质上是将数据访问及计算与区块链共识解耦，在不损害去中心化和安全性的前提下，显著提升了智能合约的可扩展性和效率，并为链上应用引入了新的设计范式。</p>
 
-<blockquote>
-  <p><strong>P1. Safety.</strong> No two correct nodes will accept conflicting transactions.</p>
-
-  <p><strong>P2. Liveness.</strong> Any transaction issued by a correct client (aka virtuous transaction) will eventually be accepted by every correct node.</p>
+<blockquote class="prompt-info">
+  <p>ZK Rollup 在 L1 网络上大规模支持同类型计算，一定意义上也可被视为最早的 ZK 协处理器。关键区别在于 ZK Rollup 作用在区块链协议层面，而现今所讨论的 ZK 协处理器则聚焦于去中心化应用层面。</p>
 </blockquote>
 
-<h3 id="2-slush雪泥"><span class="me-2">2 Slush（雪泥）</span><a href="#2-slush雪泥" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<h2 id="zk-协处理器技术架构"><span class="me-2">ZK 协处理器技术架构</span><a href="#zk-协处理器技术架构" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>论文首先提出了名为 Slush 的共识算法，也是整个协议簇中最简单最基础的部分。Slush 是非拜占庭协议，意味着其不能容忍作恶节点的存在。作者抽象出一个染色问题：任何时刻所有节点可能处于 $\lbrace red,blue,⊥\rbrace$ 三种状态之一，共识就是如何通过节点间的通信使得所有节点最终的颜色一致。</p>
+<p>目前协处理器的主要应用场景可分为链上数据索引 ZK-Query、预言机 ZK-Oracle、零知识机器学习 ZKML 以及囊括多种用途的通用零知识虚拟机 ZKVM 等。本文将以主要的通用 ZK 协处理器为例，对其技术架构进行介绍和分析。</p>
 
-<p>Slush 算法描述如下：</p>
+<h3 id="lagrange"><span class="me-2">Lagrange</span><a href="#lagrange" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680059013988.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680059013988.png" style="zoom: 80%;" loading="lazy"></a></p>
-
-<p>详细分析：</p>
-
-<ol>
-  <li>在起始时刻，所有节点都是未着色状态；</li>
-  <li>节点 $u$ 循环发起查询，总共 $m$ 轮，每轮随机选择 $k$ 个样本发送包含自身颜色的查询；</li>
-  <li>当其他节点 $v$ 收到一个查询时，则返回一个包括自己颜色的响应，如果此时节点 $v$ 还是未着色状态，则先将查询中的颜色更新为自己的颜色再响应；</li>
-  <li>一旦收集到 $k$ 个响应，节点 $u$ 判断是否存在某个颜色数大于等于 $αk$，$α &gt; 0.5$ 表示一个协议参数。如果存在某个颜色满足该阈值则将自身颜色更新为该颜色；</li>
-  <li>如果没有在限定时间收集到 $k$ 个响应，则 $u$ 重新采样发送查询，直至收集到 $k$ 个响应</li>
-</ol>
-
-<p>Slush 有如下优点：</p>
-
-<ul>
-  <li>无记忆，每轮之间节点除了自身颜色不记录额外信息；</li>
-  <li>小样本采样，不同于其他算法需要对所有节点发送请求，Slush 只需要发送 $k$ 个请求；</li>
-  <li>抗亚稳态，即便是 50/50 的初始状态，也可以通过采样的随机扰动打破平衡，然后反复采样放大优势；</li>
-  <li>如果 $m$ 足够大，算法可以保证所有节点都有同等机会被染色；</li>
-</ul>
-
-<p>但是 Slush 并不能提供足够强的拜占庭安全保证，如果存在拜占庭节点故意将自身颜色变成和主流颜色不一样，则可能打乱平衡。因此 Slush 并不是 BFT，但为后续机制提供了基础。</p>
-
-<h3 id="3-snowflake雪花"><span class="me-2">3 Snowflake（雪花）</span><a href="#3-snowflake雪花" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
-
-<p>相比 Slush，第二个算法 Snowflake 做了进一步改进：</p>
-
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680059085682.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680059085682.png" style="zoom:80%;" loading="lazy"></a></p>
-
-<p>详细分析：</p>
-
-<ol>
-  <li>每个节点引入了一个计数器 $cnt$ 变量，初始 $cnt=0$，每当一轮查询返回的 $k$ 个响应某个颜色 $col ≥ αk$，则将其 $cnt+1$ ；</li>
-  <li>如果满足条件的颜色和自身颜色不同，则将自身颜色设定为该颜色，并且重置 $cnt$；</li>
-  <li>引入另一个安全系数 $β$ ，当 $cnt$ 大于 $β$ 时，则最终确定该节点颜色，而不需要执行 $m$ 次查询。</li>
-</ol>
-
-<p>当给定一个 $ε$-guarantee 的拜占庭环境，Snowflake 可以保证安全性和活性。</p>
-
-<h3 id="4-snowball雪球"><span class="me-2">4 Snowball（雪球）</span><a href="#4-snowball雪球" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
-
-<p>Snowflake 记忆的状态是短暂的，每次颜色变化都会将计数器清零。为了使得系统更加难以被攻击，Snowball 增加了一个置信度计数器 (confidence counter) 。算法具体如下：</p>
-
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680059138982.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680059138982.png" style="zoom:80%;" loading="lazy"></a></p>
-
-<p>详细分析：</p>
-
-<ol>
-  <li>对每个颜色都增加一个置信度计数器，例如 $d[R]$、$d[B]$；</li>
-  <li>每当一轮查询返回的 $k$ 个响应某个颜色 $col’ ≥ αk$，将该颜色的 $d[col’] + 1$，如果 $d[col’]$ 最大，则将自身 $col$ 更变为该 $col’$；</li>
-  <li>进一步地，如果 $col’$ 和上次响应 通过阈值的 lastcol 不一样，则更新 lastcol 为 $col’$，并且重置 $cnt$；</li>
-  <li>如果 $col’$ 和上次响应通过阈值的 $lastcol$ 一样，则 $cnt+1$ ，当 $cnt$ 大于 $β$ 时，则最终确定该节点颜色。</li>
-</ol>
-
-<p>总的来说，Snowball 中仍然是连续 $β$ 满足阈值条件的颜色才可能成为最终颜色，但置信度计数器的引入保证了最终确定的颜色同样具有高信任度。</p>
-
-<h3 id="5-avalanche-dag雪崩"><span class="me-2">5 Avalanche DAG（雪崩）</span><a href="#5-avalanche-dag雪崩" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
-
-<p>作为论文中协议簇的最终版本，Avalanche 将 Snowball 拓展为 multi-decree protocol。</p>
-
-<p>Avalanche 在 Snowball 的基础上引入了有向无环图 (DAG) 的存储结构，即在冲突集中使用 Snowball 协议共识出一笔交易。这会带来两点好处：</p>
-
-<ul>
-  <li>
-    <p>更高效：对 DAG 某个顶点的投票隐含了对“从创世顶点到该顶点”这整条链的认可。</p>
-  </li>
-  <li>
-    <p>更安全：DAG 把各个交易的命运交织在了一起，因此共识更加难以被逆转（需要更多诚实节点的认可）。</p>
-  </li>
-</ul>
-
-<p>首先解释一下几个术语：</p>
-
-<ul>
-  <li>
-    <p>祖先集 (ancestor set)：每个交易可能有一到多个父交易，从它们的父交易一直追溯到创世顶点过程中的所有交易组成该交易的祖先集。</p>
-  </li>
-  <li>
-    <p>子孙集 (progeny set)：该交易的所有子孙后代交易的集合。</p>
-  </li>
-  <li>
-    <p>冲突集 (conflict set)：如果两笔或多笔交易发生了冲突（例如使用了同样的 UXTO 输入，即双花），那么它们组成一个冲突集。</p>
-  </li>
-  <li>
-    <p>凭证 (chit)：如果某笔交易查询成功（超过阈值），则称该交易收到了一个凭证，否则凭证值为 0 。</p>
-  </li>
-</ul>
-
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680074094788.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680074094788.png" alt="" loading="lazy"></a></p>
-
-<p>为了适用于资产交易这样的真实场景，Avalanche 相比前三个算法引入了很多新概念，具体如下：</p>
-
-<ul>
-  <li>
-    <p>$\mathcal{T}_u$ 表示节点 $u$ 内所记录的所有交易集合；</p>
-  </li>
-  <li>
-    <p>$\mathcal{P}_T$ 表示所有和交易 $T$ 冲突的交易集合（$P_T$ 应该包括 $T$ 本身）</p>
-
-    <p>比如两个冲突的交易 $T_i$ 和 $T_j$ ，由于冲突具有传递性，有 $\mathcal{P_{T_i}}=\mathcal{P_{T_j}}$ ，每个冲突交易集都有 $pref$ 和 $cnt$ 两个属性，简单地说这些都跟交易 $T$ 的置信度相关，具体后文会详细介绍。</p>
-  </li>
-  <li>
-    <p>$T’\leftarrow T$ 表示交易 $T$ 的父交易是 $T’$ ；</p>
-  </li>
-  <li>
-    <p>$T’\leftarrow^* T$ 表示从在至少一条路径从交易 $T$ 到交易 $T’$ 。</p>
-  </li>
-</ul>
-
-<p>图中，每个方块表示一笔交易，具有一对 <code class="language-plaintext highlighter-rouge">&lt;chit, confidence&gt;</code> ，可以看到颜色更深的方块置信度更高。而每个交易都有一个冲突交易集，例如 $T_9$、$T_6$ 和 $T_7$ 属于同一个冲突交易集，即 $P_{T_9} = P_{T_6} = P_{T_7}$，但由于 $T_9$ 具有更高的置信度，因此该交易集的优先交易 (preferred tx) 为 $T_9$。</p>
-
-<p>Avalanche 会将每笔交易存储在一个 DAG 中，DAG 中每个元素可能有多个父交易，并且需要注意的是<strong>父子关系不代表在应用层面相互依赖。</strong></p>
-
-<p>为了避免共识结果中包含冲突交易，在 Avalanche 中定义了冲突集，Avalanche 中的每笔交易都属于一个冲突集，冲突集中也只能有一笔交易，每个冲突集就是一个 Snowball 实例，但是置信度的计算方式略有不同，某笔交易的置信度是所有子孙交易的凭证值之和（$c$ 表示凭证，$d$ 表示置信度）。</p>
-
-<p>每个节点需使用 Snowball 协议从冲突集中共识出一笔交易，当这笔交易的置信度达到一个阈值时，即可认为这笔交易被最终确定了。</p>
-
-<p>具体流程：</p>
-
-<p><strong>初始化</strong></p>
-
-<p>上面提到每个 $P_T$ 包括了 $pref$ 和 $cnt$ 两个属性，初始化的 $P_T$ 只有 $T$ 本身，因此 $P_T.pref = T，P_T.cnt = 0$。当后续收到更多冲突交易后， $P_T$ 集合增加，$pref$ 和 $cnt$ 的更新则发生在收到响应 后。</p>
-
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680076312575.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680076312575.png" style="zoom:80%;" loading="lazy"></a></p>
-
-<p><strong>查询和响应</strong></p>
-
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680076868132.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680076868132.png" style="zoom:80%;" loading="lazy"></a></p>
-
-<p>详细分析：</p>
-
-<ol>
-  <li>节点 $u$ 找到新交易 $T$（还未确定的交易，即 $T ∈ \mathcal{T} ∧ T ∉ \mathcal{Q}$），启动一轮查询，即随机采样 $k$ 个节点发送包括该 $T$ 的查询，注意此处查询中实际上包含了 $T$ 和以及在 DAG 中所有 $T$ 可达的其他交易；</li>
-  <li>对收到查询的节点而言，如果查询中的 $T$ 以及其祖先交易在其冲突集中是优先选项 (preferred option)，则返回 yes-vote，反之则返回 no-vote；</li>
-  <li>节点 $u$ 收集返回的 $k$ 个响应，如果该 $T$ 满足阈值（即有超过 $αk$ 个节点返回认可该交易的响应），则该交易的 $cT$ 赋值为 1（获得一个凭证），并且更新 $T$ 交易所有祖先交易 $T’$  对应 $P_{T’}$ 的 $pref$ 和 $cnt$；</li>
-  <li>类似 Snowball，节点 $u$ 对 $T$ 有一个置信度值，其计算方法如下：</li>
-</ol>
-
-\[d_u(T)=\sum_{T'\in\mathcal{T}_u, T\leftarrow^*T'} c_{uT'}\]
-
-<p>简单地说就是交易 $T$ 的 $d(T)$ 等于其所有后代交易的 $cT’$ 之和，凭证的获取方式见第三步。需要指出的是，任何交易的凭证只可能为 0 或 1，但随着 DAG 规模的不断增长，$dT$ 也会随着其后代的增加而表现出单调增特性。</p>
-
-<p>这里再详细介绍下第二步中，查询返回的机制。当其他节点收到 $u$ 发送的查询后，在 DAG 中找到 $T$ 的所有祖先交易 $T’$ ，如果每个 $T’$  在其冲突交易集合 $P_{T’}$ 中都处于优先状态，则返回一个 yes-vote，反之返回 no-vote。具体描述如下：</p>
-
-<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680076927597.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/uTools_1680076927597.png" style="zoom:80%;" loading="lazy"></a></p>
-
-<p>那么，什么时候应用可以接受 (accept) 或者提交 (commit) 一笔交易呢？Avalanche 把对最终交易的接受点和决定权交给了应用层。应用层通过自己定义的谓词 (predicate)，把接受交易的风险加入考虑。</p>
-
-<ul>
-  <li>
-    <p>如果冲突集中只有一笔交易（即没有冲突），置信度超过 $β_1$ 即可提交，称为“安全早期提交 (safe early commit) ”</p>
-  </li>
-  <li>
-    <p>否则，如果冲突集中有多笔交易，根据 Snowball 协议，需要收到超过 $β_2$ 个连续查询回复才可以提交</p>
-  </li>
-</ul>
-
-<p>至此，Avalanche 整个流程介绍完毕。</p>
-
-<h3 id="6-分析"><span class="me-2">6 分析</span><a href="#6-分析" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
-
-<p><strong>通信复杂度</strong></p>
-
-<ul>
-  <li>
-    <p>Snowflake &amp; Snowball: O(knlogn)</p>
-  </li>
-  <li>
-    <p>Avalanche: 每个节点O(k), 总复杂度O(kn)</p>
-  </li>
-</ul>
-
-<p><strong>两大创新</strong></p>
-
-<p>Avalanche 中的两大创新分别是：</p>
-
-<ul>
-  <li>
-    <p>子采样 (subsampling)：通信成本低。无论是 20 个节点还是 2000 个节点，某个节点发送的共识信息数量是恒定的。</p>
-  </li>
-  <li>
-    <p>传递性投票 (transitive voting)：即给某个顶点投票等同于给该顶点的所有祖先顶点投票，这样有助于提升交易吞吐量。每个节点实际上集合了很多投票。</p>
-  </li>
-</ul>
-
-<p><strong>可能存在的问题</strong></p>
+<p>Lagrange 的愿景用一句话概括：通过在大数据规模上实现对区块链数据的可验证计算，释放新型数据密集型和跨链应用的潜力。从技术层面来说，就是创建一个包含原始区块链数据子集的可证明数据库，并对其实现高效查询。要达成这一目标，主要涉及两个关键步骤：</p>
 
 <ol>
   <li>
-    <p>随机采样达到的是非确定性共识</p>
-
-    <p>随机数对于区块链技术来说很关键。本质上，分布式账本的核心问题就是随机选择出块人的问题，这个随机性要能被全网确认，并且不能被操控，也不能被预测，否则恶意节点可以通过操控这个随机数从而达到操控整个链。在 Avalanche 中，随机采样是非常关键的，但是对怎么随机采样却没有像 Algorand 那样详细地描述，随机抽到样本的整体代表性也没有详细的理论论证，因此其所达成的共识只是一种概率性的共识，并非确定性共识。</p>
+    <p>预处理或索引：对每个区块的合约存储进行索引，并将数据预处理成 SNARK 优化的数据结构，以可证明的方式插入支持可证明查询的可验证数据库中。由于大多数区块链的数据结构是非“证明友好”的，因此该步骤是计算密集度最高的环节。</p>
   </li>
   <li>
-    <p>冲突交易不受保护</p>
-
-    <p>如果用户不小心将一笔交易发送了两次，Avalanche 是无法在这两种交易之间做出选择的，会直接导致这笔钱丢失，这点被 Avalanche 当成能抵御双花攻击来做宣传，但是实际应用中，用户无任何主观恶意下，不小心将一笔交易点击两次发送的情况还是会经常发生，如果直接将用户资金丢失的话，每次发送交易都得非常小心并等待系统回复才行，这将大大降低交易的速度。</p>
-  </li>
-  <li>
-    <p>需要大量参与者的支持</p>
-
-    <p>随机采样所达到的共识必须依赖大量的节点支持才能算是有效，并且这些节点还得时刻保持在线，以便被随机抽取到，这在现实的自由网络下是不太现实的，如果采用云服务器的方式，整个网络运作成本将会非常高。</p>
+    <p>执行可证明查询：当智能合约请求时，在可验证数据库上并行运行可证明查询。预处理完成后，证明器网络能以低成本为用户在 ZK 友好的数据上证明大规模 SQL 查询由于协处理器天然可并行化，证明过程可通过并行计算和并行证明生成在任意数量的操作者之间实现横向扩展。最终生成的证明可在链上验证，赋予开发者直接从智能合约高效查询链上数据的能力。</p>
   </li>
 </ol>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/666244df77a7e65f0c48e615_ZK Coprocessor Diagram.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/666244df77a7e65f0c48e615_ZK Coprocessor Diagram.svg" style="zoom:85%;" loading="lazy"></a>
+<em>图2 Lagrange ZK 协处理器说明 | 图源：Lagrange</em></p>
+
+<p>Lagrange 网络的两个核心功能与上述两步相对应：</p>
+
+<ol>
+  <li>
+    <p><strong>可验证数据库</strong>：本质上就是用支持高效分布式查询的格式重新构建目标区块链的数据库（包括存储、状态和区块）。</p>
+  </li>
+  <li>
+    <p><strong>ZKMR</strong>：使用增加了可验证性的分布式 MapReduce 架构，将计算横向扩展到多台机器上，每台机器仅负责处理大规模数据集上的一小块数据，最后依靠归约操作聚合得到单一结果。</p>
+  </li>
+</ol>
+
+<h4 id="可验证数据库"><span class="me-2"><strong>可验证数据库</strong></span><a href="#可验证数据库" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/verifiable-db-architecture.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/verifiable-db-architecture.png" style="zoom:45%;" loading="lazy"></a>
+<em>图3 Lagrange 数据库说明  | 图源：Lagrange Docs</em></p>
+
+<p>ZK 协处理器会为每个区块的原始存储树生成支持高效查询的等效版本。在上图中，可生成证明确保新数据库中包含与原始红色区块链数据结构相同的数据。</p>
+
+<p>可验证数据库分为三类：</p>
+
+<ul>
+  <li>
+    <p>存储数据库：包含从合约存储树中索引的叶子节点子集。每个合约对应一个这样的数据库。</p>
+  </li>
+  <li>
+    <p>状态数据库：包含状态树中引用合约的叶子节点子集。状态数据库的每个叶子/条目都与相应的存储数据库相关联。</p>
+  </li>
+  <li>
+    <p>区块数据库：将状态数据库链接到链上的特定区块，包含 ZK 协处理器先前处理的所有区块的状态数据库。</p>
+  </li>
+</ul>
+
+<p><strong>存储数据库</strong></p>
+
+<p>存储数据库的数据结构与原始合约存储树是可证明等效的，主要区别在于两者使用了不同的编码函数、哈希函数及树结构，新数据库对“ZK查询”更加友好。</p>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/lagrange.drawio.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/lagrange.drawio.png" alt="" loading="lazy"></a>
+<em>图4 Lagrange 存储数据库的构建</em></p>
+
+<p>存储数据库仅包含合约存储 MPT 的一个子集，协处理器从存储 MPT 中提取需要的目标键值对，通过递归证明重新构建 ZK 友好的 Merkle 树，并用基于多集哈希的子集累加器来证明新 Merkle 树和原始存储 MPT 的等价性。存储数据库用于 ZK 协处理器的后续查询。</p>
+
+<p><strong>状态数据库</strong></p>
+
+<p>该结构的作用是将不同合约的存储数据库整合为一个统一的状态数据库。叶子节点中包含了 ZK 协处理器正在索引的智能合约的信息（合约的地址及相应存储数据库的根哈希）。</p>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/0_Q8JPkLsYNlkuWl9K.webp" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/0_Q8JPkLsYNlkuWl9K.webp" style="zoom:45%;" loading="lazy"></a>
+<em>图5 Lagrange 状态数据库说明 | 图源：Lagrange Docs</em></p>
+
+<p>当查询或验证某个合约的状态时，只需找到该合约在状态数据库中的叶子节点，就可以获取其存储数据库的根哈希值。这使得跨合约的查询和验证变得更加高效和灵活。</p>
+
+<p><strong>区块数据库</strong></p>
+
+<p>ZK 协处理器需要保留每个区块的状态和存储树，本质上是在每个区块上对数据库进行快照。保证快照间状态转换的正确性是至关重要的，即需要证明最新插入的状态确实属于目标区块链中的对应区块，且新块是紧接在前一个块之后的。Lagrange 采用的方法是用一种更适合证明的数据结构重新创建连续的区块结构，如下图所示，该结构会在每个新块生成时更新。</p>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/block-db.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/block-db.png" style="zoom: 33%;" loading="lazy"></a>
+<em>图6 Lagrange 区块数据库说明 | 图源：Lagrange Docs</em></p>
+
+<p>树的叶子节点是 SNARK 友好的区块头 (SFBH, SNARK-friendly block header)。区块头中包含以下信息：</p>
+<ul>
+  <li>区块编号</li>
+  <li>原始区块链中的区块哈希</li>
+  <li>与此区块编号对应的状态根</li>
+</ul>
+
+<p>树的大小被设定为固定值，叶子节点数为 $2^{26}$ ，出块时间为 12 秒时，该数据库约可使用 25 年。每次更新该树都会生成一个递归证明 $p$，表明树已从原始根 $U_0$ 正确更新到当前区块编号 $U_i$，即等价数据库包含与原始区块链相同的数据。</p>
+
+<h4 id="zk-mapreduce"><span class="me-2">ZK MapReduce</span><a href="#zk-mapreduce" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<p>Lagrange 的 ZK MapReduce (ZKMR) 扩展了 MapReduce，利用递归证明来验证大量链上状态数据的分布式计算的正确性。在分布式计算任务的 Map 或 Reduce 步骤中，ZKMR 为每个工作节点生成计算正确性的证明，并将其递归组合，构建整个分布式计算工作流的单个有效性证明。由此 ZKMR 能够高效应用于大型数据集上的复杂计算，其性能是随并行机器的数量横向扩展的，而传统顺序执行则随时间纵向扩展。在最大并行化运行时，证明该 MapReduce 过程的时间复杂度为 $O(log(n))$，而顺序执行的运行时间为 $O(n)$。</p>
+
+<p>效率是分布式计算主导 Web2 大数据处理的主要原因，而在零知识语境下，其分布式计算的可扩展性和容错性则使其成为了无信任大数据应用（如链上定价、波动性和流动性分析）的理想基础架构。</p>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/665e891695b30f8062451985_AD_4nXe3pqIUpEUNQU79x5--Z7i-QJkRqu8HSE_nKbSBp2YbttEsKBvW1nCZirN9o--yaHydRhfH8OHGeOVPNPY4_S3FTYyhTjeUdWphSytU6o6Wq6RB8AQ8mL0AAbzVOJVHF-lXSIo4rJwpCjh765FTI87NsUo.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/665e891695b30f8062451985_AD_4nXe3pqIUpEUNQU79x5--Z7i-QJkRqu8HSE_nKbSBp2YbttEsKBvW1nCZirN9o--yaHydRhfH8OHGeOVPNPY4_S3FTYyhTjeUdWphSytU6o6Wq6RB8AQ8mL0AAbzVOJVHF-lXSIo4rJwpCjh765FTI87NsUo.png" style="zoom:50%;" loading="lazy"></a>
+<em>图7 Lagrange 执行流程 | 图源：Lagrange</em></p>
+
+<p>其执行流程如上图所示：</p>
+
+<ol>
+  <li>开发者首先在 Lagrange 上注册合约，随后向 Lagrange 的链上代理合约提交请求，如对历史数据的 SQL 查询。</li>
+  <li>链下的 Lagrange 网络通过将调度器将请求分解为可并行执行的任务并分发给证明器网络，由其异步计算结果。</li>
+  <li>证明器随后会将计算结果及其证明提交回链上合约，使开发者能够验证结果的正确性。验证完成即可直接在应用逻辑中使用计算结果，大量节省 Gas 成本。</li>
+  <li>证明器网络的安全性由 EigenLayer 的 Restaking 技术保障。</li>
+</ol>
+
+<h3 id="risc-zero"><span class="me-2">RISC Zero</span><a href="#risc-zero" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>RISC Zero 的核心技术包括基于 RISC-V 指令集架构的通用 ZKVM，以及在此基础上构建的 ZK 协处理器 Bonsai。</p>
+
+<h4 id="risc-zero-zkvm"><span class="me-2">RISC Zero ZKVM</span><a href="#risc-zero-zkvm" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<p>RISC Zero ZKVM 可以证明任意代码的正确执行，使开发者能够使用 Rust 和 C++ 等成熟语言构建 ZK 应用程序，无需自行构建电路或使用自定义语言编写代码。</p>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/security-model-diagram-70478725ab3b760ff9bf29eee53a4f74.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/security-model-diagram-70478725ab3b760ff9bf29eee53a4f74.svg" style="zoom:80%;" loading="lazy"></a>
+<em>图8 RISC Zero ZKVM 架构 | 图源：RISC Zero Developer Docs</em></p>
+
+<p>开发者构建 ZK 应用时，只需将 Rust 源代码编译成的 ELF 二进制文件及程序运行依赖的输入提交至 ZKVM，即可得到包含计算结果及其证明的 Receipt。Receipt 可自由分享给第三方，并可使用验证器合约在链上进行验证。如下图所示，程序运行结果的证明是由执行器将应用代码的执行轨迹分片交由证明器经过多次递归证明得到的。</p>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/1725358950812.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/1725358950812.png" style="zoom:80%;" loading="lazy"></a>
+<em>图9 RISC Zero ZKVM 证明生成 | 图源：Youtube</em></p>
+
+<p>RISC Zero 中的证明器是完全开源的，开发者可选择使用本地硬件运行 ZKVM 自行生成证明，也可使用 RISC Zero 提供的远程证明服务 Bonsai。</p>
+
+<h4 id="bonsai"><span class="me-2">Bonsai</span><a href="#bonsai" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<p>Bonsai 是独立的零知识证明网络，任意链、协议和应用都可调用该网络进行链下计算，并将生成的零知识证明发布上链进行验证，因此 Bonsai 可被视为与链无关的通用 ZK 协处理器。Bonsai 具备高性能和高并行行，证明请求会由动态的 GPU 集群快速完成。</p>
+
+<p>其主要功能包括：Bonsai 结合了三个关键要素,打造出一个独特的网络,将使区块链生态系统中能够开发出新类型的应用:</p>
+
+<ul>
+  <li>能在零知识/可验证的环境下运行任意虚拟机的通用 ZKVM</li>
+  <li>可直接集成到任意智能合约或链中的证明系统</li>
+  <li>可将 Bonsai 证明的计算分发到各个链上的通用 Rollup</li>
+</ul>
+
+<p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/cd81185b-2f6b-4b27-8449-e7989c80638a_1600x755.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/cd81185b-2f6b-4b27-8449-e7989c80638a_1600x755.png" style="zoom: 35%;" loading="lazy"></a>
+<em>图10 ZK 协处理器 Bonsai | 图源：RISC Zero Developer Docs</em></p>
+
+<p>Bonsai 的核心组件包括：</p>
+
+<ul>
+  <li>
+    <p>证明器网络：即运行 ZKVM 证明器的节点网络，负责执行并证明由 Bonsai API 发来的请求。未来该网络将逐渐转向去中心化，允许无需可参与。</p>
+  </li>
+  <li>
+    <p>请求池：存储证明请求及其元数据的数据库。该池还将作为定序器，为节点构建区块。许多证明将被拆分以提高证明效率。</p>
+  </li>
+  <li>Rollup 引擎：将证明器网络生成的证明汇总成单一的根证明，发布到链上供验证者验证其有效性。</li>
+  <li>Image Hub：允许开发者存储可由智能合约执行的函数和程序映像，映像的执行可通过 Bonsai 和 ZKVM 进行零知识证明。Image Hub 能为开发者提供了强大的编程原语，使 Bonsai 可以充当任意链之间的共享执行层，并大幅增加智能合约的功能。</li>
+  <li>状态存储：Bonsai 还将引入链下状态存储，变量以键值对的形式存储在 Bonsai 上，以便 Bonsai 中的函数和程序映像访问。</li>
+  <li>证明市场：未来 Bonsai 将以去中心化的形式运行，参与者可以在其中提供证明服务。证明市场将匹配证明需求方和算力供给方，确保有效地满足证明请求，优化网络内的资源分配，提高 Bonsai 的整体效率和可靠性。</li>
+</ul>
+
+<h3 id="succinct"><span class="me-2">Succinct</span><a href="#succinct" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>Succinct 将自身定位为“可编程事实” (Programmable Truth) 协议，旨在构建 ZK 基础设施层，推动可编程事实在区块链开发栈中的集成。</p>
+
+<p>其核心组件是基于 RISC-V 指令集架构的 ZKVM——Succinct Processor 1 (SP1)。</p>
+
+<p>Succinct可以接受包括Solidity和零知识领域的专门语言（DSL）等代码，传入到链下的Succinct协处理器，Succinct完成目标链的数据索引，然后将证明申请发送给证明市场，能够支持CPU、GPU以及ETC等芯片的矿机在证明网络中提交证明。其特点在于证明市场对于各种证明系统都兼容，因为未来会有很长一段各种证明系统并存的时期。</p>
+
+<p>Succinct的链下ZKVM称为SP（Succinct Processor），其能够支持Rust语言以及其它的LLVM语言，其核心特性包括：</p>
+
+<ol>
+  <li>递归+验证：基于STARKs技术的递归证明技术，能够指数级增强ZK压缩效率。</li>
+  <li>支持SNARKs到STARKs包装器：能够同时采纳SNARKs和STARKs优点，解决证明大小和验证时间的权衡问题。</li>
+  <li>预编译为中心的 zkVM 架构：对于一些常见的算法如SHA256、Keccak、ECDSA等，能够提前编译以减少运行时的证明生成时间和验证时间。</li>
+</ol>
+
+<h3 id="zkm"><span class="me-2">ZKM</span><a href="#zkm" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<h3 id="valita"><span class="me-2">Valita</span><a href="#valita" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
 
   </div>
 
@@ -1528,7 +1653,7 @@
       <div class="post-meta mb-3">
         <i class="far fa-folder-open fa-fw me-1"></i>
         
-          <a href="/categories/consensus/">Consensus</a>
+          <a href="/categories/blockchain/">Blockchain</a>
       </div>
     
 
@@ -1538,14 +1663,9 @@
         <i class="fa fa-tags fa-fw me-1"></i>
         
           <a
-            href="/tags/avalanche/"
+            href="/tags/zk/"
             class="post-tag no-text-decoration"
-          >avalanche</a>
-        
-          <a
-            href="/tags/consensus/"
-            class="post-tag no-text-decoration"
-          >consensus</a>
+          >zk</a>
         
       </div>
     
@@ -1581,21 +1701,21 @@
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=Avalanche%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Favalanche%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=ZK%20%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8%20-%20Fanwb's%20Blog&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fzkcoprocessor%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
 
       
 
-      <a href="https://www.facebook.com/sharer/sharer.php?title=Avalanche%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Favalanche%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?title=ZK%20%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8%20-%20Fanwb's%20Blog&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fzkcoprocessor%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
         <i class="fa-fw fab fa-facebook-square"></i>
       </a>
     
 
       
 
-      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Favalanche%2F&text=Avalanche%20%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fzkcoprocessor%2F&text=ZK%20%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8%20-%20Fanwb's%20Blog" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
         <i class="fa-fw fab fa-telegram"></i>
       </a>
     
@@ -2415,7 +2535,151 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   
 
   
@@ -2467,7 +2731,7 @@
     <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
       
         <article class="col">
-          <a href="/posts/pbft/" class="post-preview card h-100">
+          <a href="/posts/aa/" class="post-preview card h-100">
             <div class="card-body">
               <!--
   Date format snippet
@@ -2479,14 +2743,14 @@
 
 <time
   
-  data-ts="1655697600"
+  data-ts="1680926400"
   data-df="ll"
   
 >
-  Jun 20, 2022
+  Apr  8, 2023
 </time>
 
-              <h4 class="pt-0 my-2">PBFT 共识算法详解</h4>
+              <h4 class="pt-0 my-2">账户抽象架构设计详解</h4>
               <div class="text-muted">
                 <p>
                   
@@ -2495,24 +2759,13 @@
 
 
 
-                  1 系统模型
+                  本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。
 
-1.1 网络
+自定义钱包
 
-PBFT 工作在异步的分布式系统中，系统中各个节点彼此通过网络连接。 系统运行时，消息的传递允许出现下列情形：
+我们首先从一个简单的资产管理的场景出发：用户希望使用单个私钥签署大多数普通交易，但价格昂贵的 NFT 资产则需要同时用存放在银行保险库内的另一个私钥签署才能转移。
 
-
-  不能正确发送
-  延迟
-  重复
-  乱序
-
-
-1.2 拜占庭错误
-
-系统允许错误节点也就是拜占庭节点表现出任意行为，但是需要附加一个限定条件： 节点失效彼此应相互独立，从而大部分或全部节点不会同时失效。
-
-在有恶意攻击存在的情况下，可以采取...
+我们知道以太...
                 </p>
               </div>
             </div>
@@ -2520,7 +2773,7 @@ PBFT 工作在异步的分布式系统中，系统中各个节点彼此通过网
         </article>
       
         <article class="col">
-          <a href="/posts/hotstuff/" class="post-preview card h-100">
+          <a href="/posts/lmdghost/" class="post-preview card h-100">
             <div class="card-body">
               <!--
   Date format snippet
@@ -2532,14 +2785,14 @@ PBFT 工作在异步的分布式系统中，系统中各个节点彼此通过网
 
 <time
   
-  data-ts="1666843200"
+  data-ts="1681531200"
   data-df="ll"
   
 >
-  Oct 27, 2022
+  Apr 15, 2023
 </time>
 
-              <h4 class="pt-0 my-2">HotStuff 共识算法详解</h4>
+              <h4 class="pt-0 my-2">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</h4>
               <div class="text-muted">
                 <p>
                   
@@ -2548,11 +2801,16 @@ PBFT 工作在异步的分布式系统中，系统中各个节点彼此通过网
 
 
 
-                  1 前言
+                  本文是介绍以太坊 PoS 共识协议的第一部分。主要包括对术语和核心概念的讲解，以及对 LMD GHOST 分叉选择规则的详细介绍。
 
-HotStuff提出了一个三阶段投票的BFT类共识协议，该协议实现了safety、liveness、responsiveness特性。通过在投票过程中引入门限签名实现了O(n) 的消息验证复杂度。Hotstuff总结出对比了目前主流的BFT共识协议，构建了基于经典BFT共识实现pipeline BFT共识的模式。
+术语及重要概念
 
-HotStuff是尹茂帆等人提出的分布性一致性协议，在该算法中，...
+节点和验证者
+
+以太坊网络的主要参与者是节点 (Node)。节点的作用是验证共识并与其他节点形成通信骨干网。共识由验证者 (Validator) 形成。
+
+
+  “验证者”这一术语具有一定的误导性，验证者其实并不会验证任何东西，验证是由节点完...
                 </p>
               </div>
             </div>
@@ -2560,7 +2818,7 @@ HotStuff是尹茂帆等人提出的分布性一致性协议，在该算法中，
         </article>
       
         <article class="col">
-          <a href="/posts/raft/" class="post-preview card h-100">
+          <a href="/posts/casperffg/" class="post-preview card h-100">
             <div class="card-body">
               <!--
   Date format snippet
@@ -2572,14 +2830,14 @@ HotStuff是尹茂帆等人提出的分布性一致性协议，在该算法中，
 
 <time
   
-  data-ts="1668225600"
+  data-ts="1690084800"
   data-df="ll"
   
 >
-  Nov 12, 2022
+  Jul 23, 2023
 </time>
 
-              <h4 class="pt-0 my-2">Raft 共识算法详解</h4>
+              <h4 class="pt-0 my-2">以太坊 PoS 共识协议详解（二）：Casper FFG</h4>
               <div class="text-muted">
                 <p>
                   
@@ -2588,16 +2846,13 @@ HotStuff是尹茂帆等人提出的分布性一致性协议，在该算法中，
 
 
 
-                  本文主要结合 Raft 论文讲解 Raft 算法思路，并遵循 Raft 的模块化思想对难理解及容易误解的内容抽丝剥茧。算法方面包括：选主机制、基于日志实现状态机机制、安全正确维护状态机机制；工程实现方面包括：集群成员变更防脑裂策略、解决数据膨胀及快速恢复状态机策略、线性一致读性能优化策略等。
+                  本文是介绍以太坊 PoS 共识协议的第二部分，主要对最终性工具 Casper FFG 进行全面说明。
 
+许多文章都介绍过 Casper FFG 的运行机制，但很少解释这些机制为什么有效。希望本文能为读者理解 Casper FFG 的有效性提供一些参考。
 
+总体而言，Casper FFG 的机制并不复杂，其有效性主要归功于为两个重要理念：两阶段提交，以及可问责安全性。
 
-1 概述
-
-1.1 Raft 是什么？
-
-
-  Raft is a consensus alg...
+两阶段提交赋予了 Ca...
                 </p>
               </div>
             </div>
@@ -2619,21 +2874,21 @@ HotStuff是尹茂帆等人提出的分布性一致性协议，在该算法中，
 
   
     <a
-      href="/posts/web3/"
+      href="/posts/aicrypto/"
       class="btn btn-outline-primary"
       aria-label="Older"
     >
-      <p>Web3 组成架构纵览</p>
+      <p>AI × 加密：去中心化愿景的现实考验</p>
     </a>
   
 
   
     <a
-      href="/posts/zkevmrollup/"
+      href="/posts/privacyprotection/"
       class="btn btn-outline-primary"
       aria-label="Newer"
     >
-      <p>zkEVM Rollup：从理论到现实</p>
+      <p>隐私保护工具推荐</p>
     </a>
   
 </nav>
@@ -2641,74 +2896,6 @@ HotStuff是尹茂帆等人提出的分布性一致性协议，在该算法中，
             
               
               <!--  The comments switcher -->
-
-  
-  <!-- https://giscus.app/ -->
-<script type="text/javascript">
-  (function () {
-    const origin = 'https://giscus.app';
-    const iframe = 'iframe.giscus-frame';
-    const lightTheme = 'light';
-    const darkTheme = 'dark_dimmed';
-
-    let initTheme = lightTheme;
-    const html = document.documentElement;
-
-    if (
-      (html.hasAttribute('data-mode') &&
-        html.getAttribute('data-mode') === 'dark') ||
-      (!html.hasAttribute('data-mode') &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      initTheme = darkTheme;
-    }
-
-    let giscusAttributes = {
-      src: 'https://giscus.app/client.js',
-      'data-repo': 'fan-wb/fan-wb.github.io',
-      'data-repo-id': 'R_kgDOIpbGbQ',
-      'data-category': 'Announcements',
-      'data-category-id': 'DIC_kwDOIpbGbc4CimRo',
-      'data-mapping': 'pathname',
-      'data-reactions-enabled': '1',
-      'data-emit-metadata': '0',
-      'data-theme': initTheme,
-      'data-input-position': 'top',
-      'data-lang': 'zh-CN',
-      'data-loading': 'lazy',
-      crossorigin: 'anonymous',
-      async: ''
-    };
-
-    let giscusScript = document.createElement('script');
-    Object.entries(giscusAttributes).forEach(([key, value]) =>
-      giscusScript.setAttribute(key, value)
-    );
-    document.getElementById('tail-wrapper').appendChild(giscusScript);
-
-    addEventListener('message', (event) => {
-      if (
-        event.source === window &&
-        event.data &&
-        event.data.direction === ModeToggle.ID
-      ) {
-        /* global theme mode changed */
-        const mode = event.data.message;
-        const theme = mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme;
-
-        const message = {
-          setConfig: {
-            theme: theme
-          }
-        };
-
-        const giscus = document.querySelector(iframe).contentWindow;
-        giscus.postMessage({ giscus: message }, origin);
-      }
-    });
-  })();
-</script>
-
 
 
             
