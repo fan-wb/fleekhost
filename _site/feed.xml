@@ -4,7 +4,7 @@
   <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-11-04T20:34:57+08:00</updated>
+  <updated>2024-11-05T12:35:27+08:00</updated>
   <author>
     <name>Fan-WB</name>
     <uri>https://fan-wb.github.io/</uri>
@@ -136,7 +136,11 @@
 
 
 
-      个人使用体验较好的各类隐私保护工具推荐，以开源软件为主，不定期更新。
+      
+  “We must defend our own privacy if we expect to have any.”  — A Cypherpunk’s Manifesto
+
+
+个人使用体验较好的各类隐私保护工具推荐，以开源软件为主，不定期更新。
 
 网页浏览
 
@@ -152,7 +156,7 @@
 
  LibreWolf
 
-LibreWolf 是 Firefox 的一个独立分支，提供更严格的默认设置，以保障用户隐私、安全性和自由。禁用 Mozilla Telemetry，切断了与 Google（Safe Browsing）的关联，内置了内容拦截器 uBlock Origin，隐私默认...
+LibreWolf 是 Firefox 的一个独立分支，提供更严格的默认设置，以...
     </summary>
   
 
