@@ -45,7 +45,7 @@
 <meta property="twitter:title" content="以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-16T10:33:14+08:00","datePublished":"2023-04-15T12:00:00+08:00","description":"本文是介绍以太坊 PoS 共识协议的第一部分。主要包括对术语和核心概念的讲解，以及对 LMD GHOST 分叉选择规则的详细介绍。","headline":"以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/MV5BYWQ2NDIxYTQtYWMyNC00MmRlLWExMDMtOWYwODVjM2Y4MTRhXkEyXkFqcGdeQXVyNjc3OTE4Nzk.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/lmdghost/"},"url":"https://fan-wb.github.io/posts/lmdghost/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T21:14:47+08:00","datePublished":"2023-04-15T12:00:00+08:00","description":"本文是介绍以太坊 PoS 共识协议的第一部分。主要包括对术语和核心概念的讲解，以及对 LMD GHOST 分叉选择规则的详细介绍。","headline":"以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/MV5BYWQ2NDIxYTQtYWMyNC00MmRlLWExMDMtOWYwODVjM2Y4MTRhXkEyXkFqcGdeQXVyNjc3OTE4Nzk.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/lmdghost/"},"url":"https://fan-wb.github.io/posts/lmdghost/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1403,13 +1403,13 @@
 
 <time
   
-  data-ts="1721097194"
+  data-ts="1732626887"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Jul 16, 2024
+  Nov 26, 2024
 </time>
 
         </span>
@@ -1461,7 +1461,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="7654 words"
+  title="7651 words"
 >
   <em>42 min</em> read</span>
 
@@ -1495,11 +1495,11 @@
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/c9bf6b46-0344-44f6-8553-b1238b8399c9.png" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/c9bf6b46-0344-44f6-8553-b1238b8399c9.png" style="zoom:110%;" loading="lazy"></a>
 <em>图1 前 32 个 Slot 属于第 0 个 Epoch，创世块位于第 0 个 Slot</em></p>
 
-<p><strong>Slot</strong>（常译作“时隙”、“区块槽”）和 <strong>Epoch</strong>（常译作“时段”）是划分时间的两个主要概念，每个 Slot 为12秒，每个 Epoch 为 32 个 Slot，即 6.4 分钟。无论网络上情况如何，Slot 和 Epoch 都会保持节奏持续向前推进。</p>
+<p><strong>Slot</strong>（常译作“时隙”、“区块槽”）和 <strong>Epoch</strong>（常译作“时段”）是划分时间的两个主要概念，每个 Slot 为 12 秒，每个 Epoch 为 32 个 Slot，即 6.4 分钟。无论网络上情况如何，Slot 和 Epoch 都会保持节奏持续向前推进。</p>
 
 <h3 id="区块和见证"><span class="me-2">区块和见证</span><a href="#区块和见证" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>每个 Slot会选出<strong>一名</strong>验证者提议一个<strong>区块</strong> (Block)。区块包含对信标状态的更新，其中包括提议者知道的<strong>见证</strong> (Attestation) 以及带有以太坊用户交易的执行负载。提议者通过 Gossip 协议与整个网络共享其区块。</p>
+<p>每个 Slot 会选出<strong>一名</strong>验证者提议一个<strong>区块</strong> (Block)。区块包含对信标状态的更新，其中包括提议者知道的<strong>见证</strong> (Attestation) 以及带有以太坊用户交易的执行负载。提议者通过 Gossip 协议与整个网络共享其区块。</p>
 
 <p>Slot 可以为空：因为区块提议者可能处于离线状态，或者提议了一个无效的区块，或者其区块随后被链重组 (Reorg) 剔除出链。</p>
 
@@ -1515,13 +1515,13 @@
 
 <p>用一句话概括安全性要求就是“永不发生坏事”。在区块链语境下，“坏事”可能是币的双花，或冲突检查点的最终化等。</p>
 
-<p>分布式系统中安全性的一个重要方面是“一致性 (Consistency)”。也就是说，如果我们向不同的节点查询链的状态（如特定区块高度的账户余额），则无论我们询问哪个节点，都应该始终得到相同的答案。在一个安全的系统中，每个节点对链的历史都具有完全相同的视图，并且该视图永远不会改变。安全性意味着我们的分布式系统“<a href="https://www.scs.stanford.edu/nyu/03sp/sched/bfs.pdf">像一个中心化实现一样原子地执行每一步操作</a>”。根据 Vitalik 的中心化<a href="https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274">分类法</a>，安全的系统在逻辑上是中心化的。</p>
+<p>分布式系统中安全性的一个重要方面是“一致性 (Consistency)”。也就是说，如果我们向不同的节点查询链的状态（如特定区块高度的账户余额），则无论询问哪个节点，都应该始终得到相同的答案。在一个安全的系统中，每个节点对链的历史都具有完全相同的视图，并且该视图永远不会改变。安全性意味着我们的分布式系统“<a href="https://www.scs.stanford.edu/nyu/03sp/sched/bfs.pdf">像中心化实现一样原子地执行每一步操作</a>”。根据 Vitalik 的中心化<a href="https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274">分类法</a>，安全的系统在逻辑上是中心化的。</p>
 
 <p>而同样用一句话概括活性就是“终会发生好事”。在区块链语境中，通常可以理解为链可以始终添加新块，永远不会陷入死锁状态。</p>
 
 <p>也可以从“可用性 (Availability)”的角度出发理解活性：链是可用的，意味着如果我向诚实节点发送有效交易，最终交易一定会被包含在一个扩展链的区块中。</p>
 
-<p>值得注意的是，CAP 定理证明了没有分布式系统可以同时满足：一致性，可用性和分区容错性。现实中，我们只能基于<strong>不可靠</strong>的 Internet 构建区块链，即分区容错性是必须成立的，这也就说明链的安全性和活性是<strong>难以两全</strong>的。以太坊共识协议在网络状况良好时能同时提供安全性和活性，但在运行不顺利的情况下优先考虑活性。在网络分区的情况下，分区两侧的节点都将继续产生区块，但最终性（安全属性）不再有保障。具体取决于各分区中的质押权益比例，可能只有一侧继续最终化，也可能双方都无法最终化。最终，除非分区问题得到解决，否则消极惩罚机制 (Inactivity Leak) 会使双方都将重新获得最终性，但同时也将导致共识的撕裂，两条链将最终化不同的历史记录，并且这两条链将永远保持独立，无法调和。</p>
+<p>值得注意的是，CAP 定理证明了没有分布式系统可以同时满足：一致性，可用性和分区容错性。现实中，我们只能基于<strong>不可靠</strong>的互联网构建区块链，即分区容错性是必须成立的，这也就说明链的安全性和活性是<strong>难以两全</strong>的。以太坊共识协议在网络状况良好时能同时提供安全性和活性，但在运行不顺利的情况下优先考虑活性。在网络分区的情况下，分区两侧的节点都将继续产生区块，但最终性（安全属性）不再有保障。具体取决于各分区中的质押权益比例，可能只有一侧继续最终化，也可能双方都无法最终化。最终，除非分区问题得到解决，否则消极惩罚机制 (Inactivity Leak) 会使双方都将重新获得最终性，但同时也将导致共识的撕裂，两条链将最终化不同的历史记录，并且这两条链将永远保持独立，无法调和。</p>
 
 <h3 id="罚没"><span class="me-2">罚没</span><a href="#罚没" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
@@ -1697,7 +1697,7 @@
 
 <p>如果本地没有存储该验证者的链头投票，则存储该见证和验证者信息。如果本地已存有该验证者的链头投票，若该见证更新，则进行替换。随着时间的推移，节点的 Store 会建立起一个列表，其中包含所有接收过的每个验证者的最新投票。</p>
 
-<p>请注意，节点只能存储在当前或前一个 Epoch 创建的投票，一旦投票进入 Store，就会无限期地被保留，并继续影响分叉选择，直到被替换为更新的投票为止。</p>
+<p>注意，节点只能存储在当前或前一个 Epoch 创建的投票，一旦投票进入 Store，就会无限期地被保留，并继续影响分叉选择，直到被替换为更新的投票为止。</p>
 
 <h4 id="确定链头"><span class="me-2">确定链头</span><a href="#确定链头" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
 
@@ -2053,21 +2053,21 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/privacyprotection/">隐私保护工具推荐</a>
+          <a href="/posts/lmdghost/">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/ethl2/">L2：ETH 的价值抽取与重塑</a>
+          <a href="/posts/casperffg/">以太坊 PoS 共识协议详解（二）：Casper FFG</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/cypherpunk/">隐私与透明：密码朋克运动的多维度探讨</a>
+          <a href="/posts/rwa/">RWA 代币化浪潮：万物皆可加密</a>
         </li>
       
         
@@ -2081,7 +2081,7 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/ipfs/">IPFS 技术原理详解</a>
+          <a href="/posts/privacyprotection/">隐私保护工具推荐</a>
         </li>
       
     </ul>

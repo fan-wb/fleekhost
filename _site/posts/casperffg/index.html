@@ -45,7 +45,7 @@
 <meta property="twitter:title" content="以太坊 PoS 共识协议详解（二）：Casper FFG" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-20T11:02:15+08:00","datePublished":"2023-07-23T12:00:00+08:00","description":"本文是介绍以太坊 PoS 共识协议的第二部分，主要对最终性工具 Casper FFG 进行全面说明。","headline":"以太坊 PoS 共识协议详解（二）：Casper FFG","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/casper.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/casperffg/"},"url":"https://fan-wb.github.io/posts/casperffg/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T20:58:17+08:00","datePublished":"2023-07-23T12:00:00+08:00","description":"本文是介绍以太坊 PoS 共识协议的第二部分，主要对最终性工具 Casper FFG 进行全面说明。","headline":"以太坊 PoS 共识协议详解（二）：Casper FFG","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/casper.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/casperffg/"},"url":"https://fan-wb.github.io/posts/casperffg/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2035,13 +2035,13 @@
 
 <time
   
-  data-ts="1718852535"
+  data-ts="1732625897"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Jun 20, 2024
+  Nov 26, 2024
 </time>
 
         </span>
@@ -2093,7 +2093,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="9704 words"
+  title="9705 words"
 >
   <em>53 min</em> read</span>
 
@@ -2429,7 +2429,7 @@
 <blockquote class="prompt-tip">
   <h5 id="为什么是三分之二"><span class="me-2">为什么是三分之二？</span><a href="#为什么是三分之二" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5>
 
-  <p>最终化的阈值设定在 $\frac{2}{3}$ 的原因其实<a href="https://ethresear.ch/t/latest-casper-basics-tear-it-apart/151/58?u=benjaminion">并不是显而易见</a>的。注意，这里 $\frac{2}{3}$ 的含义是总质押权益的 $\frac{2}{3}$ ，与本文开头介绍的 PBFT 算法中共识生效的阈值含义并不相同。实际上，绝对多数链接的定义可以选取任意大于 $\frac{1}{2}$ 的值作为阈值。设此阈值为 $p$：若验证者集中比例为 $p$ 的验证者投票最终化一个检查点，则该检查点被最终化。</p>
+  <p>最终化的阈值设定在 $\frac{2}{3}$ 的原因其实<a href="https://ethresear.ch/t/latest-casper-basics-tear-it-apart/151/58?u=benjaminion">并不像直观感觉上那么简单</a>。注意，这里 $\frac{2}{3}$ 的含义是总质押权益的 $\frac{2}{3}$ ，与本文开头介绍的 PBFT 算法中共识生效的阈值含义并不相同。实际上绝对多数链接的定义可以选取任意大于 $\frac{1}{2}$ 的值作为阈值。设此阈值为 $p$：若验证者集中比例为 $p$ 的验证者投票最终化一个检查点，则该检查点被最终化。</p>
 
   <p>该值的设定实际是要平衡两个因素：</p>
 
@@ -2463,7 +2463,7 @@
 
 <p>我们称之为“<strong>经济最终性</strong> (<strong>Economic Finality</strong>) ”，因为最终性不是由软件而是由攻击成本保障的。验证者的质押权益是“正当行为保证金”，如果被证明违反了协议规则，就可以没收其权益。</p>
 
-<p>那么我们为什么需要经济最终性这一概念呢？经典 PBFT 并不依赖这样的结构来实现最终性。协议难道不能直接拒绝最终化冲突的检查点吗？</p>
+<p>那么为什么需要经济最终性这一概念呢？经典 PBFT 并不依赖这样的结构来实现最终性。协议难道不能直接拒绝最终化冲突的检查点吗？</p>
 
 <p>区别在于 PBFT 可以奢侈地假设作恶验证者不到三分之一。在 Casper FFG 中，持有不到三分之一权益的攻击者同样无法最终化冲突的检查点。然而，在无许可区块链中，必须有防御措施来应对作恶权益超过三分之一的情况。而罚没机制就是这一防御措施，为协议提供了经济最终性保证：如果超过三分之一的验证者行为不当，虽然无法阻止其最终化冲突检查点，但可以令其付出巨大的代价。</p>
 
@@ -2769,21 +2769,21 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/privacyprotection/">隐私保护工具推荐</a>
+          <a href="/posts/lmdghost/">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/ethl2/">L2：ETH 的价值抽取与重塑</a>
+          <a href="/posts/casperffg/">以太坊 PoS 共识协议详解（二）：Casper FFG</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/cypherpunk/">隐私与透明：密码朋克运动的多维度探讨</a>
+          <a href="/posts/rwa/">RWA 代币化浪潮：万物皆可加密</a>
         </li>
       
         
@@ -2797,7 +2797,7 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/ipfs/">IPFS 技术原理详解</a>
+          <a href="/posts/privacyprotection/">隐私保护工具推荐</a>
         </li>
       
     </ul>
