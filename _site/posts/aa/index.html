@@ -32,20 +32,20 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="账户抽象架构设计详解" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
-<meta property="og:description" content="本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
+<meta name="description" content="本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
+<meta property="og:description" content="本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
 <link rel="canonical" href="https://fan-wb.github.io/posts/aa/" />
 <meta property="og:url" content="https://fan-wb.github.io/posts/aa/" />
 <meta property="og:site_name" content="Fanwb’s Blog" />
 <meta property="og:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-04-08T12:00:00+08:00" />
+<meta property="article:published_time" content="2023-07-23T12:00:00+08:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png" />
 <meta property="twitter:title" content="账户抽象架构设计详解" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-16T11:54:20+08:00","datePublished":"2023-04-08T12:00:00+08:00","description":"本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。","headline":"账户抽象架构设计详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/aa/"},"url":"https://fan-wb.github.io/posts/aa/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-23T12:00:00+08:00","datePublished":"2023-07-23T12:00:00+08:00","description":"本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。","headline":"账户抽象架构设计详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/aa/"},"url":"https://fan-wb.github.io/posts/aa/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1475,41 +1475,18 @@
 
 <time
   
-  data-ts="1680926400"
+  data-ts="1690084800"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Apr  8, 2023
+  Jul 23, 2023
 </time>
 
       </span>
 
       <!-- lastmod date -->
-      
-        <span>
-          Updated
-          <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1726458860"
-  data-df="ll"
-  
-    data-bs-toggle="tooltip" data-bs-placement="bottom"
-  
->
-  Sep 16, 2024
-</time>
-
-        </span>
       
 
       
@@ -1558,9 +1535,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="11226 words"
+  title="10693 words"
 >
-  <em>62 min</em> read</span>
+  <em>59 min</em> read</span>
 
       </div>
       <!-- .d-flex -->
@@ -1569,27 +1546,27 @@
   </header>
 
   <div class="content">
-    <p>本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。</p>
+    <p>本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。</p>
 
 <h2 id="自定义钱包"><span class="me-2">自定义钱包</span><a href="#自定义钱包" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>我们首先从一个简单的资产管理的场景出发：用户希望使用单个私钥签署大多数普通交易，但价格昂贵的 NFT 资产则需要同时用存放在银行保险库内的另一个私钥签署才能转移。</p>
+<p>我们从一个资产管理的具体场景出发：用户希望对普通交易使用单一私钥签名，但对于价格昂贵的 NFT 资产，则要求额外使用存放在银行保险库中的另一把私钥才能完成转移。</p>
 
-<p>我们知道以太坊中的账户分为合约账户 (CA) 和外部账户 (EOA) 两类。EOA 由一个公私钥对控制，是“主动”的，可以发起交易并支付 EVM 执行的 gas 费，但只能执行基本操作（例如转账或与合约交互）。而 CA 则由智能合约的代码逻辑而非私钥控制，是“被动”的，只能响应来自 EOA 的交易，且不能支付 gas 费，但 CA 是可编程的，可以根据存储在该地址的代码执行任意逻辑。</p>
+<p>在以太坊中，账户分为两类：合约账户 (CA) 和外部账户 (EOA)。EOA 由公私钥对控制，属于“主动”类型，能够发起交易并支付 EVM 执行所需的 gas 费，但仅限执行基础操作，如转账或与合约交互。相比之下，CA 由智能合约的代码逻辑控制，是“被动”类型，只能响应 EOA 发起的交易，无法支付 gas 费，但具有可编程性，可根据存储的代码执行复杂逻辑。</p>
 
-<p>那么问题来了：在我们的场景中，持有资产的账户应该是合约账户还是外部账户呢？</p>
+<p>那么在我们假设的场景中，资产持有账户应该选择合约账户还是外部账户？</p>
 
-<p>答案是：该账户必须是合约账户。因为如果是 EOA 的话，那么所有资产都可以被其私钥签署的交易随意转移，无法满足我们设定的安全需求。</p>
+<p>答案是必须选择合约账户。若使用外部账户，所有资产都可能被私钥签名的交易任意转移，这显然无法满足我们既定的安全需求。</p>
 
-<p>因此，我们的链上身份将由一个智能合约代表，该合约被称为“智能合约钱包”。我们需要一种方式向这个钱包发出指令，使其能像 EOA 一样执行我们期望的转账或合约调用操作。</p>
+<p>因此，我们的链上身份将由一个智能合约代表，这类合约被称为“智能合约钱包”。我们需要设计一种机制，能够向该钱包发出指令，使其像 EOA 一样执行我们期望的转账或合约调用操作。</p>
 
-<blockquote class="prompt-tip">
-  <p>使用这种方式管理资产的用户必须有自己的智能合约。不能用一个大型合约来持有多人的资产，因为整个以太坊生态都预设了一个地址代表一个实体，共用合约钱包的用户是无法被区分的。</p>
+<blockquote>
+  <p class="prompt-tip">这种资产管理方式要求每个用户都必须拥有独立的智能合约。不能使用单一大型合约来集中管理多个用户的资产，因为以太坊生态的基本假设是一个地址对应一个独立实体。共享合约钱包将导致用户无法被有效区分，有违区块链追求的身份透明性和独立性原则。</p>
 </blockquote>
 
 <h3 id="用户操作"><span class="me-2">用户操作</span><a href="#用户操作" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>我们部署一个用来持有资产的智能合约，并提供一个方法，通过这个方法可以向合约传递用户希望执行的操作的信息，我们称其为用户操作 (User Operation)。</p>
+<p>我们部署一个用来持有资产的智能合约，并提供一个方法，通过该方法可以向合约传递用户希望执行的操作的信息，我们称其为用户操作 (User Operation)。</p>
 
 <p>钱包合约如下：</p>
 
@@ -1629,7 +1606,7 @@
 
 <p>在我们的场景中，对于大部分用户操作，只需要传递主密钥对其余操作数据的签名即可。但如果用户操作是转移 NFT，那么钱包将要求用户提供两个私钥分别对操作数据的签名。</p>
 
-<p>最后，还要加入一个随机数 (nonce)以防止重放攻击：</p>
+<p>最后，还要加入一个随机数 (nonce) 以防止重放攻击：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1662,14 +1639,14 @@
 
 <h2 id="无需-eoa"><span class="me-2">无需 EOA</span><a href="#无需-eoa" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>上述方案的缺点是用户需要运行一个单独的 EOA 来调用钱包合约，增加了流程的复杂性。那么假如用户愿意自己支付 gas 费，但不想维护两个账户怎么办？</p>
+<p>上述方案的缺点是用户需要运行一个单独的 EOA 来调用钱包合约，增加了流程的复杂性。对于希望自行支付 gas 费但不想维护两个账户的用户，该如何解决？</p>
 
 <p>前面提到钱包合约的 <code class="language-plaintext highlighter-rouge">executeOp</code> 方法可以被任何人调用，因此用户可以请求其他拥有 EOA 的人代为调用。我们暂时称这个 EOA 及其所有者为“执行器” (executor)。</p>
 
-<p>由于执行器需要支付调用产生的 gas 费，我们可以让钱包合约持有一些 ETH，并在调用中令其向执行器转账作为 gas 费补偿。</p>
+<p>由于执行器需要承担调用产生的 gas 费用，我们可以设计一种机制：让钱包合约预留部分 ETH，并在调用过程中向执行器转账，作为 gas 费的补偿。</p>
 
 <blockquote class="prompt-tip">
-  <p>“执行器”并不是 ERC-4337 中的术语，但很好地描述了这个参与者的作用。后文会将其替换为 ERC-4337 中实际使用的术语 “bundler”（打包器），但由于目前我们还没有涉及到打包操作，因此用“执行器”更合理。其他协议中也称此类参与者为 “relayer”（中继器）。</p>
+  <p>“执行器”并不是 ERC-4337 中的术语，但很好地描述了这个参与者的作用。后文会将其替换为 ERC-4337 中实际使用的术语 “bundler”（打包器），在尚未涉及打包操作的当前阶段，“执行器”这一表述更为恰当。值得注意的是，其他协议中也常用“中继器” (relayer) 来指代类似角色。</p>
 </blockquote>
 
 <p>当前钱包的接口是：</p>
@@ -1684,33 +1661,33 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>我们将尝试修改 <code class="language-plaintext highlighter-rouge">executeOp</code> 的行为，使其在执行完操作后，根据所使用的 gas 量向执行器支付适当数额的 ETH 作为 gas 费补偿。</p>
+<p>我们的目标是调整 <code class="language-plaintext highlighter-rouge">executeOp</code> 的行为，使其能在完成操作后，根据实际消耗的 gas 量向执行器支付相应的 ETH 补偿。</p>
 
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w02.drawio.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w02.drawio.svg" alt="" loading="lazy"></a>
 <em>由执行器而非用户的 EOA 调用智能合约钱包</em></p>
 
-<p>这一方案的问题在于执行器需要确保钱包真的会支付 gas 费补偿。如果执行器调用 <code class="language-plaintext highlighter-rouge">executeOp</code> 但钱包并未退还 gas 费，执行器将不得不自己承担费用。</p>
+<p>这一方案面临的核心挑战是确保执行器能获得 gas 费补偿。如果执行器调用 <code class="language-plaintext highlighter-rouge">executeOp</code> 后钱包未退还费用，执行器将不得不自行承担开支。</p>
 
-<p>为了避免这种情况，执行器可以尝试在本地模拟 <code class="language-plaintext highlighter-rouge">executeOp</code> 操作，如使用 <code class="language-plaintext highlighter-rouge">debug_traceCall</code>，并检查是否会得到 gas 费补偿。在确认可以获得补偿后，执行器才会发送实际的交易。</p>
+<p>为避免这种风险，执行器可以先通过 <code class="language-plaintext highlighter-rouge">debug_traceCall</code> 等方式在本地模拟 <code class="language-plaintext highlighter-rouge">executeOp</code> 操作，验证是否能获得 gas 费补偿。只有确认补偿可期，执行器才会提交实际交易。</p>
 
-<p>但模拟并不总能完美预测真实的执行情况。完全有可能在模拟时钱包支付了 gas 费，但在实际将交易添加到区块时却支付失败。作恶钱包甚至会故意这样做，免费执行自己的操作并给执行器留下巨额的 gas 账单。</p>
+<p>然而，模拟无法保证完美预测。实际执行中完全可能出现模拟时钱包似乎支付了 gas 费，但在区块打包时却未能成功的情况。一些恶意钱包甚至可能故意为之，利用这一漏洞免费执行操作，同时将巨额 gas 费用转嫁给执行器。</p>
 
-<p><strong>模拟与真实执行可能不一致的原因包括:</strong></p>
+<p>模拟与真实执行不一致的根本原因主要有：</p>
 
-<ul>
-  <li>操作可能会读取存储，而存储可能在模拟和真实执行之间发生变化。</li>
-  <li>操作可能会使用像 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code>、<code class="language-plaintext highlighter-rouge">BLOCKHASH</code>、<code class="language-plaintext highlighter-rouge">BASEFEE</code> 等操作码。这些操作码会从环境中读取信息，且这些信息在不同区块中是不可预测的。</li>
-</ul>
+<ol>
+  <li>操作可能涉及存储读取，而存储状态在模拟与实际执行间可能发生变化。</li>
+  <li>操作可能调用依赖环境的操作码，如 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code>、<code class="language-plaintext highlighter-rouge">BLOCKHASH</code>、<code class="language-plaintext highlighter-rouge">BASEFEE</code> 等，这些信息在不同区块间本质上是不可预测的。</li>
+</ol>
 
-<p>执行器可以尝试限制操作的允许范围，例如拒绝所有使用“环境”操作码的操作，但这种限制过于严格。要注意，我们希望钱包能执行 EOA 能力范围内的所有操作，而禁用这些操作码会妨碍许多合理的使用场景。例如，钱包将无法与大量使用 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code> 的 Uniswap 等 DApp 交互，这无疑与我们的初衷相悖。</p>
+<p>执行器可以尝试通过限制操作范围来应对，比如拒绝使用“环境”操作码的操作。但这种做法过于武断。我们的初衷是使钱包具备与外部账户相当的操作能力，过度限制将阻碍诸如与 Uniswap 等 DApp 的正常交互，这显然背离了原始设计意图。</p>
 
-<p>由于钱包的 <code class="language-plaintext highlighter-rouge">executeOp</code> 可以包含任意代码，我们无法合理地对其进行限制来防止对模拟的欺骗，因此在当前接口下这个问题是无解的。<code class="language-plaintext highlighter-rouge">executeOp</code> 是一个黑箱，难以预测。</p>
+<p>由于 <code class="language-plaintext highlighter-rouge">executeOp</code> 本质上是一个可以包含任意代码的黑箱，因此我们无法合理地防止模拟欺骗，这个问题在现有接口下是无解的。</p>
 
 <h3 id="入口点合约"><span class="me-2">入口点合约</span><a href="#入口点合约" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>前述问题的核心在于我们要求执行器运行来自不可信合约的代码，而执行器希望在具有一定保障的环境中执行这些不可信操作——这不正是智能合约的目的吗？</p>
+<p>前述问题的本质是在于执行不可信合约代码的安全性：执行器希望在一个可控、有保障的环境中处理这些具有潜在风险的操作——这不正是智能合约的目的吗？</p>
 
-<p>因此我们将引入一个新的可信（经过审计和源代码验证）合约，称为<strong>入口点</strong> (EntryPoint)，并为其提供一个由执行器调用的方法：</p>
+<p>为此，我们引入一个（经过严格审计和源代码验证的）可信合约，称为<strong>入口点</strong> (EntryPoint)，并为其设计了一个由执行器调用的方法：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1722,15 +1699,15 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">handleOp</code> 将执行以下操作：</p>
+<p><code class="language-plaintext highlighter-rouge">handleOp</code> 方法将执行以下流程：</p>
 
-<ul>
-  <li>检查钱包是否有足够的资金支付可能使用的最大 gas 费（基于用户操作中的 gas 字段）。如果没有，拒绝执行。</li>
-  <li>调用钱包的 <code class="language-plaintext highlighter-rouge">executeOp</code> 方法（使用适当的 gas 限额），并记录实际使用的 gas 量。</li>
-  <li>从钱包中取出一些 ETH 支付给执行器，作为 gas 费补偿。</li>
-</ul>
+<ol>
+  <li>验证钱包是否具备足够资金支付潜在的最大 gas 费（基于用户操作中的 gas 字段）。若资金不足，直接拒绝执行。</li>
+  <li>以适当的 gas 限额调用钱包的 <code class="language-plaintext highlighter-rouge">executeOp</code> 方法，并精确记录实际消耗的 gas 量。</li>
+  <li>从钱包中提取一定量的 ETH 作为执行器的 gas 费补偿。</li>
+</ol>
 
-<p>要实现第三点，我们需要让入口点来持有用于支付 gas 费的 ETH。因为正如前文所述，我们无法确保能从钱包中取出 ETH。因此，还需要一个方法，让钱包向入口点存入支付 gas 费的 ETH，并提供另一个方法让钱包在需要时能将 ETH 取出：</p>
+<p>为确保第三点能够顺利实施，入口点需要直接持有用于支付 gas 费的 ETH。考虑到我们无法保证能够从钱包中可靠地提取资金，我们还需要额外的方法，使钱包能向入口点存入 gas 费资金，并在需要时将资金取出：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1746,12 +1723,10 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>用这种实现，我们可以确保执行器获得 gas 费补偿。</p>
-
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w03-1.drawio.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w03-1.drawio.svg" alt="" loading="lazy"></a>
 <em>引入经审计和源代码验证的入口点合约，可确保执行器获得补偿</em></p>
 
-<p>执行器的问题迎刃而解，但对于钱包来说，新问题又出现了。</p>
+<p>通过这种设计，我们成功解决了执行器获取 gas 费补偿的问题。然而，随之而来的是钱包需要面对的新挑战。</p>
 
 <h3 id="拆分验证与执行"><span class="me-2">拆分验证与执行</span><a href="#拆分验证与执行" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
@@ -1767,15 +1742,15 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>这个方法实际上做了两件事：验证用户操作是否被授权，以及执行操作中指定的调用。当钱包的所有者使用自己的账户支付 gas 费时，这种区分并不重要，但现在我们要求执行器支付 gas 费，区分验证和执行就很关键了。</p>
+<p>这个单一方法实际上同时承担了两个关键功能：<strong>验证</strong>用户操作的授权性，以及<strong>执行</strong>操作中指定的具体调用。在钱包所有者自行支付 gas 费时，这种设计没有问题；但随着引入执行器支付 gas 费的模式，区分验证和执行变得尤为重要。</p>
 
-<p>当前的实现是，无论如何钱包都会向执行器退还 gas 费。但其实如果验证失败，钱包就不应支付费用。</p>
+<p>当前实现下，钱包无条件地向执行器退还 gas 费。然而，在验证失败的情况下，钱包本不应承担任何费用。<strong>验证失败</strong>意味着未经授权的参与者试图强制钱包执行操作。在这种场景中，尽管 <code class="language-plaintext highlighter-rouge">executeOp</code> 会正确阻止操作，但根据现有实现，钱包仍需支付 gas 费。攻击者可以利用这一缺陷，发起大量未经授权的操作，逐步耗尽钱包的 gas 资金。</p>
 
-<p>因为<strong>验证失败</strong>，意味着某个没有权限的人要求钱包执行某个操作。在这种情况下，钱包的 <code class="language-plaintext highlighter-rouge">executeOp</code> 会正确地阻止该操作执行，但根据当前实现，钱包仍要支付 gas 费。利用这点，与钱包没有任何关系的人也可以请求大量操作，耗尽钱包的 gas 资金。与之相对，如果验证成功但操作<strong>执行失败</strong>，则钱包应该支付 gas 费。这表示钱包所有者授权执行的操作最终没有成功，就像从 EOA 发送一个回滚的交易一样，由于用户进行了授权，因此应该为 gas 付费。</p>
+<p>相反，如果验证成功但操作<strong>执行失败</strong>，钱包则应支付 gas 费。这类似于从外部账户发送一个最终回滚的交易：由于操作是经过所有者授权的，因此产生的 gas 费应由钱包承担。</p>
 
-<p>当前的 <code class="language-plaintext highlighter-rouge">executeOp</code> 接口无法区分验证失败和执行失败，因此我们需要将其拆分为两部分。</p>
+<p>鉴于当前 <code class="language-plaintext highlighter-rouge">executeOp</code> 接口无法有效区分验证失败和执行失败，我们需要对接口进行重构。</p>
 
-<p><strong>新钱包接口</strong>：</p>
+<p>新钱包接口设计如下：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1789,65 +1764,63 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><strong>入口点的 <code class="language-plaintext highlighter-rouge">handleOp</code> 新实现</strong>：</p>
+<p>相应地，入口点的 <code class="language-plaintext highlighter-rouge">handleOp</code> 方法将实现更复杂的逻辑：</p>
 
-<ul>
-  <li>调用 <code class="language-plaintext highlighter-rouge">validateOp</code>。如果失败，停止执行。</li>
-  <li>从钱包的存款中预留 ETH，用于支付可能使用的最大 gas 费（基于操作的 gas 字段）。如果钱包存款不足，拒绝执行。</li>
-  <li>调用 <code class="language-plaintext highlighter-rouge">executeOp</code> 并跟踪实际使用的 gas 量。无论此调用成功或失败，都从预留的资金中向执行器退还 gas 费，剩余资金返还给钱包存款。</li>
-</ul>
+<ol>
+  <li>首先调用 <code class="language-plaintext highlighter-rouge">validateOp</code>。如果验证未通过，立即终止执行。</li>
+  <li>从钱包的存款中预留 ETH，用于支付可能的最大 gas 费（基于操作的 gas 字段）。若钱包存款不足，拒绝执行。</li>
+  <li>调用 <code class="language-plaintext highlighter-rouge">executeOp</code> 并精确跟踪实际消耗的 gas 量。无论操作执行成功与否，都从预留资金中向执行器退还 gas 费，并将剩余资金退还至钱包存款。</li>
+</ol>
 
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w04.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w04.svg" alt="" loading="lazy"></a>
 <em>拆分验证与执行以区别验证失败和执行失败</em></p>
 
-<p>这一实现对钱包来说很合理，只有其授权的操作才会被收取 gas 费。但对执行器而言，风险又增加了。</p>
+<p>这一设计对钱包而言颇为合理，确保仅对授权操作收取 gas 费。但对执行器来说，风险反而有所增加。</p>
 
-<blockquote class="prompt-tip">
-  <p>应该确保未经授权的用户不能直接调用钱包的 <code class="language-plaintext highlighter-rouge">executeOp</code>，防止钱包在未经验证的情况下执行操作。钱包可以通过强制 <code class="language-plaintext highlighter-rouge">executeOp</code> 只能由入口点合约调用来防止这种情况。</p>
+<blockquote>
+  <p class="prompt-tip">为防止未经授权的用户直接调用 <code class="language-plaintext highlighter-rouge">executeOp</code>，钱包可通过限制该方法仅允许入口点合约调用来维护安全性。</p>
 </blockquote>
 
-<blockquote class="prompt-tip">
-  <p>为什么作恶钱包不能在 <code class="language-plaintext highlighter-rouge">validateOp</code> 中执行所有操作？这样如果执行失败就不会被收取 gas 费。后文将说明 <code class="language-plaintext highlighter-rouge">validateOp</code> 会受到严格的限制，使其不适合执行真正的操作。</p>
+<blockquote>
+  <p class="prompt-tip">一个潜在的风险是作恶钱包可能试图在 <code class="language-plaintext highlighter-rouge">validateOp</code> 中执行全部操作，以避免在执行失败时被收取 gas 费。后文将阐明 <code class="language-plaintext highlighter-rouge">validateOp</code> 会受到严格限制，使其不适合执行实质性操作。</p>
 </blockquote>
 
 <h3 id="模拟机制"><span class="me-2">模拟机制</span><a href="#模拟机制" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>当前实现下，当未经授权的用户为钱包提交操作时，<code class="language-plaintext highlighter-rouge">validateOp</code> 会失败，钱包不必支付任何费用。但执行器仍需为 <code class="language-plaintext highlighter-rouge">validateOp</code> 的链上执行支付 gas 费，且不会获得补偿。</p>
+<p>在当前机制下，当未授权用户提交操作时，<code class="language-plaintext highlighter-rouge">validateOp</code> 将失败，钱包无需支付任何费用。然而，执行器仍需为 <code class="language-plaintext highlighter-rouge">validateOp</code> 的链上执行支付 gas 费，且无法获得补偿。尽管作恶钱包无法再免费执行操作，但仍可令执行器为失败操作支付 gas 费并遭受损失。</p>
 
-<p>作恶钱包无法再免费执行操作，但仍能令执行器为失败的操作支付 gas 费并损失资金。</p>
+<p>先前，执行器通过本地模拟预测操作成功性，仅在模拟成功时提交链上交易调用 <code class="language-plaintext highlighter-rouge">handleOp</code>。但执行器难以合理限制执行，防止模拟成功而实际交易失败的情况。</p>
 
-<p>在之前的模拟中，执行器会先在本地模拟操作，只有在模拟成功时才会提交链上交易调用 <code class="language-plaintext highlighter-rouge">handleOp</code>。但执行器无法合理地限制执行来防止模拟成功但真实交易失败的情况发生。</p>
+<p>现在，通过解耦验证和执行，执行器只需模拟 <code class="language-plaintext highlighter-rouge">validateOp</code> 即可判断是否能获得补偿。与 <code class="language-plaintext highlighter-rouge">executeOp</code> 不同，对 <code class="language-plaintext highlighter-rouge">validateOp</code> 施加严格的限制不会阻碍钱包与区块链的交互。</p>
 
-<p>但在我们拆分了操作的验证和执行后，执行器只需要模拟 <code class="language-plaintext highlighter-rouge">validateOp</code>，就能知道是否会获得补偿。与 <code class="language-plaintext highlighter-rouge">executeOp</code> 不同，对 <code class="language-plaintext highlighter-rouge">validateOp</code> 施加更严格的限制不会影响钱包与区块链的自由交互。</p>
-
-<p>具体而言，只有当 <code class="language-plaintext highlighter-rouge">validateOp</code> 满足以下限制时，执行器才会向链上提交用户操作：</p>
+<p>具体而言，执行器仅在 <code class="language-plaintext highlighter-rouge">validateOp</code> 满足以下条件时才提交用户操作：</p>
 
 <ol>
-  <li>不使用禁用列表中的操作码，包括 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code>、<code class="language-plaintext highlighter-rouge">BLOCKHASH</code> 等。</li>
-  <li>只访问钱包的<strong>关联存储</strong>，定义为以下任一情况：
+  <li>不使用受限操作码，如 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code>、<code class="language-plaintext highlighter-rouge">BLOCKHASH</code> 等。</li>
+  <li>仅访问钱包的<strong>关联存储</strong>，包括：
     <ul>
-      <li>钱包自身的存储</li>
-      <li>另一个合约在 <code class="language-plaintext highlighter-rouge">mapping(address =&gt; value)</code> 中与钱包地址对应的存储位置</li>
-      <li>另一个合约中与钱包地址相同的存储位置（非常规做法）</li>
+      <li>钱包自身存储</li>
+      <li>另一个合约中以钱包地址为键的映射存储位置 <code class="language-plaintext highlighter-rouge">mapping(address =&gt; value)</code></li>
+      <li>另一个合约中与钱包地址对应的特定存储位置</li>
     </ul>
   </li>
 </ol>
 
-<p>这些规则旨在最小化模拟与实际执行不一致的风险。禁用操作码很好理解，存储限制的思路是：任何存储访问都会增加模拟失真的风险，因为该存储位置可能在模拟和执行期间发生变化。但如果将存储限制为与此钱包相关的位置，那么恶意者就需要更新与钱包相关的特定存储才能使模拟失真，其成本足以阻止恶意者。</p>
+<p>这些规则旨在最大程度地减少模拟与实际执行不一致的风险。禁用特定操作码是直接的限制，而存储访问限制的核心思路是：任何存储访问都可能导致模拟失真。通过将存储访问限制在与钱包相关的位置，恶意者若要使模拟失真，需要更新特定的关联存储，其成本足以遏制恶意行为。</p>
 
-<p>在这种模拟机制下，钱包和执行器都是安全的。</p>
+<p>这种模拟机制下，钱包和执行器都是安全的。</p>
 
-<blockquote class="prompt-tip">
-  <p>对 <code class="language-plaintext highlighter-rouge">validateOp</code> 存储访问的限制还有另一个好处：由于 <code class="language-plaintext highlighter-rouge">validateOp</code> 只能访问与该钱包关联的特定存储位置，而不同钱包的关联存储位置是相互独立的，因此针对不同钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 调用不会相互影响。这种互不干扰的特性对于并行处理多个钱包的操作是非常有利的，这一点对后文将讨论的“打包”操作非常重要。</p>
+<blockquote>
+  <p class="prompt-tip">对 <code class="language-plaintext highlighter-rouge">validateOp</code> 存储访问的限制还有一项额外好处：由于 <code class="language-plaintext highlighter-rouge">validateOp</code> 仅能访问特定钱包的关联存储，不同钱包的存储位置相互独立，这意味着针对不同钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 调用不会相互干扰。这种互不影响的特性为后续讨论的“打包”操作提供了重要的并行处理基础。</p>
 </blockquote>
 
 <h3 id="钱包直接支付"><span class="me-2">钱包直接支付</span><a href="#钱包直接支付" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>目前，钱包支付 gas 费的方式是先将 ETH 存入入口点合约，然后再发送用户操作。但普通的 EOA 是直接用其 ETH 余额支付 gas 费的，我们的合约钱包也应该支持这点。</p>
+<p>目前，钱包通过将 ETH 存入入口点合约来支付 gas 费，但普通的外部账户是直接使用其 ETH 余额支付的。我们的合约钱包同样应该支持这种方式。</p>
 
-<p>在拆分验证和执行后，入口点可以在验证步骤中<strong>要求</strong>钱包向其发送 ETH，否则拒绝执行操作，由此钱包就能直接支付 gas 费了。</p>
+<p>在拆分验证和执行后，入口点可以在验证阶段要求钱包向其发送 ETH，否则拒绝执行操作，从而实现钱包直接支付 gas 费。</p>
 
-<p>我们需要更新钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法，使入口点能够向其索要资金，如果 <code class="language-plaintext highlighter-rouge">validateOp</code> 不向入口点支付所需金额，入口点就拒绝执行操作：</p>
+<p>我们需要更新钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法，使入口点能够向其索要资金。如果 <code class="language-plaintext highlighter-rouge">validateOp</code> 未向入口点支付所需金额，入口点将拒绝执行操作：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1861,41 +1834,33 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>由于在验证时我们无法确切知道执行期间将使用多少 gas，因此入口点会根据用户操作的 gas 字段，要求钱包支付可能使用的最大 gas 费。然后在执行结束时将未使用的 gas 费退还给钱包。</p>
+<p>由于验证阶段无法精确预知执行期间的确切 gas 消耗，入口点将根据用户操作的 gas 字段，要求钱包支付可能使用的最大 gas 费。执行结束后，未使用的 gas 费将退还给钱包。</p>
 
-<p>要注意，在编写智能合约时，直接向任意合约发送 ETH 是有风险的，因为这会调用该合约的代码，可能导致失败或消耗不可预测的 gas 量，甚至受到重入攻击。因此我们不能直接将多余的 gas 费退还给钱包，而是应保留这部分 ETH，并允许钱包调用提款方法将其取出，也就是所谓的“拉取支付”模式。</p>
+<p>在智能合约开发中，直接向任意合约发送 ETH 存在风险，这会调用该合约的代码，可能触发不可预测的代码执行、gas 消耗，甚至引发重入攻击。因此，我们采用“拉取支付”模式：多余的 gas 费将保留在入口点，由钱包主动通过提款方法取出。</p>
 
-<p>多余的 gas 费会被发送到 <code class="language-plaintext highlighter-rouge">deposit</code> 方法接收 ETH 的位置，钱包可以使用 <code class="language-plaintext highlighter-rouge">withdrawTo</code> 方法将其取出。这也就意味着钱包可以从两个位置支付 gas 费：入口点合约中为其所持有的 ETH，以及钱包自身持有的 ETH。这其实类似于支付宝余额和所绑定银行账户余额间的关系。</p>
+<p>多余的 gas 费将通过 <code class="language-plaintext highlighter-rouge">deposit</code> 方法接收，钱包可使用 <code class="language-plaintext highlighter-rouge">withdrawTo</code> 方法提取。这意味着钱包可以从两个来源支付 gas 费：入口点合约中为其所持有的 ETH，以及钱包自身持有的 ETH，类似于支付宝余额与所绑定银行账户余额间的关系。</p>
 
-<p>入口点会先尝试使用存入的 ETH 支付 gas 费，如果存款不足，则在调用钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 时要求支付剩余部分。</p>
+<p>入口点将优先使用已存入的 ETH 支付 gas 费，若存款不足，则在调用钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 时要求支付剩余部分。</p>
 
 <h3 id="执行器激励"><span class="me-2">执行器激励</span><a href="#执行器激励" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>到目前为止，执行器需要运行大量模拟，却没有任何利润，模拟失真时还要自费支付 gas 费。因此作为补偿，我们允许钱包所有者在用户操作中附加小费，这部分费用将归执行器所有。</p>
+<p>迄今为止，执行器需要进行大量模拟，却没有任何收益，且在模拟失真时还要自行承担 gas 费。为此，我们允许钱包所有者在用户操作中附加小费，作为执行器的补偿。</p>
 
-<p>在用户操作结构中添加一个字段来表示这一点：</p>
+<p>在用户操作结构中新增字段：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre>struct UserOperation {
+<pre><code class="language-sol">struct UserOperation {
     // ...
     uint256 maxPriorityFeePerGas; 
 }
-</pre></td></tr></tbody></table></code></div></div>
+</code></pre>
 
-<p><code class="language-plaintext highlighter-rouge">maxPriorityFeePerGas</code> 表示发送方为获得操作处理优先权愿意支付的最高 gas 价格。</p>
-
-<p>执行器在发送调用入口点 <code class="language-plaintext highlighter-rouge">handleOp</code> 方法的交易时，可以使用较低的 <code class="language-plaintext highlighter-rouge">maxPriorityFeePerGas</code>，并将差价作为自己的收益。</p>
+<p><code class="language-plaintext highlighter-rouge">maxPriorityFeePerGas</code> 代表发送方为获得操作处理优先权愿意支付的最高 gas 价格。执行器在提交调用入口点 <code class="language-plaintext highlighter-rouge">handleOp</code> 方法的交易时，可以使用较低的 <code class="language-plaintext highlighter-rouge">maxPriorityFeePerGas</code>，将差价作为自身收益。</p>
 
 <h3 id="单例入口点"><span class="me-2">单例入口点</span><a href="#单例入口点" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>入口点的功能与特定的钱包或执行器无关。因此，入口点可以作为整个生态系统中的单例存在。所有钱包和执行器都与同一个入口点合进行约交互。</p>
+<p>入口点的功能与特定钱包或执行器无关，因此可作为整个生态系统的单例存在。所有钱包和执行器都将与同一个入口点合约进行交互。</p>
 
-<p>为此，我们需要调整用户操作的结构，使其能够指定该操作所针对的钱包地址，以便入口点的 <code class="language-plaintext highlighter-rouge">handleOp</code> 接收到操作时，知道要向哪个钱包请求验证和执行：</p>
+<p>为此，我们需要调整用户操作的结构，使其能指定操作针对的钱包地址，便于入口点的 <code class="language-plaintext highlighter-rouge">handleOp</code> 方法确定需要验证和执行的钱包：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1911,9 +1876,9 @@
 
 <h3 id="小结"><span class="me-2">小结</span><a href="#小结" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>我们的目标是创建一个能自己支付 gas 费的链上钱包，且无需钱包所有者管理单独的外部账户。这一目标已经达成：</p>
+<p>我们的目标是创建一个能够自主支付 gas 费、无需钱包所有者管理独立外部账户的链上钱包。这一目标现已实现：</p>
 
-<p>钱包接口如下：</p>
+<p>钱包接口设计如下：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1927,7 +1892,7 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>整个区块链上通用的单例入口点接口如下：</p>
+<p>区块链通用的单例入口点接口如下：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1943,22 +1908,22 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>当前用户的使用流程如下：</p>
+<p>用户使用流程简述：</p>
 
 <ol>
-  <li>当钱包所有者想要执行某个操作时，会生成一个用户操作，并在链下请求一个执行器来处理。</li>
-  <li>执行器模拟钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法，以决定是否接受该用户操作。</li>
-  <li>如果接受，执行器会发送一笔交易给入口点合约，调用 <code class="language-plaintext highlighter-rouge">handleOp</code>。</li>
-  <li>入口点会在链上处理验证和执行操作，并从钱包的存款中退款给执行器。</li>
+  <li>钱包所有者生成用户操作，并在链下寻求执行器处理。</li>
+  <li>执行器模拟钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法，判断是否接受该操作。</li>
+  <li>若接受，执行器向入口点合约发送交易，调用 <code class="language-plaintext highlighter-rouge">handleOp</code>。</li>
+  <li>入口点在链上处理验证和执行，并从钱包存款中向执行器退款。</li>
 </ol>
 
 <h2 id="打包操作"><span class="me-2">打包操作</span><a href="#打包操作" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>目前，执行器发送一笔交易只能执行一个用户操作，效率较低。由于入口点不与特定钱包绑定，我们完全可以收集来自不同用户的一批操作，然后在单个交易中一次性执行以节省 gas 费，即<strong>打包操作</strong> (bundling)。</p>
+<p>当前模式下，执行器每笔交易仅处理单一用户操作，效率低下。得益于入口点的通用性，我们可以聚合来自不同用户的多个操作，在单笔交易中一次性执行，从而节省 gas 费——这就是<strong>打包操作</strong> (bundling)。</p>
 
-<p>通过打包用户操作，用户无需重复支付固定的 21000 gas 交易发送费用，同时也能降低冷存储访问费用（在同一笔交易中多次访问相同的存储空间比第一次访问便宜）。</p>
+<p>通过打包用户操作，可以避免重复支付固定的 21000 gas 交易发送费用，并降低冷存储访问成本（同一交易中多次访问相同存储空间的费用比首次访问便宜）。</p>
 
-<p>所需的改动很少，只需将：</p>
+<p>实现改动极为简单，只需将：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -1993,45 +1958,45 @@
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w05.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w05.svg" alt="" loading="lazy"></a>
 <em>用户操作的打包、验证和执行</em></p>
 
-<p><code class="language-plaintext highlighter-rouge">handleOps</code> 方法执行以下操作：</p>
+<p><code class="language-plaintext highlighter-rouge">handleOps</code> 方法将执行以下逻辑：</p>
 
 <ul>
-  <li>对于每个操作，在操作发送者钱包上调用 <code class="language-plaintext highlighter-rouge">validateOp</code>。任何未通过验证的操作都将被丢弃。</li>
-  <li>对于每个操作，在操作发送者钱包上调用 <code class="language-plaintext highlighter-rouge">executeOp</code>，跟踪使用了多少 gas，然后将 ETH 转账执行器，用于支付 gas 费。</li>
+  <li>对每个操作，在其发送者钱包上调用 <code class="language-plaintext highlighter-rouge">validateOp</code>。未通过验证的操作将被丢弃。</li>
+  <li>对每个操作，调用发送者钱包的 <code class="language-plaintext highlighter-rouge">executeOp</code>，跟踪 gas 消耗，并向执行器转账以支付 gas 费。</li>
 </ul>
 
-<p>这里需要注意的一点是，在处理操作时，入口点会先验证全部操作，然后再执行全部操作，而不是对每个操作分别进行验证和执行。这点对于模拟非常重要，如果 <code class="language-plaintext highlighter-rouge">handleOps</code> 时在验证下一个操作之前就执行了前一个操作，那么前一个操作的执行就有可能干扰第二个操作的验证所依赖的存储。</p>
+<p>关键是入口点将先验证所有操作，随后再执行所有操作，而非逐一验证和执行。这一设计对模拟至关重要：若在验证下一个操作前已执行前一个操作，则前一操作的执行可能干扰后续操作验证所依赖的存储状态。</p>
 
-<p>同样，也应当避免一个操作的验证干扰包中后续操作的验证。不过，只要包中不包含同一个钱包的多个操作，那么由于前述的存储限制，这点是很容易做到的：两个操作的验证不涉及相同的存储，就不会相互干扰。因此，执行器会确保包中每个钱包最多只包含一个操作。</p>
+<p>同样，也需要避免一个操作的验证干扰包中后续操作的验证。所幸，只要包中不包含同一钱包的多个操作，那么依靠前述存储限制，这一点很容易实现：两个操作的验证不涉及相同存储，就不会相互干扰。因此，执行器将确保每个钱包在包中最多只有一个操作。</p>
 
-<p>在此机制下，执行器可以通过安排包中的用户操作顺序（可能插入自己的操作）来获得最大可提取价值 (MEV)。</p>
+<p>在此机制下，执行器可以通过调整包中用户操作的顺序（可能插入自身操作）来获得最大可提取价值 (MEV)。</p>
 
-<p>引入打包操作后，我们将以 ERC-4337 中的术语“<strong>打包器</strong>” (bundler) 来称呼控制 EOA 的参与者，不再称其为“执行器”。</p>
+<p>引入打包操作后，我们将使用 ERC-4337 中的术语“<strong>打包器</strong>” (bundler) 来指代控制外部账户的参与者，不再称其为“执行器”。</p>
 
 <h3 id="网络参与"><span class="me-2">网络参与</span><a href="#网络参与" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>在当前机制下，钱包所有者向打包器提交用户操作，并希望操作能被包含在一个包中。这与区块链上普通交易的机制非常相似，即账户所有者向区块构建者提交交易，希望交易能被包含在一个区块中。我们可以从两者相似的网络结构中受益。</p>
+<p>在当前机制下，钱包所有者向打包器提交用户操作，并期望该操作能被纳入一个数据包中。这一机制与区块链上常规交易极其相似：账户所有者向区块构建者提交交易，并希望其被收录在特定区块中。我们可以从两者近似的网络结构中获得启发。</p>
 
-<p>就像节点将普通交易存储在内存池中并广播给其他节点一样，打包器可以将验证后的用户操作存储在内存池中并广播给其他打包器。打包器可以在分享用户操作之前先对其进行验证，从而节省彼此验证操作的工作量。</p>
+<p>类比于节点将普通交易存储在内存池并广播给其他节点，打包器同样可以将经过验证的用户操作储存在内存池中并传播至其他打包器。在共享用户操作前进行验证，不仅可以减少重复工作，还能提高整体网络效率。</p>
 
-<p>打包器如果同时也是区块构建者，就可以选择包会被包含在哪个区块中，从而减少甚至消除在模拟成功后执行失败的可能性。此外，区块构建者和打包器能以类似的方式通过 MEV 获利。随着时间的推移，打包器和区块构建者的角色可能会逐渐融合。</p>
+<p>若打包器兼任区块构建者，则能精准选择操作被包含的区块，大幅降低甚至消除模拟成功后执行失败的可能性。更有趣的是，区块构建者和打包器能以相似方式通过 MEV 获利，随着技术演进，这两个角色很可能最终融为一体。</p>
 
 <h2 id="代付合约"><span class="me-2">代付合约</span><a href="#代付合约" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>目前，我们的钱包已经完全实现了 EOA 的功能，且允许用户自定义验证逻辑。但钱包仍然需要支付 gas 费，因此用户在进行链上操作之前需要先获取一些 ETH。</p>
+<p>目前，我们的钱包已全面实现 EOA 功能，并支持用户自定义验证逻辑。不过钱包仍需支付 gas 费，这意味着用户在进行链上操作前必须先准备一定数量的 ETH。</p>
 
-<p>如果我们希望由其他人而非钱包所有者来支付 gas 费呢？例如下列情况：</p>
+<p>然而在特定场景中，我们可能希望绕开钱包所有者，由他人代为支付 gas 费，例如：</p>
 
 <ul>
-  <li>钱包所有者可能是区块链新手，在进行链上操作之前获取 ETH 有一定门槛。</li>
-  <li>Dapp 可能愿意为其方法支付 gas 费，以免 gas 费用吓退潜在用户。</li>
-  <li>赞助商可能允许钱包使用其他代币支付 gas 费，例如USDC。</li>
-  <li>出于隐私原因，用户可能希望从混币器中提取资产到一个新地址，由与其无关的账户支付 gas 费。</li>
+  <li>钱包所有者可能是区块链新用户，在进行链上操作之前获取 ETH 门槛较高。</li>
+  <li>Dapp 可能愿意为其服务分担 gas 费用，降低用户进入的心理障碍。</li>
+  <li>赞助商或许会允许用户使用 USDC 等替代代币支付 gas 费。</li>
+  <li>在追求隐私的场景下，用户可能希望从混币器提取资产至新地址，并由无关账户代为支付 gas 费。</li>
 </ul>
 
-<p>当谈，几遍 Dapp 愿意为其用户支付 gas 费，也不可能替所有人的所有操作付费，因而需要在链上部署自定义逻辑的合约，来查看用户操作并决定是否为该操作支付 gas 费。我们将这样的合约称为<strong>代付者</strong> (Paymaster)。</p>
+<p>尽管 Dapp 可能有意为用户分摊成本，但显然无法为所有用户的每一笔操作买单。因此，我们需要在链上部署具有自定义逻辑的合约，用以审核用户操作并决定是否代为支付费用。我们将这类合约称为<strong>代付者</strong>（Paymaster）。</p>
 
-<p>该合约提供一个方法来查看用户操作并决定是否为其支付费用：</p>
+<p>该合约提供了一个方法用于审查用户操作并判断是否代为承担费用：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2043,7 +2008,7 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>然后，当钱包提交一个操作时，需要指明期望由哪个代付者（如有）来支付 gas 费。我们要在 <code class="language-plaintext highlighter-rouge">UserOperation</code> 中添加一个新字段来指定这点。此外，还需要在用户操作中添加一个字段，使钱包可以由此向代付合约传递数据，以说服其替自己买单。</p>
+<p>当钱包提交操作时，需要明确指出期望由哪个代付者（如有）支付 gas 费。为此，我们在 <code class="language-plaintext highlighter-rouge">UserOperation</code> 中新增字段，标识代付者地址，并允许钱包向代付合约传递相关的数据，以说服其买单。</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2059,15 +2024,15 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>接下来我们将修改入口点的 <code class="language-plaintext highlighter-rouge">handleOps</code> 方法，以使用新的代付合约。其行为如下：</p>
+<p>接下来，我们将调整入口点的 <code class="language-plaintext highlighter-rouge">handleOps</code> 方法，以无缝整合新的代付合约机制。其核心流程如下：</p>
 
 <ul>
-  <li>对于每个操作：
+  <li>针对每笔操作：
     <ul>
-      <li>在操作发送者的钱包上调用 <code class="language-plaintext highlighter-rouge">validateOp</code>。</li>
-      <li>如果操作有代付合约地址，则调用该合约的 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code>。</li>
-      <li>以上两种验证有一项以上未通过，则丢弃该操作。</li>
-      <li>对每个操作，在操作发送者的钱包上调用 <code class="language-plaintext highlighter-rouge">executeOp</code>，跟踪使用了多少 gas，然后向执行器转账 ETH 来支付 gas 费。如果操作有代付者字段，则使用代付者的 ETH，否则仍使用钱包持有的 ETH。</li>
+      <li>在操作发送者的钱包上执行 <code class="language-plaintext highlighter-rouge">validateOp</code>。</li>
+      <li>若操作指定了代付合约地址，则调用其 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code>。</li>
+      <li>一旦以上任一验证未通过，立即丢弃该操作。</li>
+      <li>在操作发送者钱包上调用 <code class="language-plaintext highlighter-rouge">executeOp</code>，精确追踪 gas 使用量，并向执行器转账 ETH 以结算 gas 费。若存在代付者，则使用代付者的 ETH；反之，则仍以钱包自有资金支付。</li>
     </ul>
   </li>
 </ul>
@@ -2075,23 +2040,23 @@
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w06.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w06.svg" alt="" loading="lazy"></a>
 <em>执行器同时调用代付合约和用户的合约钱包来确定交易是否被赞助</em></p>
 
-<p>与钱包一样，代付合约也需要先通过入口点的 <code class="language-plaintext highlighter-rouge">deposit</code> 方法存入 ETH，然后才能支付操作费用。</p>
+<p>代付合约也需要像钱包一样先通过入口点的 <code class="language-plaintext highlighter-rouge">deposit</code> 方法存入 ETH，然后才能支付操作费用。</p>
 
 <h3 id="代付者质押"><span class="me-2">代付者质押</span><a href="#代付者质押" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>前文提到，打包器需要用模拟来避免执行未通过验证的操作，因为这种情况下打包器要为 gas 费买单，且不会得到钱包的补偿。</p>
+<p>在之前的讨论中，我们提到打包器需要通过模拟来规避执行未通过验证的操作，因为这种情况下打包器不仅要为 gas 费买单，还无法获得钱包的补偿。</p>
 
-<p>而引入代付者后，情况类似：打包器同样需要避免提交未通过代付者验证的操作。</p>
+<p>引入代付者后，情况类似：打包器同样需要避免提交未通过代付者验证的操作。</p>
 
-<p>初看之下，我们似乎可以对 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 使用与 <code class="language-plaintext highlighter-rouge">validateOp</code> 相同的限制（即只能访问钱包及其关联存储，且不能使用被禁止的操作码），打包器可以在模拟钱包 <code class="language-plaintext highlighter-rouge">validateOp</code> 的同时模拟用户操作的 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code>。</p>
+<p>初看之下，我们或许可以对 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 采用与 <code class="language-plaintext highlighter-rouge">validateOp</code> 相同的限制（仅允许访问钱包及其关联存储，并禁止使用特定操作码），打包器可以在模拟钱包 <code class="language-plaintext highlighter-rouge">validateOp</code> 的同时，一并模拟用户操作的 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code>。</p>
 
-<p>但这里有一个问题：</p>
+<p>然而，这里潜藏着一个微妙的问题：</p>
 
-<p>由于存储限制规定钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 只能访问该钱包相关的存储，因此只要操作来自不同的钱包，那么包中多个操作的验证就不会相互干扰，因为其共享的存储很少。但是代付合约的存储是被整个包中所有使用该代付者的操作共享的，这就意味着一个 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 的行为可能会导致包中许多使用该代付合约的其他操作验证失败。恶意代付者甚至可以利用这一点进行 DoS 攻击。</p>
+<p>先前对钱包存储的限制确保了不同钱包的操作验证相互隔离。但代付合约的存储却被同一数据包中所有使用该代付者的操作共享，这意味着一个 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 的行为可能导致包中其他使用相同代付合约的操作验证失败。更为严重的是，恶意代付者甚至可以利用这一特性发起 DoS 攻击。</p>
 
-<p>为了防止这种情况，我们需要引入一个信誉系统：让打包器跟踪每个代付者最近验证失败的频率，并通过限制或禁止使用该代付者的操作来惩罚经常失败的代付者。但如果恶意代付者可以轻松创建多个实例（女巫攻击），信誉系统就会失效。因此需要让代付者质押 ETH。</p>
+<p>为应对这一挑战，我们需要引入一个信誉系统：让打包器追踪每个代付者最近验证失败的频率，并通过限制或禁止使用该代付者的操作来惩罚频繁失败的代付者。然而，如果恶意代付者能轻易创建多个实例（即女巫攻击），这一信誉系统将形同虚设。因此，我们需要引入 ETH 质押机制。</p>
 
-<p>在入口点添加新方法来处理质押：</p>
+<p>在入口点中新增处理质押的方法：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2109,19 +2074,19 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>一旦质押被存入，只有调用 <code class="language-plaintext highlighter-rouge">unlockStake</code> 并经过一段延迟后才能取出。这些方法与之前讨论过的 <code class="language-plaintext highlighter-rouge">deposit</code> 和 <code class="language-plaintext highlighter-rouge">withdrawTo</code> 是不同的，后者可随时取出。</p>
+<p>质押存入后，只有在调用 <code class="language-plaintext highlighter-rouge">unlockStake</code> 并等待一定延迟后，才能提取。这些方法区别于先前讨论的 <code class="language-plaintext highlighter-rouge">deposit</code> 和 <code class="language-plaintext highlighter-rouge">withdrawTo</code>，后者可随时取出。</p>
 
 <blockquote class="prompt-tip">
-  <p>此处的质押不会被罚没。其存在的目的是令潜在攻击者必须锁定大量资金才能实施大规模攻击。</p>
+  <p>此处的质押不会被罚没。其目的是迫使潜在攻击者锁定大量资金，从而提高发起大规模攻击的门槛。</p>
 </blockquote>
 
 <h3 id="postop-方法"><span class="me-2"><code class="language-plaintext highlighter-rouge">postOp</code> 方法</span><a href="#postop-方法" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>目前，代付合约只在操作实际运行之前的验证步骤中被调用。</p>
+<p>目前，代付合约仅在操作实际运行前的验证阶段被调用。</p>
 
-<p>但代付者可能还需要根据操作的结果做出不同的处理。例如，一个支持使用 USDC 支付 gas 费的代付者需要知道操作实际使用了多少 gas，以确定应该收取多少 USDC。</p>
+<p>然而，代付者可能需要根据操作结果做出差异化处理。举例而言，一个支持使用 USDC 支付 gas 费的代付者需要准确了解操作实际消耗的 gas 量，以精确收取 USDC。</p>
 
-<p>因此，为代付合约添加一个新方法 <code class="language-plaintext highlighter-rouge">postOp</code>，入口点将在操作完成后调用该方法，传递实际使用的 gas 量。我们还希望代付者能将验证过程中的结果数据放到 <code class="language-plaintext highlighter-rouge">postOp</code> 中计算，因此允许验证返回任意的 context 数据，这些数据会被传递给 <code class="language-plaintext highlighter-rouge">postOp</code>：</p>
+<p>因此，我们为代付合约新增 <code class="language-plaintext highlighter-rouge">postOp</code> 方法，入口点将在操作完成后调用该方法，传递实际使用的 gas 量。同时，为了让代付者能在 <code class="language-plaintext highlighter-rouge">postOp</code> 中利用验证阶段的结果数据，我们允许验证返回任意 context 数据：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2135,17 +2100,17 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>就上述例子而言，代付合约批准执行之前会检查用户有足够的 USDC 来支付操作费用。但完全有可能在执行过程中，操作将钱包的所有 USDC 都转走了，导致代付者最后无法获得付款。</p>
+<p>以上述场景为例，代付合约在批准执行前会检查用户是否有足够 USDC 支付操作费用。然而，操作执行过程中完全有可能转走钱包的所有 USDC，导致代付者最终无法获得付款。</p>
 
 <blockquote class="prompt-tip">
-  <p>代付者是否可以通过在开始时收取最大 USDC 金额，然后在结束时退还未使用的部分来避免这种情况？可以，但很麻烦。因为需要两次 <code class="language-plaintext highlighter-rouge">transfer</code> 调用，会增加 gas 成本并产生了两个不同的 <code class="language-plaintext highlighter-rouge">transfer</code> 事件。</p>
+  <p>是否可以通过预先收取最大 USDC 金额，随后退还未使用部分来规避这一问题？理论上可行，但实践中颇为复杂，因为这需要两次 <code class="language-plaintext highlighter-rouge">transfer</code> 调用，不仅增加 gas 成本，还会产生两个不同的 <code class="language-plaintext highlighter-rouge">transfer</code> 事件。</p>
 </blockquote>
 
-<p>代付合约需要一种能令执行完成的操作失效的方法，同时还要确保即便如此，代付者应该仍能获得付款。实现的方法是令入口点能调用两次 <code class="language-plaintext highlighter-rouge">postOp</code>。</p>
+<p>代付合约需要一种机制，既能使执行完成的操作失效，又确保代付者仍能获得应得的费用。我们的解决方案是允许入口点调用两次 <code class="language-plaintext highlighter-rouge">postOp</code>。</p>
 
-<p>入口点会将调用 <code class="language-plaintext highlighter-rouge">postOp</code> 作为执行钱包 <code class="language-plaintext highlighter-rouge">executeOp</code> 的一部分，因此 <code class="language-plaintext highlighter-rouge">postOp</code> 回滚将导致 <code class="language-plaintext highlighter-rouge">executeOp</code> 的结果也回滚。这种情况下，入口点将再次调用 <code class="language-plaintext highlighter-rouge">postOp</code>，但此时 <code class="language-plaintext highlighter-rouge">executeOp</code> 尚未被执行，由于刚检查过 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code>，因此代付者能获取应得的费用。</p>
+<p>入口点将 <code class="language-plaintext highlighter-rouge">postOp</code> 调用作为执行钱包 <code class="language-plaintext highlighter-rouge">executeOp</code> 的一部分，这意味着 <code class="language-plaintext highlighter-rouge">postOp</code> 的回滚也将导致 <code class="language-plaintext highlighter-rouge">executeOp</code> 的结果回滚。在这种情况下，入口点将再次调用 <code class="language-plaintext highlighter-rouge">postOp</code>，此时 <code class="language-plaintext highlighter-rouge">executeOp</code> 尚未执行，代付者可以获取应得的费用。</p>
 
-<p>为 <code class="language-plaintext highlighter-rouge">postOp</code> 添加旗标参数 <code class="language-plaintext highlighter-rouge">hasAlreadyReverted</code> 以提供更多上下文，该参数指示当前是否处于回滚过后的第二次运行中：</p>
+<p>为了提供更多上下文，我们为 <code class="language-plaintext highlighter-rouge">postOp</code> 添加 <code class="language-plaintext highlighter-rouge">hasAlreadyReverted</code> 标志参数，指示当前是否处于回滚后的第二次运行：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2163,6 +2128,8 @@
 
 <p>为了支持 gas 费代付，我们引入了一种新的实体类型：代付者，即部署了具有以下接口的智能合约：</p>
 
+<p>为了支持 gas 费代付机制，我们引入了一种全新的实体类型：代付者，本质上是部署了以下接口的智能合约：</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -2175,7 +2142,7 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>用户操作中添加了新字段，允许钱包指定代付者：</p>
+<p>用户操作新增两个关键字段，赋予钱包指定代付者的能力：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2191,11 +2158,9 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>代付者通过与钱包相同的方法将 ETH 存入入口点合约。入口点更新了 <code class="language-plaintext highlighter-rouge">handleOps</code> 方法，对每个操作，除了通过钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 进行钱包验证外，还会通过代付合约的 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 对操作进行验证。通过后执行操作，最后调用代付合约的 <code class="language-plaintext highlighter-rouge">postOp</code>。</p>
+<p>代付者可以通过与钱包相同的方式，将 ETH 存入入口点合约。入口点随之更新 <code class="language-plaintext highlighter-rouge">handleOps</code> 方法：除了通过钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 进行验证外，还会调用代付合约的 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 对操作进行验证。验证通过后执行操作，最后调用代付合约的 <code class="language-plaintext highlighter-rouge">postOp</code>。</p>
 
-<p>为了解决模拟代付者验证时的问题，引入了质押系统，用于锁定代付者的 ETH。</p>
-
-<p>新的入口点合约方法如下：</p>
+<p>为妥善解决代付者验证模拟中的潜在问题，我们引入了质押系统，用于锁定代付者的 ETH。新增的入口点合约方法如下：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2213,33 +2178,35 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>引入代付者后，我们已经实现了账户抽象的大部分功能。</p>
+<p>引入代付者后，我们已经实现了账户抽象的绝大部分核心功能。</p>
 
 <h2 id="钱包创建"><span class="me-2">钱包创建</span><a href="#钱包创建" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>一个始终悬而未决的问题是用户究竟如何创建其钱包合约。传统的合约部署方式是使用 EOA 发送一个没有接收者的交易，交易中包含合约的部署代码。但我们的目标就是为了让用户在没有 EOA 的情况下也能与区块链交互，如果用户得先创建一个 EOA 才能部署钱包合约，那意义何在呢？我们希望想要但还没有钱包的用户能创建链上钱包，并支付 gas 费，可以使用 ETH 自行支付（虽然还没有钱包），也可以由代付者支付。用户应该无需创建 EOA 就能完成上述行为。</p>
+<p>一个始终悬而未决的问题是：用户究竟如何创建其钱包合约？传统的合约部署需要使用 EOA 发送一笔没有接收者的交易，并附带合约部署代码。然而，我们的初衷恰恰是让用户无需 EOA 就能与区块链交互。如果用户必须先创建 EOA 才能部署钱包合约，那么这套设计就失去了其根本意义。</p>
 
-<p>此外，当用户创建新 EOA 时，可以在本地生成私钥并声明账户，无需发送任何交易。我们希望合约钱包也能具有同样的属性，即在实际部署钱包合约之前，就能声明地址并接收资产。</p>
+<p>我们的理想场景是：尚未拥有钱包的用户能够创建链上钱包并支付 gas 费，可以选择自行使用 ETH 支付，或通过代付者代为支付。最关键的是，用户无需创建 EOA 就能完成这一过程。</p>
+
+<p>另外，用户在创建普通 EOA 时只需在本地生成私钥并声明账户即可，无需发送任何交易。我们希望合约钱包能具备同样的灵活性：在实际部署前就能确定地址并接收资产。</p>
 
 <h3 id="确定性合约地址"><span class="me-2">确定性合约地址</span><a href="#确定性合约地址" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>简而言之，我们需要在实际部署合约前就确定其最终的部署地址。</p>
+<p>简而言之，我们需要在实际部署合约前就确定其最终地址。</p>
 
 <blockquote class="prompt-tip">
-  <p>尚未部署但将被部署到的地址被称为<strong>反事实地址</strong> (counterfactual address)。</p>
+  <p>尚未部署但已预先确定的地址，被称为<strong>反事实地址</strong> (counterfactual address)。</p>
 </blockquote>
 
-<p>实现这一点的关键是 <code class="language-plaintext highlighter-rouge">CREATE2</code> 操作码。它可以在不实际部署合约的情况下，根据以下输入确定合约的地址：</p>
+<p>实现这一目标的关键在于 <code class="language-plaintext highlighter-rouge">CREATE2</code> 操作码。它能根据以下三个输入，在不实际部署合约的情况下确定合约地址：</p>
 
 <ul>
   <li>调用 <code class="language-plaintext highlighter-rouge">CREATE2</code> 的合约地址</li>
   <li>任意的 32 字节盐值</li>
-  <li>合约的 <strong>init code</strong></li>
+  <li>合约的 init code</li>
 </ul>
 
-<p>init code 是一段 EVM 字节码，指定了一个函数，当执行时会返回另一个 EVM 字节码，这个返回的字节码就是即将部署的智能合约代码。有趣的是：部署合约时，你提交的代码并不是最终合约中的代码，多次使用相同的 init code 并不保证部署的合约将具有相同的代码，因为 init code 可以读取存储或使用 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code> 等操作码。</p>
+<p>init code 是一段特殊的 EVM 字节码，其执行会返回另一段将被部署的智能合约代码。值得注意的是，即便多次使用相同的 init code，也不保证最终部署的合约代码完全相同，因为 init code 可以读取存储或使用 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code> 等操作码。</p>
 
-<p>利用 <code class="language-plaintext highlighter-rouge">CREATE2</code>，我们可以让用户提供 init code，如果合约尚未存在，则由入口点部署该合约。在用户操作中添加一个新字段：</p>
+<p>借助 <code class="language-plaintext highlighter-rouge">CREATE2</code>，我们允许用户提供 init code，并由入口点在合约尚未存在时进行部署。为此，我们在用户操作中新增字段：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2253,37 +2220,35 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>并更新入口点 <code class="language-plaintext highlighter-rouge">handleOps</code> 方法中的验证部分，执行以下操作：</p>
+<p>随后更新入口点 <code class="language-plaintext highlighter-rouge">handleOps</code> 方法的验证逻辑：</p>
 
 <ul>
-  <li>在验证用户操作时，如果操作有非空的 <code class="language-plaintext highlighter-rouge">initCode</code>，则使用 <code class="language-plaintext highlighter-rouge">CREATE2</code> 部署一个具有该 init code 的合约。</li>
+  <li>若操作包含非空 <code class="language-plaintext highlighter-rouge">initCode</code>，则使用 <code class="language-plaintext highlighter-rouge">CREATE2</code> 部署对应合约。</li>
+  <li>继续执行标准验证流程：
+    <ul>
+      <li>调用新创建钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法</li>
+      <li>若存在代付者，调用代付合约的 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 方法</li>
+    </ul>
+  </li>
 </ul>
 
-<p>然后像正常情况一样继续进行其余的验证：</p>
+<p>这一方案实现了我们的核心目标：用户可以部署任意合约，并提前知晓部署地址。部署可由代付者赞助，或用户自行支付（将 ETH 存入待部署合约地址）。</p>
+
+<p>然而，这种方案存在潜在风险：</p>
+
 <ul>
-  <li>调用新创建的钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法。</li>
-  <li>如果操作有代付者，则调用代付合约的 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 方法。</li>
+  <li>代付者难以通过分析字节码判断是否代付</li>
+  <li>用户提交的部署代码难以全面验证，存在用户借助第三方工具部署合约时可能引入后门的风险</li>
+  <li>init code 可能导致打包器模拟成功但实际执行失败</li>
 </ul>
 
-<p>这一方案实现了上面讨论的目标：用户可以部署任意合约，并且可以提前知道合约将被部署的地址。部署可以由代付者赞助，或由用户自己支付（将 ETH 存入合约将被部署的地址）。</p>
-
-<p>但该方案仍存在一些缺陷，主要围绕在让用户提交的任意字节码并由入口点对其进行验证这点：</p>
-
-<ul>
-  <li>当代付者查看用户操作时，无法通过分析字节码来决定是否为其付费。</li>
-  <li>当用户提交字节码来部署合约时，难以验证所提交的字节码是否如其所愿。如果用户使用第三方工具部署合约，则要面临该工具作恶或被入侵的风险，如提交的 init code 中可能藏有后门，这类行为难以检测。</li>
-  <li>由于 init code 可以是任意代码，很容易在打包器模拟时成功而在实际执行时失败。</li>
-</ul>
-
-<p>我们需要一种方式让用户能在不提交任意字节码的情况下部署合约，为其他参与者提供更多保障。</p>
+<p>我们需要设计一种更安全的机制，让用户能在不提交任意字节码的情况下部署合约，为所有参与方提供更充分的保障。</p>
 
 <h3 id="工厂合约"><span class="me-2">工厂合约</span><a href="#工厂合约" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>我们不再让入口点直接使用任意字节码并调用 <code class="language-plaintext highlighter-rouge">CREATE2</code>，而是允许用户选择一个调用 <code class="language-plaintext highlighter-rouge">CREATE2</code> 的合约。这些合约被称为“<strong>工厂</strong>” (factory)，专门用于创建不同类型的钱包合约。</p>
+<p>我们不再直接使用任意字节码并调用 <code class="language-plaintext highlighter-rouge">CREATE2</code>，而是引入了“<strong>工厂</strong>” (factory) 合约，允许用户选择专门用于创建不同类型钱包的合约。例如，某个工厂合约专门生成保护 NFT 的钱包，另一个则负责生成需要 3/5 多签才能操作的钱包。</p>
 
-<p>例如，某个工厂合约专门生成保护 NFT 的钱包，另一个工厂合约则负责生成需要$\frac{3}{5}$多签才能操作的钱包等。</p>
-
-<p>工厂合约会暴露一个方法，用于创建合约：</p>
+<p>工厂合约提供了创建合约的方法：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2296,10 +2261,10 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <blockquote class="prompt-tip">
-  <p>工厂返回新创建合约的地址，用户可以模拟该方法来确定其合约将被部署到何处，从而实现我们最初的目标之一。</p>
+  <p>工厂返回新创建合约的地址，用户可以通过模拟该方法预测合约的部署位置，从而实现我们最初的目标。</p>
 </blockquote>
 
-<p>在用户操作中添加字段，如果用户操作要部署钱包，则指定要使用的工厂以及传递给工厂的数据：</p>
+<p>在用户操作中增加字段，如果要部署钱包，则指定使用的工厂及要传递的相关数据：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2318,41 +2283,35 @@
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w07.drawio.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w07.drawio.svg" alt="" loading="lazy"></a>
 <em>用户可以调用工厂合约，创建不同类型的合约钱包</em></p>
 
-<p>由此，前面提到前两个问题得到了解决：</p>
+<p>这样解决了之前的两个问题：</p>
 
-<ul>
+<ol>
   <li>代付者可以选择仅为来自特定工厂的部署付费。</li>
-  <li>如果用户调用的工厂合约经过审计，用户就一定能获得一个能达成特定目的、没有后门的合约钱包，无需审查字节码。</li>
-</ul>
+  <li>使用经过审计的工厂合约，用户得到的一定是无后门、针对特定功能的合约钱包，无需逐一审查字节码。</li>
+</ol>
 
-<p>最后一个问题是部署代码可能在模拟期间成功但在执行时失败。这与之前代付合约 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 方法遇到的问题一致，可以用同样的方式解决：打包器将限制工厂只能访问其关联存储及正在部署的钱包的存储，且不允许调用被禁止的方法，同时工厂需要使用入口点的 <code class="language-plaintext highlighter-rouge">addStake</code> 方法质押 ETH，打包器可根据其模拟失败的频率来限制或禁用工厂合约。</p>
+<p>最后一个问题是部署代码可能在模拟时成功但执行时失败。与之前代付合约 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 方法类似，解决方案是：打包器将限制工厂仅能访问其关联存储和正在部署的钱包存储，禁止调用特定方法，并要求工厂使用入口点的 <code class="language-plaintext highlighter-rouge">addStake</code> 方法质押 ETH。打包器可根据工厂合约模拟失败的频率来限制或禁用该工厂。</p>
 
-<p>至此，我们的架构已经实现了 <a href="https://eips.ethereum.org/EIPS/eip-4337">ERC-4337</a> 中的全部功能。</p>
+<p>至此，我们的架构就实现了 <a href="https://eips.ethereum.org/EIPS/eip-4337">ERC-4337</a> 中的所有核心功能。</p>
 
 <h2 id="聚合签名"><span class="me-2">聚合签名</span><a href="#聚合签名" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>当前实现下，包中的每个用户操作都需要分别进行验证，这种验证方式会带来不必要的 gas 消耗，导致验签成本高昂。</p>
+<p>在当前实现中，打包中的每个用户操作都需要单独验证，这种低效的验证方式会产生不必要的 gas 消耗，导致签名验证成本居高不下。</p>
 
-<p>因此，我们可以引入密码学中的聚合签名，用一个签名同时验证多个操作，以节省 gas。</p>
+<p>为此，我们可以引入密码学中的聚合签名技术，通过单一签名同时验证多个操作，从而显著降低 gas 开支。聚合签名方案允许将多个使用不同密钥签名的消息合并为一个统一的聚合签名。若该聚合签名通过验证，则意味着所有原始签名均有效。</p>
 
-<p>聚合签名方案中，给定多个由不同密钥签名的消息，生成一个单一的聚合签名，该聚合签名通过验证就意味着所有签名都是有效的。</p>
+<p><a href="https://en.wikipedia.org/wiki/BLS_digital_signature">BLS</a> (Boneh-Lynn-Shacham) 签名算法是支持签名聚合的典型方案。这种优化对于 Rollup 尤其有价值，因为数据压缩正是 Rollup 的核心目标，而签名聚合能够有效压缩签名部分，进一步提升数据压缩效率。</p>
 
-<p><a href="https://en.wikipedia.org/wiki/BLS_digital_signature">BLS</a> 就是一个支持聚合的常见签名方案。</p>
-
-<p>这种优化对于实现 Rollup 尤其有用，因为 Rollup 的主要目标就是数据压缩，而签名聚合令签名部分可被压缩。</p>
-
-<p>关于签名聚合带来的空间节省可参见 Vitalik 的推文：</p>
+<p>关于签名聚合带来的空间节省，可以参考 Vitalik 在相关推文中的阐述：</p>
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Some quick theorycrafting of how much data space we can save by improving compression (especially in rollups).<br /><br />ERC4337 signature aggregation ( <a href="https://t.co/wFJI3BEq6g">https://t.co/wFJI3BEq6g</a> ) is essential to this. <a href="https://t.co/nrlcOpVJKb">pic.twitter.com/nrlcOpVJKb</a></p>&mdash; vitalik.eth (@VitalikButerin) <a href="https://twitter.com/VitalikButerin/status/1554983955182809088?ref_src=twsrc%5Etfw">August 4, 2022</a></blockquote>
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h3 id="聚合器"><span class="me-2">聚合器</span><a href="#聚合器" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>包中并非所有用户操作的签名都可以聚合。由于钱包可以使用任意逻辑来验证给定的签名，因此一个包中可能存在各种签名方案。</p>
+<p>并非包中的所有用户操作签名都能聚合。由于钱包可以采用任意逻辑验证签名，因此一个打包中可能包含多种不同的签名方案。这些异构签名无法直接聚合，导致最终的打包可能被划分为多个操作组，每组采用不同的聚合方案，甚至存在不聚合的情况。</p>
 
-<p>不同方案的签名无法聚合，因此最终包中会得到几组操作，每组使用不同的聚合方案，甚至也可能不进行聚合。我们使用多个名为<strong>聚合器</strong> (aggregator) 的合约来在链上表示不同的聚合方案。</p>
-
-<p>一个聚合方案包括聚合（定义如何将多个签名聚合成一个）和验证（定义如何验证聚合签名）两部分，因此聚合器合约暴露以下两个方法：</p>
+<p>为此，我们引入多个“<strong>聚合器</strong>” (aggregator) 合约，在链上表示不同的签名聚合方案。一个聚合方案由两部分组成：聚合（如何将多个签名合并）和验证（如何校验聚合签名）。因此，聚合器合约需要提供以下两个关键方法：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2366,7 +2325,7 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>由于钱包能定义其签名方案，因此由钱包来决定与哪个聚合器兼容。如果钱包想要参与聚合，会公开一个方法来选择聚合器：</p>
+<p>钱包可自主定义其签名方案，并决定兼容的聚合器。若钱包希望参与聚合，则需对外暴露选择聚合器的方法：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2380,9 +2339,7 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>使用这个新的 <code class="language-plaintext highlighter-rouge">getAggregator</code> 方法，打包器可以将使用相同聚合器的操作分组，并使用该聚合器的 <code class="language-plaintext highlighter-rouge">aggregateSignatures</code> 方法为其计算聚合签名。</p>
-
-<p>操作组如下所示：</p>
+<p>通过 <code class="language-plaintext highlighter-rouge">getAggregator</code> 方法，打包器可将使用相同聚合器的操作归类，并调用对应聚合器的 <code class="language-plaintext highlighter-rouge">aggregateSignatures</code> 方法计算聚合签名。操作组的结构如下：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2399,10 +2356,10 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <blockquote class="prompt-tip">
-  <p>如果打包器有特定聚合器链下知识，则可通过硬编码签名聚合算法的本地版本来进行优化，无需运行 <code class="language-plaintext highlighter-rouge">aggregateSignatures</code> 的 EVM 代码。</p>
+  <p>若打包器掌握特定聚合器的链下知识，还可通过硬编码本地签名聚合算法进行优化，避免执行 EVM 中的 <code class="language-plaintext highlighter-rouge">aggregateSignatures</code> 代码。</p>
 </blockquote>
 
-<p>更新入口点合约，提供新方法 <code class="language-plaintext highlighter-rouge">handleAggregatedOps</code>，该方法与 <code class="language-plaintext highlighter-rouge">handleOps</code> 作用基本相同，但接收按聚合器分组的操作，主要区别在于验证步骤。</p>
+<p>相应地，入口点合约新增 <code class="language-plaintext highlighter-rouge">handleAggregatedOps</code> 方法，其功能与 <code class="language-plaintext highlighter-rouge">handleOps</code> 基本一致，但接收按聚合器分组的操作，主要差异在于验证流程：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2418,26 +2375,24 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">handleOps</code>通过调用每个钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法来执行验证，而 <code class="language-plaintext highlighter-rouge">handleAggregatedOps</code> 则使用每组的聚合器在对聚合签名调用 <code class="language-plaintext highlighter-rouge">validateSignatures</code> 方法。</p>
+<p><code class="language-plaintext highlighter-rouge">handleOps</code> 通过调用每个钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法执行验证，而 <code class="language-plaintext highlighter-rouge">handleAggregatedOps</code> 则使用各组聚合器的 <code class="language-plaintext highlighter-rouge">validateSignatures</code> 方法验证聚合签名。</p>
 
 <p><a href="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w08.drawio.svg" class="popup img-link  shimmer"><img src="https://fanwb.oss-cn-beijing.aliyuncs.com/img/w08.drawio.svg" alt="" loading="lazy"></a>
 <em>执行者用聚合器将用户操作分组，并发送至入口点，以同时进行验证</em></p>
 
-<p>最后，同样需要对聚合器进行限制以避免打包器模拟失真的问题：限制聚合器可访问的存储即可使用的操作码，并要求其在入口点合约中质押 ETH。</p>
+<p>为防止模拟失真问题，我们同样对聚合器施加了必要限制：限制其可访问的存储和可用操作码，并要求在入口点合约中质押 ETH。</p>
 
-<p><strong>至此，我们实现了 ERC-4337 的完整架构</strong>，仅在方法名和参数等细节方面存在差异。</p>
+<p><strong>至此，我们已完整实现 ERC-4337 的架构</strong>，仅在方法名和参数等细节上存在微小差异。</p>
 
 <h2 id="总结"><span class="me-2">总结</span><a href="#总结" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>本文从用户需求和实际使用场景出发，逐步介绍了账户抽象的架构设计思路和演进过程，最终实现了 ERC-4337 的全部核心功能。希望本文的解析能够帮助读者更好地理解账户抽象这一复杂概念的来龙去脉，并从中获得有价值的启发。</p>
+<p>本文从用户需求和实际使用场景出发，逐步阐述了账户抽象的架构设计思路和演进过程，最终呈现了 ERC-4337 的全部核心功能。希望本文的解析能帮助读者更深入地理解账户抽象这一复杂概念，并从中获得启发。</p>
 
 <h2 id="附录与-erc-4337-的差异"><span class="me-2">附录：与 ERC-4337 的差异</span><a href="#附录与-erc-4337-的差异" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
 <p><strong>1. 验证时间范围</strong></p>
 
-<p>钱包希望用户操作仅在一定时间段内有效，否则恶意打包器可以长时间囤积操作，仅在对打包器有利的时间点将其包含在包中。</p>
-
-<p>钱包无法通过检查 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code> 来避免这种情况，因为我们为防止模拟失真在验证期间禁用了 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code>。因此我们需要另外的方式来指示操作有效的时间段。</p>
+<p>钱包希望用户操作仅在特定时间段内有效，以防止恶意打包器囤积操作，并在对自身最为有利的时刻将其打包。由于我们在验证期间禁用了 <code class="language-plaintext highlighter-rouge">TIMESTAMP</code> 以避免模拟失真，钱包无法直接通过检查时间戳来限制操作有效期。</p>
 
 <p>ERC-4337 给了 <code class="language-plaintext highlighter-rouge">validateOp</code> 返回值，钱包可以利用该值选择时间段：</p>
 
@@ -2453,13 +2408,11 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>此返回值表示操作有效的时间段，由两个连续的 8 字节整数表示。</p>
-
-<p>ERC-4337 中还有一点说明：在验证失败的情况下，钱包应该从 <code class="language-plaintext highlighter-rouge">validateOp</code> 返回一个哨兵值，而不是回滚，这有助于估算 gas，因为 <code class="language-plaintext highlighter-rouge">eth_estimateGas</code> 无法告诉你回滚的交易使用了多少 gas。</p>
+<p>这个返回值由两个连续的 8 字节整数组成，精确定义了操作的时间窗口。值得注意的是，在验证失败时，钱包应返回一个哨兵值而非直接回滚，这有助于更准确地估算 gas 消耗，因为 <code class="language-plaintext highlighter-rouge">eth_estimateGas</code> 无法准确反馈回滚交易的 gas 使用情况。</p>
 
 <p><strong>2. 任意调用数据</strong></p>
 
-<p>我们的钱包接口是：</p>
+<p>我们的钱包接口设计为：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2473,7 +2426,7 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>在 ERC-4337 中，钱包没有名为 <code class="language-plaintext highlighter-rouge">executeOp</code> 的方法。与之相对，用户操作中有一个 <code class="language-plaintext highlighter-rouge">callData</code> 字段，这被作为调用数据传递给钱包：</p>
+<p>而在 ERC-4337 中，这一设计被更灵活的机制替代。用户操作引入了 <code class="language-plaintext highlighter-rouge">callData</code> 字段，作为传递给钱包的通用调用数据：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2487,15 +2440,13 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>对于一般的智能合约，此数据的前 4 个字节被解释为函数标识符，其余部分为函数参数。</p>
+<p>对于典型的智能合约调用，<code class="language-plaintext highlighter-rouge">callData</code> 的前 4 字节用作函数标识符，其余部分则为函数参数。这意味着除了必需的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法外，钱包可以完全自定义其接口，用户操作可以调用钱包中的任意方法。</p>
 
-<p>这意味着除了必需的 <code class="language-plaintext highlighter-rouge">validateOp</code> 方法之外，钱包可以自定义接口，用户操作可用于调用钱包中的任意方法。</p>
-
-<p>同样，在 ERC-4337 中，工厂合约也没有 <code class="language-plaintext highlighter-rouge">deployContract</code> 方法，而是接收来自操作的 <code class="language-plaintext highlighter-rouge">initCode</code> 字段的任意调用数据。</p>
+<p>同理，工厂合约也不再有固定的 <code class="language-plaintext highlighter-rouge">deployContract</code> 方法，而是通过操作的 <code class="language-plaintext highlighter-rouge">initCode</code> 字段接收任意调用数据。</p>
 
 <p><strong>3.压缩数据</strong></p>
 
-<p>用户操作包含指定代付者的字段以及要传递的数据：</p>
+<p>原先的用户操作结构包含代付者地址和相关数据的独立字段：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2511,7 +2462,7 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>在 ERC-4337 中，二者被优化为一个字段，该字段的前 20 字节是代付者地址，其余部分是数据：</p>
+<p>ERC-4337 对此进行了优化，将这两个字段合并为单一的 <code class="language-plaintext highlighter-rouge">paymasterAndData</code>：前 20 字节表示代付者地址，其余部分为相关数据：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
@@ -2525,7 +2476,7 @@
 }  
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>工厂合约也是如此：ERC-4337 将 <code class="language-plaintext highlighter-rouge">factory</code> 和 <code class="language-plaintext highlighter-rouge">factoryData</code> 两个字段合并为了 <code class="language-plaintext highlighter-rouge">initCode</code>。</p>
+<p>类似地，工厂合约的 <code class="language-plaintext highlighter-rouge">factory</code> 和 <code class="language-plaintext highlighter-rouge">factoryData</code> 也被整合为 <code class="language-plaintext highlighter-rouge">initCode</code>，进一步简化了数据结构。</p>
 
 <hr />
 
@@ -2663,14 +2614,14 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/lmdghost/">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</a>
+          <a href="/posts/ipfs/">IPFS 技术原理详解</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/casperffg/">以太坊 PoS 共识协议详解（二）：Casper FFG</a>
+          <a href="/posts/lmdghost/">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</a>
         </li>
       
         
@@ -3500,31 +3451,31 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   
 
   
@@ -3669,11 +3620,11 @@
 
 <time
   
-  data-ts="1690084800"
+  data-ts="1684641600"
   data-df="ll"
   
 >
-  Jul 23, 2023
+  May 21, 2023
 </time>
 
               <h4 class="pt-0 my-2">以太坊 PoS 共识协议详解（二）：Casper FFG</h4>
@@ -3749,21 +3700,21 @@
 
   
     <a
-      href="/posts/floo/"
+      href="/posts/rwa/"
       class="btn btn-outline-primary"
       aria-label="Older"
     >
-      <p>文件同步系统 Floo 基本功能演示</p>
+      <p>RWA 代币化浪潮：万物皆可加密</p>
     </a>
   
 
   
     <a
-      href="/posts/lmdghost/"
+      href="/posts/ethds/"
       class="btn btn-outline-primary"
       aria-label="Newer"
     >
-      <p>以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</p>
+      <p>以太坊数据结构详解</p>
     </a>
   
 </nav>

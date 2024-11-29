@@ -1840,14 +1840,14 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/lmdghost/">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</a>
+          <a href="/posts/ipfs/">IPFS 技术原理详解</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/casperffg/">以太坊 PoS 共识协议详解（二）：Casper FFG</a>
+          <a href="/posts/lmdghost/">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</a>
         </li>
       
         
@@ -2825,48 +2825,6 @@
         </article>
       
         <article class="col">
-          <a href="/posts/aa/" class="post-preview card h-100">
-            <div class="card-body">
-              <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1680926400"
-  data-df="ll"
-  
->
-  Apr  8, 2023
-</time>
-
-              <h4 class="pt-0 my-2">账户抽象架构设计详解</h4>
-              <div class="text-muted">
-                <p>
-                  
-
-
-
-
-
-                  本文将从零开始，逐步构建起 ERC-4337 中账户抽象的架构。本文主要面向有智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。
-
-自定义钱包
-
-我们首先从一个简单的资产管理的场景出发：用户希望使用单个私钥签署大多数普通交易，但价格昂贵的 NFT 资产则需要同时用存放在银行保险库内的另一个私钥签署才能转移。
-
-我们知道以太...
-                </p>
-              </div>
-            </div>
-          </a>
-        </article>
-      
-        <article class="col">
           <a href="/posts/lmdghost/" class="post-preview card h-100">
             <div class="card-body">
               <!--
@@ -2905,6 +2863,48 @@
 
 
   “验证者”这一术语具有一定的误导性，验证者其实并不会验证任何东西，验证是由节点完...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/casperffg/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1684641600"
+  data-df="ll"
+  
+>
+  May 21, 2023
+</time>
+
+              <h4 class="pt-0 my-2">以太坊 PoS 共识协议详解（二）：Casper FFG</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  本文是介绍以太坊 PoS 共识协议的第二部分，主要对最终性工具 Casper FFG 进行全面说明。
+
+许多文章都介绍过 Casper FFG 的运行机制，但很少解释这些机制为什么有效。希望本文能为读者理解 Casper FFG 的有效性提供一些参考。
+
+总体而言，Casper FFG 的机制并不复杂，其有效性主要归功于为两个重要理念：两阶段提交，以及可问责安全性。
+
+两阶段提交赋予了 Ca...
                 </p>
               </div>
             </div>
