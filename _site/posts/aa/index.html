@@ -1560,8 +1560,8 @@
 
 <p>因此，我们的链上身份将由一个智能合约代表，这类合约被称为“智能合约钱包”。我们需要设计一种机制，能够向该钱包发出指令，使其像 EOA 一样执行我们期望的转账或合约调用操作。</p>
 
-<blockquote>
-  <p class="prompt-tip">这种资产管理方式要求每个用户都必须拥有独立的智能合约。不能使用单一大型合约来集中管理多个用户的资产，因为以太坊生态的基本假设是一个地址对应一个独立实体。共享合约钱包将导致用户无法被有效区分，有违区块链追求的身份透明性和独立性原则。</p>
+<blockquote class="prompt-tip">
+  <p>这种资产管理方式要求每个用户都必须拥有独立的智能合约。不能使用单一大型合约来集中管理多个用户的资产，因为以太坊生态的基本假设是一个地址对应一个独立实体。共享合约钱包将导致用户无法被有效区分，有违区块链追求的身份透明性和独立性原则。</p>
 </blockquote>
 
 <h3 id="用户操作"><span class="me-2">用户操作</span><a href="#用户操作" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
@@ -1777,12 +1777,12 @@
 
 <p>这一设计对钱包而言颇为合理，确保仅对授权操作收取 gas 费。但对执行器来说，风险反而有所增加。</p>
 
-<blockquote>
-  <p class="prompt-tip">为防止未经授权的用户直接调用 <code class="language-plaintext highlighter-rouge">executeOp</code>，钱包可通过限制该方法仅允许入口点合约调用来维护安全性。</p>
+<blockquote class="prompt-tip">
+  <p>为防止未经授权的用户直接调用 <code class="language-plaintext highlighter-rouge">executeOp</code>，钱包可通过限制该方法仅允许入口点合约调用来维护安全性。</p>
 </blockquote>
 
-<blockquote>
-  <p class="prompt-tip">一个潜在的风险是作恶钱包可能试图在 <code class="language-plaintext highlighter-rouge">validateOp</code> 中执行全部操作，以避免在执行失败时被收取 gas 费。后文将阐明 <code class="language-plaintext highlighter-rouge">validateOp</code> 会受到严格限制，使其不适合执行实质性操作。</p>
+<blockquote class="prompt-tip">
+  <p>一个潜在的风险是作恶钱包可能试图在 <code class="language-plaintext highlighter-rouge">validateOp</code> 中执行全部操作，以避免在执行失败时被收取 gas 费。后文将阐明 <code class="language-plaintext highlighter-rouge">validateOp</code> 会受到严格限制，使其不适合执行实质性操作。</p>
 </blockquote>
 
 <h3 id="模拟机制"><span class="me-2">模拟机制</span><a href="#模拟机制" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
@@ -1810,8 +1810,8 @@
 
 <p>这种模拟机制下，钱包和执行器都是安全的。</p>
 
-<blockquote>
-  <p class="prompt-tip">对 <code class="language-plaintext highlighter-rouge">validateOp</code> 存储访问的限制还有一项额外好处：由于 <code class="language-plaintext highlighter-rouge">validateOp</code> 仅能访问特定钱包的关联存储，不同钱包的存储位置相互独立，这意味着针对不同钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 调用不会相互干扰。这种互不影响的特性为后续讨论的“打包”操作提供了重要的并行处理基础。</p>
+<blockquote class="prompt-tip">
+  <p>对 <code class="language-plaintext highlighter-rouge">validateOp</code> 存储访问的限制还有一项额外好处：由于 <code class="language-plaintext highlighter-rouge">validateOp</code> 仅能访问特定钱包的关联存储，不同钱包的存储位置相互独立，这意味着针对不同钱包的 <code class="language-plaintext highlighter-rouge">validateOp</code> 调用不会相互干扰。这种互不影响的特性为后续讨论的“打包”操作提供了重要的并行处理基础。</p>
 </blockquote>
 
 <h3 id="钱包直接支付"><span class="me-2">钱包直接支付</span><a href="#钱包直接支付" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
@@ -2387,6 +2387,8 @@
 <h2 id="总结"><span class="me-2">总结</span><a href="#总结" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
 <p>本文从用户需求和实际使用场景出发，逐步阐述了账户抽象的架构设计思路和演进过程，最终呈现了 ERC-4337 的全部核心功能。希望本文的解析能帮助读者更深入地理解账户抽象这一复杂概念，并从中获得启发。</p>
+
+<hr />
 
 <h2 id="附录与-erc-4337-的差异"><span class="me-2">附录：与 ERC-4337 的差异</span><a href="#附录与-erc-4337-的差异" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
