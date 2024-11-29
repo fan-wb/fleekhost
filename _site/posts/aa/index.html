@@ -32,20 +32,20 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="账户抽象架构设计详解" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
-<meta property="og:description" content="本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
+<meta name="description" content="本文详细介绍了以太坊 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
+<meta property="og:description" content="本文详细介绍了以太坊 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。" />
 <link rel="canonical" href="https://fan-wb.github.io/posts/aa/" />
 <meta property="og:url" content="https://fan-wb.github.io/posts/aa/" />
 <meta property="og:site_name" content="Fanwb’s Blog" />
 <meta property="og:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-07-23T12:00:00+08:00" />
+<meta property="article:published_time" content="2023-12-17T12:00:00+08:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png" />
 <meta property="twitter:title" content="账户抽象架构设计详解" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-23T12:00:00+08:00","datePublished":"2023-07-23T12:00:00+08:00","description":"本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。","headline":"账户抽象架构设计详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/aa/"},"url":"https://fan-wb.github.io/posts/aa/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-29T19:29:17+08:00","datePublished":"2023-12-17T12:00:00+08:00","description":"本文详细介绍了以太坊 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。","headline":"账户抽象架构设计详解","image":"https://fanwb.oss-cn-beijing.aliyuncs.com/img/Picasso3.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/aa/"},"url":"https://fan-wb.github.io/posts/aa/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1475,18 +1475,41 @@
 
 <time
   
-  data-ts="1690084800"
+  data-ts="1702785600"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Jul 23, 2023
+  Dec 17, 2023
 </time>
 
       </span>
 
       <!-- lastmod date -->
+      
+        <span>
+          Updated
+          <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1732879757"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Nov 29, 2024
+</time>
+
+        </span>
       
 
       
@@ -1535,7 +1558,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="10693 words"
+  title="10697 words"
 >
   <em>59 min</em> read</span>
 
@@ -1546,7 +1569,7 @@
   </header>
 
   <div class="content">
-    <p>本文详细介绍了 ERC-4337 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。</p>
+    <p>本文详细介绍了以太坊 <a href="https://eips.ethereum.org/EIPS/eip-4337">ERC-4337</a> 中账户抽象的设计思路，主要面向具备智能合约基础知识，但对账户抽象不甚了解的读者。文中描述的 API 和行为可能与最终版的 ERC-4337 存在部分差异。</p>
 
 <h2 id="自定义钱包"><span class="me-2">自定义钱包</span><a href="#自定义钱包" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
@@ -1646,7 +1669,7 @@
 <p>由于执行器需要承担调用产生的 gas 费用，我们可以设计一种机制：让钱包合约预留部分 ETH，并在调用过程中向执行器转账，作为 gas 费的补偿。</p>
 
 <blockquote class="prompt-tip">
-  <p>“执行器”并不是 ERC-4337 中的术语，但很好地描述了这个参与者的作用。后文会将其替换为 ERC-4337 中实际使用的术语 “bundler”（打包器），在尚未涉及打包操作的当前阶段，“执行器”这一表述更为恰当。值得注意的是，其他协议中也常用“中继器” (relayer) 来指代类似角色。</p>
+  <p>“执行器”并不是 ERC-4337 中的术语，但很好地描述了这个参与者的作用。后文会将其替换为 ERC-4337 中实际使用的术语“打包器” (bundler)，在尚未涉及打包操作的当前阶段，“执行器”这一表述更为恰当。值得注意的是，其他协议中也常用“中继器” (relayer) 来指代类似角色。</p>
 </blockquote>
 
 <p>当前钱包的接口是：</p>
@@ -2292,7 +2315,7 @@
 
 <p>最后一个问题是部署代码可能在模拟时成功但执行时失败。与之前代付合约 <code class="language-plaintext highlighter-rouge">validatePaymasterOp</code> 方法类似，解决方案是：打包器将限制工厂仅能访问其关联存储和正在部署的钱包存储，禁止调用特定方法，并要求工厂使用入口点的 <code class="language-plaintext highlighter-rouge">addStake</code> 方法质押 ETH。打包器可根据工厂合约模拟失败的频率来限制或禁用该工厂。</p>
 
-<p>至此，我们的架构就实现了 <a href="https://eips.ethereum.org/EIPS/eip-4337">ERC-4337</a> 中的所有核心功能。</p>
+<p>至此，我们的架构就实现了 ERC-4337 中的所有核心功能。</p>
 
 <h2 id="聚合签名"><span class="me-2">聚合签名</span><a href="#聚合签名" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
@@ -2616,7 +2639,7 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/ipfs/">IPFS 技术原理详解</a>
+          <a href="/posts/aa/">账户抽象架构设计详解</a>
         </li>
       
         
@@ -3429,31 +3452,31 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   
 
   
@@ -3702,21 +3725,21 @@
 
   
     <a
-      href="/posts/rwa/"
+      href="/posts/deanonymization/"
       class="btn btn-outline-primary"
       aria-label="Older"
     >
-      <p>RWA 代币化浪潮：万物皆可加密</p>
+      <p>区块链去匿名化技术研究</p>
     </a>
   
 
   
     <a
-      href="/posts/ethds/"
+      href="/posts/ordinals/"
       class="btn btn-outline-primary"
       aria-label="Newer"
     >
-      <p>以太坊数据结构详解</p>
+      <p>Ordinals & BRC-20 技术原理详解</p>
     </a>
   
 </nav>
