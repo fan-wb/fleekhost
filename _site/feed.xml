@@ -4,7 +4,7 @@
   <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-12-23T21:45:13+08:00</updated>
+  <updated>2024-12-23T22:06:02+08:00</updated>
   <author>
     <name>Fan-WB</name>
     <uri>https://fan-wb.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://fan-wb.github.io/posts/ava9000/" rel="alternate" type="text/html" title="Avalanche9000 升级概览" />
     <published>2024-12-19T12:00:00+08:00</published>
   
-    <updated>2024-12-19T12:00:00+08:00</updated>
+    <updated>2024-12-23T22:05:45+08:00</updated>
   
     <id>https://fan-wb.github.io/posts/ava9000/</id>
     <content src="https://fan-wb.github.io/posts/ava9000/" />
@@ -46,7 +46,7 @@
 
 
 
-      在当前市场周期中，智能合约平台板块整体呈现强势上涨态势，多个项目代币价格创下历史新高，但作为头部平台之一的 Avalanche 却始终表现平平。值得注意的是，Avalanche 生态即将迎来一项具有战略意义的重要协议升级。该升级在可扩展性、成本效率以及去中心化程度等核心维度均展现出突破性创新，或将重塑行业竞争格局。本报告将重点剖析此次升级的关键亮点，包括验证者运营成本的显著降低、L1 的完全主权化等，并就其对 Avalanche 生态系统的潜在影响进行探讨。
+      在当前市场周期中，智能合约平台板块整体呈现强势上涨态势，多个项目代币价格创下历史新高，但作为头部平台之一的 Avalanche 却始终表现平平。不过该平台即将迎来的具有战略意义的协议升级—— Avalanche9000 有望改变这一局面。该升级在可扩展性、成本效率以及去中心化程度等核心维度均展现出突破性创新，或将重塑行业竞争格局。本文将重点剖析此次升级的关键亮点，包括验证者运营成本的显著降低、L1 的完全主权化等，并就其对 Avalanche 生态系统的潜在影响进行探讨。
 
 
 图1 AVAX代币价格表现 | 图源：CoinGecko
@@ -56,7 +56,7 @@ Avalanche 简介
 作为全球市值第六大的智能合约平台，Avalanche 凭借其创新的多链架构设计在 Layer 1 赛道中确立了独特优势。该架构由三条专门化主链构成，使 Avalanche 有效实现了功能分层并显著提升了可扩展性：
 
 
-  C-Chain：...
+  C...
     </summary>
   
 
@@ -68,7 +68,7 @@ Avalanche 简介
     <link href="https://fan-wb.github.io/posts/ml1ga/" rel="alternate" type="text/html" title="Make L1 Great Again" />
     <published>2024-11-20T12:00:00+08:00</published>
   
-    <updated>2024-11-20T12:00:00+08:00</updated>
+    <updated>2024-12-23T21:45:24+08:00</updated>
   
     <id>https://fan-wb.github.io/posts/ml1ga/</id>
     <content src="https://fan-wb.github.io/posts/ml1ga/" />
