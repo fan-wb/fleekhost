@@ -4,7 +4,7 @@
   <id>https://fan-wb.github.io/</id>
   <title>Fanwb's Blog</title>
   <subtitle>blog, blockchain, bitcoin, crypto, ethereum, defi, nft, web3, decentralized, finance, technology, ordinals, ipfs, research, zk, snark, rollup, layer2, privacy, security, cryptography,  consensus, scalability, modular, smart contract, dapp</subtitle>
-  <updated>2024-12-20T15:54:45+08:00</updated>
+  <updated>2024-12-23T21:45:13+08:00</updated>
   <author>
     <name>Fan-WB</name>
     <uri>https://fan-wb.github.io/</uri>
@@ -17,6 +17,50 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Avalanche9000 升级概览</title>
+    <link href="https://fan-wb.github.io/posts/ava9000/" rel="alternate" type="text/html" title="Avalanche9000 升级概览" />
+    <published>2024-12-19T12:00:00+08:00</published>
+  
+    <updated>2024-12-19T12:00:00+08:00</updated>
+  
+    <id>https://fan-wb.github.io/posts/ava9000/</id>
+    <content src="https://fan-wb.github.io/posts/ava9000/" />
+    <author>
+      <name>Fan-WB</name>
+    </author>
+
+  
+    
+    <category term="Blockchain" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      在当前市场周期中，智能合约平台板块整体呈现强势上涨态势，多个项目代币价格创下历史新高，但作为头部平台之一的 Avalanche 却始终表现平平。值得注意的是，Avalanche 生态即将迎来一项具有战略意义的重要协议升级。该升级在可扩展性、成本效率以及去中心化程度等核心维度均展现出突破性创新，或将重塑行业竞争格局。本报告将重点剖析此次升级的关键亮点，包括验证者运营成本的显著降低、L1 的完全主权化等，并就其对 Avalanche 生态系统的潜在影响进行探讨。
+
+
+图1 AVAX代币价格表现 | 图源：CoinGecko
+
+Avalanche 简介
+
+作为全球市值第六大的智能合约平台，Avalanche 凭借其创新的多链架构设计在 Layer 1 赛道中确立了独特优势。该架构由三条专门化主链构成，使 Avalanche 有效实现了功能分层并显著提升了可扩展性：
+
+
+  C-Chain：...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -200,54 +244,6 @@
  LibreWolf
 
 LibreWolf 是 Firefox 的一个独立分支，提供更严格的默认...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>L2：ETH 的价值抽取与重塑</title>
-    <link href="https://fan-wb.github.io/posts/ethl2/" rel="alternate" type="text/html" title="L2：ETH 的价值抽取与重塑" />
-    <published>2024-07-23T12:00:00+08:00</published>
-  
-    <updated>2024-07-23T12:00:00+08:00</updated>
-  
-    <id>https://fan-wb.github.io/posts/ethl2/</id>
-    <content src="https://fan-wb.github.io/posts/ethl2/" />
-    <author>
-      <name>Fan-WB</name>
-    </author>
-
-  
-    
-    <category term="Blockchain" />
-    
-    <category term="Ethereum" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-  
-    以太坊 L2 扩容路线图因面临诸多挑战而屡遭诟病，但即便采用 L1 扩容方案，相同的挑战也仍将存在。
-    L2 扩容路线图对 ETH 需求的影响有限。常被提及的总交易费用下降和 ETH 通胀上升等现象，实则源于区块空间供过于求。
-    长远来看，ETH 在各类协议中的应用或将超越交易费用，成为其需求的主要驱动力，交易费用本身则将趋近于零。
-  
-
-
-
-
-以太坊的 Layer-2 (L2) 扩容策略引发了关于其对 ETH “价值抽取”的争议。Dencun 升级和 L2 兴起导致总手续费降至三年新低，似乎终结了ETH “Ultrasound Money” 的论调。但这类批评多属误解，相关问题实为区块链成功扩容的必然结果，无论是在 L1 还是 L2 层面扩容，都会产生类似的现象。
-
-1/9) Ethereum is dying while L2&amp;#39;s dance...
     </summary>
   
 
