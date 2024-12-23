@@ -43,7 +43,7 @@
 <meta property="twitter:title" content="Avalanche 共识协议详解" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-11T11:15:19+08:00","datePublished":"2022-12-24T12:00:00+08:00","description":"本文对雪崩共识协议簇进行介绍。该协议簇是一系列无主拜占庭容错协议，使用基于网络重复随机采样的亚稳态机制构建。雪崩协议能够在存在拜占庭节点的情况下提供强概率安全保证，且并发和无主性质使其能够实现高吞吐量和高可扩展。","headline":"Avalanche 共识协议详解","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/avalanche/"},"url":"https://fan-wb.github.io/posts/avalanche/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-23T23:50:05+08:00","datePublished":"2022-12-24T12:00:00+08:00","description":"本文对雪崩共识协议簇进行介绍。该协议簇是一系列无主拜占庭容错协议，使用基于网络重复随机采样的亚稳态机制构建。雪崩协议能够在存在拜占庭节点的情况下提供强概率安全保证，且并发和无主性质使其能够实现高吞吐量和高可扩展。","headline":"Avalanche 共识协议详解","mainEntityOfPage":{"@type":"WebPage","@id":"https://fan-wb.github.io/posts/avalanche/"},"url":"https://fan-wb.github.io/posts/avalanche/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1213,13 +1213,13 @@
 
 <time
   
-  data-ts="1715397319"
+  data-ts="1734969005"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  May 11, 2024
+  Dec 23, 2024
 </time>
 
         </span>
@@ -1262,7 +1262,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="3605 words"
+  title="3603 words"
 >
   <em>20 min</em> read</span>
 
@@ -1291,11 +1291,11 @@
   </li>
 </ul>
 
-<p>如何实现以上目标？主要依赖以下几种措施：</p>
+<p>以上目标的实现主要依赖以下几种措施：</p>
 
 <ul>
   <li>
-    <p><strong>并行共识模型</strong>：不使用单一复制状态机 (RSM) 模型，每个节点维护自己的RSM（可以互相转移所有权），系统对有关联的交易只维护偏序。</p>
+    <p><strong>并行共识模型</strong>：不使用单一复制状态机 (RSM) 模型，每个节点维护自己的 RSM（可以互相转移所有权），系统对有关联的交易只维护偏序。</p>
   </li>
   <li>
     <p><strong>重复随机采样</strong>：引导诚实节点产生相同输出。</p>
@@ -1309,9 +1309,9 @@
 
 <h3 id="1-基础"><span class="me-2">1 基础</span><a href="#1-基础" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>首先介绍下文中的一些基本概念。</p>
+<p>首先介绍下论文中的一些基本概念。</p>
 
-<p>在任何基于复制状态机 (Replicated State Machine, RSM) 的分布式系统，都需要满足两个特性，即安全性和活性，文中定义如下：</p>
+<p>任何基于复制状态机 (Replicated State Machine, RSM) 的分布式系统，都需要满足两个特性，即安全性和活性，文中定义如下：</p>
 
 <blockquote>
   <p><strong>P1. Safety.</strong> No two correct nodes will accept conflicting transactions.</p>
@@ -1660,6 +1660,13 @@
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/avalanche/">Avalanche 共识协议详解</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/ava9000/">Avalanche9000 升级概览</a>
         </li>
       
@@ -1682,13 +1689,6 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/aa/">账户抽象架构设计详解</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/lmdghost/">以太坊 PoS 共识协议详解（一）：核心概念与 LMD GHOST</a>
         </li>
       
     </ul>
